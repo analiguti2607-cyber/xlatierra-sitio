@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xlatierra · Educación climática en español</title>
+<meta name="description" content="Educación climática en español para jóvenes de América Latina: clara, visual, con fuentes confiables y orientada a la acción.">
+<link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<style>
+/* ---- Solo página de inicio ---- */
+.hero-home{padding:56px 0 40px}
+.hero-home .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.hero-home h1{font-size:clamp(2rem,5vw,3.1rem)}
+.hero-home .lead{font-size:1.12rem;max-width:560px}
+.hero-home .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.beta{display:inline-block;background:var(--gold);color:#fff;font-weight:600;font-size:.8rem;padding:4px 12px;border-radius:999px;margin-bottom:14px;letter-spacing:.02em}
+.hero-art{background:#76a8b8;border-radius:28px;padding:28px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+@media(max-width:780px){.hero-home .wrap{grid-template-columns:1fr}.hero-art{max-width:280px;margin:0 auto;order:-1}}
+section{padding:44px 0}
+.sec-alt{background:#fff}
+.kicker{font-weight:600;color:var(--terra);text-transform:uppercase;font-size:.8rem;letter-spacing:.08em;margin-bottom:6px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.statc{background:var(--cream);border-radius:var(--radius);padding:20px;border-top:5px solid var(--terra)}
+.sec-alt .statc{background:var(--cream)}
+.statc b{display:block;font-family:'Caudex',serif;font-size:2.1rem;color:var(--terra);line-height:1.1;margin-bottom:6px}
+.statc i{display:block;font-size:.74rem;color:#7a8786;font-style:normal;margin-top:8px}
+.unitc{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.unitc h3{margin-bottom:6px}
+.unitc .n{font-family:'Caudex',serif;color:var(--gold);font-size:1.6rem;font-weight:700}
+.feat{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+.feat span{background:var(--soft);color:var(--teal);border-radius:999px;padding:6px 14px;font-size:.9rem;font-weight:400}
+.arc{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.arc span{background:var(--teal);color:#fff;padding:10px 16px;border-radius:999px;font-weight:600}
+.arc em{color:var(--gold);font-style:normal;font-weight:600}
+.about{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start}
+.photo{aspect-ratio:1/1;border-radius:22px;background:var(--soft);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px}
+@media(max-width:640px){.about{grid-template-columns:1fr}.photo{max-width:220px}}
+.band{background:var(--teal);color:#fff;border-radius:26px;padding:34px 28px;text-align:center}
+.band h2{color:#fff}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo-rectangular.png" alt="Xlatierra"></a>
+    <nav>
+      <a href="#por-que" class="hide-sm">Por qué</a>
+      <a href="#curso" class="hide-sm">Curso</a>
+      <a href="curso.html#recursos" class="hide-sm">Recursos</a>
+      <a href="curso.html" class="btn btn-primary" style="padding:9px 18px">Toma el curso</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero-home">
+  <div class="wrap">
+    <div>
+      <span class="beta">Versión beta · en construcción</span>
+      <h1>Del «ya sé que existe» al «ya sé qué hacer».</h1>
+      <p class="lead">Xlatierra es educación climática <strong>en español</strong> para jóvenes de América Latina: clara, visual, con fuentes confiables y pensada para llevarte del conocimiento a la acción.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="curso.html">Empieza el curso gratis →</a>
+        <a class="btn btn-ghost" href="curso.html#recursos">Ver recursos</a>
+      </div>
+    </div>
+    <div class="hero-art"><img src="img/logo-circular.png" alt="Logo de Xlatierra: manos que sostienen una planta" style="border-radius:20px"></div>
+  </div>
+</div>
+
+<!-- ============ POR QUÉ ============ -->
+<section class="sec-alt" id="por-que">
+  <div class="wrap">
+    <div class="kicker">Por qué existe Xlatierra</div>
+    <h2>La información existe. Lo que falta es que se entienda, sea confiable y te diga qué hacer.</h2>
+    <p style="max-width:720px">Mucho del conocimiento sobre clima está en inglés, es demasiado técnico o se siente lejano de lo que vivimos en México y América Latina. Y cuando por fin lo entendemos, casi nunca nos dice por dónde empezar.</p>
+    <div class="grid g4" style="margin-top:22px">
+      <div class="statc"><b>~6%</b>del contenido de internet está en español, frente a casi la mitad en inglés.<i>Fuente: W3Techs</i></div>
+      <div class="statc"><b>~0.5%</b>de las publicaciones en ciencias naturales se escribe originalmente en español.<i>Fuente: investigación de escritorio Xlatierra</i></div>
+      <div class="statc"><b>Casi 1 de 3</b>jóvenes no sabe explicar el cambio climático, aunque 9 de cada 10 dicen haberlo visto en la escuela.<i>Fuente: UNESCO, Informe GEM</i></div>
+      <div class="statc"><b>59%</b>dijo que la información climática «le dice el problema, pero no qué hacer».<i>Fuente: encuesta Xlatierra, n=51, oct. 2026</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CURSO ============ -->
+<section id="curso">
+  <div class="wrap">
+    <div class="kicker">Módulo 1 · gratis</div>
+    <h2>Introducción al cambio climático</h2>
+    <p style="max-width:720px">Un curso interactivo de unas <strong>2 horas y 45 minutos</strong>, a tu ritmo y desde el celular. Con datos de México y América Latina, preguntas para adivinar antes de leer, respuestas cortas y largas, lecturas recomendadas y un certificado al final.</p>
+    <div class="feat"><span>15 lecciones</span><span>4 unidades</span><span>Fuentes en cada lección</span><span>Cuestionario final</span><span>Certificado descargable</span><span>Guarda tu avance</span></div>
+    <div class="grid g4" style="margin-top:18px">
+      <div class="unitc"><div class="n">1</div><h3>Lo básico</h3><p>Qué es el cambio climático, clima vs. tiempo, el efecto invernadero y los gases que calientan.</p></div>
+      <div class="unitc"><div class="n">2</div><h3>Las causas</h3><p>Cómo sabemos que somos nosotros, de dónde salen las emisiones y quién emite más.</p></div>
+      <div class="unitc"><div class="n">3</div><h3>Impactos y justicia</h3><p>Lo que ya pasa en México, salud, comida, biodiversidad y por qué no nos afecta a todos igual.</p></div>
+      <div class="unitc"><div class="n">4</div><h3>Soluciones y acción</h3><p>Cómo detectar desinformación, el límite de 1.5 °C, qué soluciones funcionan y tu primer paso.</p></div>
+    </div>
+    <p style="margin-top:22px"><a class="btn btn-primary" href="curso.html">Empezar ahora →</a></p>
+  </div>
+</section>
+
+<!-- ============ ENFOQUE ============ -->
+<section class="sec-alt">
+  <div class="wrap">
+    <div class="kicker">Cómo aprendemos</div>
+    <h2>De la ciencia a la acción, paso a paso</h2>
+    <p style="max-width:720px">Cada lección conecta lo que dice la ciencia con tu realidad, contigo, con tu comunidad y con algo que puedes hacer. Sin alarmismo y sin simplificar de más.</p>
+    <div class="arc"><span>Ciencia</span><em>→</em><span>Realidad</span><em>→</em><span>Persona</span><em>→</em><span>Comunidad</span><em>→</em><span>Acción</span></div>
+  </div>
+</section>
+
+<!-- ============ QUIÉN ============ -->
+<section id="quien">
+  <div class="wrap about">
+    <div class="photo" style="padding:0;overflow:hidden"><img src="img/ana-ceci.jpg" alt="Ana Cecilia Licéaga Gutiérrez hablando en un evento" style="width:100%;height:100%;object-fit:cover"></div>
+    <div>
+      <div class="kicker">Quién está detrás</div>
+      <h2>Ana Cecilia Licéaga Gutiérrez</h2>
+      <p>Estudiante de Ingeniería Mecánica en el Tecnológico de Monterrey, Campus Estado de México. A los 16 años organizó una Conferencia Local de la Juventud (LCOY) en México, y formó parte de la UNICEF Youth Leadership Network, donde después participó en la gestión de una red de más de 200 jóvenes activistas climáticos.</p>
+      <p>Xlatierra nace y se desarrolla en el marco de <strong>BeVisioneers: The Mercedes-Benz Fellowship</strong>, del que Ana Ceci es fellow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACTO ============ -->
+<section>
+  <div class="wrap">
+    <div class="band">
+      <h2>¿Quieres construir Xlatierra con nosotros?</h2>
+      <p>Estamos en fase beta. Si eres joven, docente u organización y quieres probar el curso, darnos ideas o colaborar, escríbenos.</p>
+      <p style="margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-light" href="mailto:impactus.xa@gmail.com">✉️ impactus.xa@gmail.com</a>
+        <a class="btn btn-gold" href="https://www.instagram.com/x.latierra/" target="_blank" rel="noopener">Instagram · @x.latierra</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div><img src="img/logo-rectangular-azul.png" alt="Xlatierra" style="height:56px;width:auto;border-radius:8px;margin-bottom:10px"><br>Educación climática en español, para jóvenes de América Latina.</div>
+    <div><a href="curso.html">Curso</a><br><a href="curso.html#recursos">Recursos</a><br><a href="curso.html#privacidad">Privacidad</a></div>
+    <div><a href="https://www.instagram.com/x.latierra/" target="_blank" rel="noopener">@x.latierra</a><br><a href="mailto:impactus.xa@gmail.com">impactus.xa@gmail.com</a><br>© 2026 Xlatierra</div>
+  </div>
+</footer>
+</body>
+</html>
