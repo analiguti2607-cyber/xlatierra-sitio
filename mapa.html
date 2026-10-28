@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de la biodiversidad · Xlatierra</title>
+<meta name="description" content="Mapa interactivo de 15 ecosistemas de América Latina, de México a la Patagonia: especies, datos con fuente, países megadiversos y el reto «¿Dónde vive?».">
+<link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="curso.css">
+<style>
+.map-hero{padding:22px 0 8px}
+.map-hero .wrap{display:flex;gap:16px;align-items:center}
+.map-hero img.axo{width:96px;height:96px;object-fit:contain;flex:0 0 auto}
+.map-hero h1{margin:0 0 4px}
+.map-hero p{margin:0;color:var(--muted);max-width:720px}
+.pill{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.toolbar .chip.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.toolbar .sp{flex:1}
+.prog{font-size:.85rem;color:var(--muted)}
+.prog b{color:var(--teal)}
+.layout{display:grid;grid-template-columns:1fr 380px;gap:14px;margin-bottom:30px}
+#map{height:72vh;min-height:460px;border-radius:20px;box-shadow:var(--shadow);z-index:1}
+.panel{background:#fff;border-radius:20px;box-shadow:var(--shadow);height:72vh;min-height:460px;overflow:auto;padding:16px 18px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}#map{height:58vh;min-height:360px}.panel{height:auto;min-height:0}}
+.list-item{display:flex;gap:10px;align-items:center;padding:9px 6px;border-bottom:1px solid #eef2f2;cursor:pointer;border-radius:10px}
+.list-item:hover{background:var(--soft)}
+.list-item .dot{flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+.list-item small{display:block;color:var(--muted);font-size:.78rem;line-height:1.3}
+.list-item .seen{margin-left:auto;color:var(--teal);font-weight:700}
+.mk{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.35);transition:transform .2s}
+.mk.seen::after{content:"✓";position:absolute;right:-6px;top:-6px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mk.active{transform:scale(1.25)}
+.leaflet-div-icon{background:none;border:none}
+.d-head h2{margin:0}
+.d-meta{font-size:.85rem;color:var(--muted);margin:2px 0 10px}
+.d-type{display:inline-block;color:#fff;font-size:.75rem;font-weight:600;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.factbox{background:#fbf1d6;border-radius:14px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.factbox h4{margin:0 0 4px;font-size:.95rem;color:#8a6a00}
+.lossbar{margin:10px 0}
+.lossbar .t{display:flex;justify-content:space-between;font-size:.82rem}
+.lossbar .b{height:12px;border-radius:999px;background:#e3efe6;overflow:hidden}
+.lossbar .b div{height:100%;background:linear-gradient(90deg,#c9922a,#a33b3b)}
+.spchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.spchip{font-family:inherit;font-size:.82rem;border:2px solid var(--line);background:var(--cream);border-radius:999px;padding:5px 11px;cursor:default}
+.spchip.link{cursor:pointer;border-color:var(--rose);background:#fbeeee}
+.spchip .g{font-size:.68rem;color:#8a6a00}
+.d-nav{display:flex;gap:8px;justify-content:space-between;margin-top:14px;flex-wrap:wrap}
+.d-src{font-size:.74rem;color:#6d7a79;margin-top:12px}
+.general{font-size:.72rem;background:#fbf1d6;color:#8a6a00;padding:1px 8px;border-radius:999px}
+.gamebox{background:linear-gradient(120deg,#125d55,#2f7f74);color:#fff;border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.gamebox h3{color:#fff;margin:0 0 4px}
+.gamebox .q{font-size:1.1rem;font-weight:600;margin:6px 0}
+.gamebox .fb{background:rgba(255,255,255,.15);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:.9rem}
+.legend{background:#fff;padding:8px 10px;border-radius:12px;box-shadow:var(--shadow);font-size:.78rem;line-height:1.5}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.modal{position:fixed;inset:0;background:rgba(10,30,28,.55);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal .inner{max-width:440px;width:100%;max-height:90vh;overflow:auto;position:relative}
+.modal .inner .ficha{margin:0}
+.modal .x{position:absolute;right:10px;top:10px;z-index:2;background:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
+.credits{font-size:.78rem;color:var(--muted);margin:0 0 30px}
+.badge-done{background:var(--gold);color:#fff;border-radius:14px;padding:10px 12px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.badge-done img{width:54px;height:54px;object-fit:contain}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo-rectangular.png" alt="Xlatierra"></a>
+    <nav>
+      <a href="index.html" class="hide-sm">Inicio</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="biodiversidad.html" class="btn btn-primary" style="padding:9px 18px">Módulo 2</a>
+    </nav>
+  </div>
+</header>
+
+<div class="map-hero">
+  <div class="wrap">
+    <img class="axo" src="img/pose-ajolote-feliz.png" alt="Axo, el ajolote, con una lupa">
+    <div>
+      <span class="pill">Actividad extra · Módulo 2 · opcional</span>
+      <h1>Mapa de la biodiversidad de América Latina</h1>
+      <p>Axo te invita a explorar 15 ecosistemas, de los humedales de Xochimilco a la Patagonia. Toca un punto para ver qué vive ahí, qué lo amenaza y de dónde sale cada dato.</p>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="toolbar" id="filters"></div>
+  <div class="toolbar">
+    <button class="chip" id="t-mega" type="button">🌎 Países megadiversos</button>
+    <button class="chip" id="t-loss" type="button">📉 ¿Cuánto se ha transformado?</button>
+    <button class="chip" id="t-tour" type="button">🧭 Recorrido guiado</button>
+    <button class="chip" id="t-game" type="button">🎯 Reto: ¿Dónde vive?</button>
+    <span class="sp"></span>
+    <span class="prog" id="prog"></span>
+  </div>
+  <div class="layout">
+    <div id="map" role="application" aria-label="Mapa interactivo de ecosistemas de América Latina"></div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+  <p class="credits">Las ubicaciones son <strong>aproximadas</strong>: marcan el centro de cada región, no sus límites exactos. Mapa base: © colaboradores de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> y <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>. Fronteras: Natural Earth vía world-atlas. Fotos con licencia libre, con su crédito en cada una. Fuentes completas en <a href="biodiversidad.html#referencias">Referencias del Módulo 2</a>.</p>
+</main>
+
+<div class="modal" id="modal"><div class="inner"><button class="x" id="mx" aria-label="Cerrar">×</button><div id="mbody"></div></div></div>
+
+<footer class="site">
+  <div class="wrap">
+    <div><strong>Xlatierra</strong><br>Educación climática en español, para jóvenes de América Latina.</div>
+    <div><a href="cursos.html">Ver cursos</a></div>
+  </div>
+</footer>
+
+<script src="contenido-m2.js"></script>
+<script src="mapa-datos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.XLT_MAP, C = window.XLT_CONTENT || {}, REFS = C.refs || {}, SP = C.species || {}, PH = window.XLT_PHOTOS || {};
+  var KEY = "xlatierra_mapa_v1", seen = {};
+  try { seen = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { seen = {}; }
+  function saveSeen() { try { localStorage.setItem(KEY, JSON.stringify(seen)); } catch (e) {} }
+  function $(id) { return document.getElementById(id); }
+  var panel = $("panel"), filter = "all", mode = "list", cur = null, tourOn = false, game = null;
+
+  /* ---------- Mapa base ---------- */
+  var map = L.map("map", { zoomControl: true, minZoom: 2, worldCopyJump: true }).setView([-8, -75], 3);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd", maxZoom: 18
+  }).addTo(map);
+
+  /* ---------- Marcadores ---------- */
+  var M = {};
+  D.eco.forEach(function (e) {
+    var t = D.types[e.type];
+    var icon = L.divIcon({ className: "", iconSize: [38, 38], iconAnchor: [19, 19],
+      html: '<div class="mk' + (seen[e.id] ? ' seen' : '') + '" id="mk-' + e.id + '" style="background:' + t.color + ';position:relative">' + t.icon + '</div>' });
+    var m = L.marker([e.lat, e.lng], { icon: icon, title: e.name, keyboard: true }).addTo(map);
+    m.on("click", function () { if (game && !game.done) answer(e); else open(e.id); });
+    M[e.id] = m;
+  });
+  function refreshMarker(id) { var el = $("mk-" + id); if (el) el.classList.toggle("seen", !!seen[id]); }
+  function setActive(id) { document.querySelectorAll(".mk").forEach(function (x) { x.classList.remove("active"); }); var el = $("mk-" + id); if (el) el.classList.add("active"); }
+
+  /* ---------- Filtros ---------- */
+  var fb = $("filters");
+  [["all", "Todos", "✨"]].concat(Object.keys(D.types).map(function (k) { return [k, D.types[k].label, D.types[k].icon]; })).forEach(function (f) {
+    var b = document.createElement("button"); b.type = "button"; b.className = "chip" + (f[0] === "all" ? " on" : ""); b.textContent = f[2] + " " + f[1];
+    b.onclick = function () { filter = f[0]; fb.querySelectorAll(".chip").forEach(function (x) { x.classList.remove("on"); }); b.classList.add("on"); applyFilter(); if (mode === "list") list(); };
+    fb.appendChild(b);
+  });
+  function visible(e) { return filter === "all" || e.type === filter; }
+  function applyFilter() { D.eco.forEach(function (e) { if (visible(e)) M[e.id].addTo(map); else map.removeLayer(M[e.id]); }); }
+
+  /* ---------- Progreso ---------- */
+  function prog() {
+    var n = D.eco.filter(function (e) { return seen[e.id]; }).length;
+    $("prog").innerHTML = "Explorados: <b>" + n + " de " + D.eco.length + "</b>";
+    return n;
+  }
+
+  /* ---------- Lista ---------- */
+  function list() {
+    mode = "list"; cur = null; setActive(null);
+    var n = prog(), h = "";
+    if (n === D.eco.length) h += '<div class="badge-done"><img src="img/pose-ajolote-feliz.png" alt=""><div><strong>¡Exploraste los ' + n + ' ecosistemas!</strong><br><small>Axo te nombra «Exploradora o explorador de la biodiversidad».</small></div></div>';
+    h += '<h3 style="margin-top:0">Ecosistemas</h3><p class="hint">Toca uno para verlo en el mapa.</p>';
+    D.eco.filter(visible).forEach(function (e) {
+      var t = D.types[e.type];
+      h += '<div class="list-item" data-id="' + e.id + '" tabindex="0"><span class="dot" style="background:' + t.color + '">' + t.icon + '</span><div><strong>' + e.name + '</strong><small>' + e.countries + '</small></div>' + (seen[e.id] ? '<span class="seen">✓</span>' : '') + '</div>';
+    });
+    panel.innerHTML = h; panel.scrollTop = 0;
+    panel.querySelectorAll(".list-item").forEach(function (x) { x.onclick = function () { open(x.dataset.id); }; x.onkeydown = function (ev) { if (ev.key === "Enter") open(x.dataset.id); }; });
+  }
+
+  /* ---------- Referencias ---------- */
+  function refLink(id) { var r = REFS[id]; if (!r) return ""; return r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener">' + r.short + '</a>' : r.short; }
+
+  /* ---------- Ficha de ecosistema ---------- */
+  function open(id, fromTour) {
+    var e = D.eco.filter(function (x) { return x.id === id; })[0]; if (!e) return;
+    mode = "detail"; cur = id; if (!fromTour) tourOn = false; $("t-tour").classList.toggle("on", tourOn);
+    seen[id] = true; saveSeen(); refreshMarker(id); prog(); setActive(id);
+    map.flyTo([e.lat, e.lng], Math.min(e.zoom, 7), { duration: 0.9 });
+    var t = D.types[e.type], ph = null;
+    if (e.photo && SP[e.photo]) ph = SP[e.photo].photo;
+    e.species.forEach(function (s) { if (!ph && s.sp && SP[s.sp] && SP[s.sp].photo) ph = SP[s.sp].photo; });
+    var h = '<div class="d-head"><span class="d-type" style="background:' + t.color + '">' + t.icon + ' ' + t.label + '</span><h2>' + e.name + '</h2><div class="d-meta">📍 ' + e.countries + '</div></div>';
+    if (ph) h += '<figure class="fig" style="margin:6px 0 12px"><img src="' + ph.src + '" alt="' + (ph.alt || "") + '" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')"><figcaption>' + ph.cap + '<span class="credit">📷 ' + ph.credit + ' · <a href="' + ph.link + '" target="_blank" rel="noopener">' + ph.license + '</a> · Foto real con licencia libre</span></figcaption></figure>';
+    h += '<p>' + e.desc + (e.general ? ' <span class="general">conocimiento general</span>' : '') + '</p>';
+    h += '<div class="factbox"><h4>📌 Dato clave</h4>' + e.fact.text + '<div class="d-src">Fuente: ' + e.fact.refs.map(refLink).join(" · ") + '</div></div>';
+    if (e.loss) h += '<div class="lossbar"><div class="t"><span>Transformado desde la llegada europea</span><strong>' + e.loss + '%</strong></div><div class="b"><div style="width:' + e.loss + '%"></div></div><div class="d-src">Fuente: ' + refLink("ipbes2018") + (e.id === "pantanal" ? " (periodo 1976–2008)" : "") + '</div></div>';
+    h += '<h4 style="margin:12px 0 2px">Quién vive aquí</h4><div class="spchips">';
+    e.species.forEach(function (s) {
+      var f = s.sp ? SP[s.sp] : null, name = s.n || (f && f.name), icon = s.icon || (f && f.icon) || "🌿";
+      h += f ? '<button type="button" class="spchip link" data-sp="' + s.sp + '">' + icon + ' ' + name + ' · ver ficha</button>'
+             : '<span class="spchip">' + icon + ' ' + name + ' <em>' + (s.sci || '') + '</em>' + (s.general ? ' <span class="g">· general</span>' : '') + '</span>';
+    });
+    h += '</div><p><strong>Qué lo amenaza:</strong> ' + e.threat + '</p>';
+    var L2 = (C.lessons || []).filter(function (l) { return l.id === e.lesson; })[0];
+    if (L2) h += '<a class="cta" style="margin:12px 0" href="biodiversidad.html#leccion-' + L2.id + '"><span class="cta-i">📘</span><span><strong>Aprende más</strong><small>Módulo 2 · ' + L2.title + '</small></span><span class="cta-go">Ir →</span></a>';
+    var vis = D.eco.filter(visible), i = vis.map(function (x) { return x.id; }).indexOf(id);
+    h += '<div class="d-nav"><button class="btn btn-ghost" id="d-back" type="button">← Lista</button>' +
+      (tourOn ? '<button class="btn btn-primary" id="d-next" type="button">' + (i < vis.length - 1 ? 'Siguiente parada →' : 'Terminar recorrido ✓') + '</button>' :
+      '<span>' + (i > 0 ? '<button class="btn btn-ghost" id="d-prev" type="button">‹</button> ' : '') + (i < vis.length - 1 ? '<button class="btn btn-ghost" id="d-nx" type="button">›</button>' : '') + '</span>') + '</div>';
+    panel.innerHTML = h; panel.scrollTop = 0;
+    $("d-back").onclick = function () { tourOn = false; $("t-tour").classList.remove("on"); list(); };
+    var dn = $("d-next"); if (dn) dn.onclick = function () { if (i < vis.length - 1) open(vis[i + 1].id, true); else { tourOn = false; $("t-tour").classList.remove("on"); list(); } };
+    var dp = $("d-prev"); if (dp) dp.onclick = function () { open(vis[i - 1].id); };
+    var dx = $("d-nx"); if (dx) dx.onclick = function () { open(vis[i + 1].id); };
+    panel.querySelectorAll("[data-sp]").forEach(function (b) { b.onclick = function () { ficha(b.dataset.sp); }; });
+    if (window.innerWidth < 900) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* ---------- Ficha de especie (modal) ---------- */
+  function badge(k, v) { if (!v) return ""; var c = { CR: "cr", EN: "en", VU: "vu", NT: "nt", LC: "lc", P: "cr", A: "vu", Pr: "nt", E: "cr" }[v.c] || "nt"; return '<span class="st ' + c + '"><b>' + k + '</b> ' + v.l + '</span>'; }
+  function ficha(k) {
+    var s = SP[k]; if (!s) return;
+    var ph = s.photo ? '<div class="ficha-ph"><figure class="fig"><img src="' + s.photo.src + '" alt="' + (s.photo.alt || "") + '" onerror="this.parentNode.classList.add(\'noimg\')"><figcaption>' + s.photo.cap + '<span class="credit">📷 ' + s.photo.credit + ' · <a href="' + s.photo.link + '" target="_blank" rel="noopener">' + s.photo.license + '</a></span></figcaption></figure></div>' : '<div class="ficha-ph noph"><span>' + s.icon + '</span><small>Foto pendiente de licencia libre</small></div>';
+    $("mbody").innerHTML = '<div class="ficha"><div class="ficha-top"><img class="av" src="img/pose-ajolote-feliz.png" alt="Axo"><span><strong>Ficha de Axo</strong></span></div>' + ph +
+      '<div class="ficha-b"><h3>' + s.name + '</h3><p class="sci"><em>' + s.sci + '</em></p><div class="sts">' + badge("UICN", s.iucn) + badge("NOM-059", s.nom) + '</div>' +
+      '<dl><dt>Dónde vive</dt><dd>' + s.where + '</dd><dt>Dato de Axo</dt><dd>' + s.fact + '</dd><dt>Qué la amenaza</dt><dd>' + s.threat + '</dd>' + (s.hope ? '<dt>Buenas noticias</dt><dd>' + s.hope + '</dd>' : '') + '</dl>' +
+      '<p class="ficha-src">Fuentes: ' + s.refs.map(refLink).join(" · ") + '</p></div></div>';
+    $("modal").classList.add("on"); $("mx").focus();
+  }
+  $("mx").onclick = function () { $("modal").classList.remove("on"); };
+  $("modal").onclick = function (ev) { if (ev.target.id === "modal") $("modal").classList.remove("on"); };
+  document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") $("modal").classList.remove("on"); });
+
+  /* ---------- Capa: países megadiversos ---------- */
+  var megaLayer = null, megaLegend = null;
+  function toggleMega(force) {
+    var on = force !== undefined ? force : !megaLayer;
+    $("t-mega").classList.toggle("on", on);
+    if (!on) { if (megaLayer) map.removeLayer(megaLayer); if (megaLegend) map.removeControl(megaLegend); megaLayer = null; return; }
+    fetch("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json").then(function (r) { return r.json(); }).then(function (topo) {
+      var geo = topojson.feature(topo, topo.objects.countries);
+      geo.features = geo.features.filter(function (f) { return D.megadiverse.indexOf(f.properties.name) >= 0; });
+      megaLayer = L.geoJSON(geo, { style: { color: "#cfad30", weight: 2, fillColor: "#cfad30", fillOpacity: .28 },
+        onEachFeature: function (f, l) { l.bindTooltip(D.megaNames[f.properties.name] + " · país megadiverso", { sticky: true }); } }).addTo(map);
+      megaLayer.bringToBack();
+      megaLegend = L.control({ position: "bottomleft" });
+      megaLegend.onAdd = function () { var d = L.DomUtil.create("div", "legend"); d.innerHTML = '<i style="background:#cfad30"></i><strong>Países megadiversos</strong><br>6 de los 17 del mundo son latinoamericanos.<br><small>Fuente: Mittermeier et al. (1997); IPBES (2018)</small>'; return d; };
+      megaLegend.addTo(map);
+      map.flyTo([-5, -75], 3);
+    }).catch(function () { $("t-mega").classList.remove("on"); alert("No se pudo cargar la capa de países. Revisa tu conexión."); });
+  }
+  $("t-mega").onclick = function () { toggleMega(); };
+
+  /* ---------- Capa: cuánto se ha transformado ---------- */
+  var lossLayer = null, lossLegend = null;
+  $("t-loss").onclick = function () {
+    var on = !lossLayer; this.classList.toggle("on", on);
+    if (!on) { map.removeLayer(lossLayer); map.removeControl(lossLegend); lossLayer = null; return; }
+    lossLayer = L.layerGroup(D.eco.filter(function (e) { return e.loss; }).map(function (e) {
+      var col = e.loss >= 70 ? "#a33b3b" : e.loss >= 40 ? "#c4572f" : e.loss >= 20 ? "#c9922a" : "#6e8f5a";
+      return L.circle([e.lat, e.lng], { radius: 25000 + e.loss * 9000, color: col, weight: 2, fillColor: col, fillOpacity: .35 })
+        .bindTooltip("<strong>" + e.name + "</strong><br>" + e.loss + "% transformado" + (e.id === "pantanal" ? " (1976–2008)" : ""), { sticky: true });
+    })).addTo(map);
+    lossLegend = L.control({ position: "bottomright" });
+    lossLegend.onAdd = function () { var d = L.DomUtil.create("div", "legend"); d.innerHTML = '<strong>Superficie transformada</strong><br><i style="background:#a33b3b"></i>70% o más<br><i style="background:#c4572f"></i>40–69%<br><i style="background:#c9922a"></i>20–39%<br><i style="background:#6e8f5a"></i>menos de 20%<br><small>Fuente: IPBES (2018)</small>'; return d; };
+    lossLegend.addTo(map);
+    map.flyTo([-10, -70], 3);
+  };
+
+  /* ---------- Recorrido guiado ---------- */
+  $("t-tour").onclick = function () {
+    stopGame(); tourOn = true; this.classList.add("on");
+    var vis = D.eco.filter(visible); if (vis.length) open(vis[0].id, true);
+  };
+
+  /* ---------- Reto: ¿Dónde vive? ---------- */
+  function stopGame() { game = null; $("t-game").classList.remove("on"); }
+  $("t-game").onclick = function () {
+    if (game) { stopGame(); list(); return; }
+    tourOn = false; $("t-tour").classList.remove("on");
+    filter = "all"; fb.querySelectorAll(".chip").forEach(function (x, i) { x.classList.toggle("on", i === 0); }); applyFilter();
+    game = { i: 0, score: 0, tries: 0 }; this.classList.add("on"); map.flyTo([-8, -75], 3); ask();
+  };
+  function ask(fb2) {
+    mode = "game";
+    var g = D.game[game.i];
+    var h = '<div class="gamebox"><h3>🎯 ¿Dónde vive?</h3><div>Pregunta ' + (game.i + 1) + ' de ' + D.game.length + ' · Aciertos: ' + game.score + '</div>' +
+      '<div class="q">' + g.icon + ' ' + g.n + '</div><div>Toca en el mapa el ecosistema donde vive.</div>' + (fb2 ? '<div class="fb">' + fb2 + '</div>' : '') + '</div>' +
+      '<button class="btn btn-ghost" type="button" id="g-hint">💡 Pista</button> <button class="btn btn-ghost" type="button" id="g-exit">Salir del reto</button><p class="hint" id="g-h" style="margin-top:10px"></p>';
+    panel.innerHTML = h; panel.scrollTop = 0;
+    $("g-hint").onclick = function () { $("g-h").textContent = g.hint; };
+    $("g-exit").onclick = function () { stopGame(); list(); };
+  }
+  function answer(e) {
+    var g = D.game[game.i], ok = g.ok.indexOf(e.id) >= 0;
+    if (ok) {
+      game.score += game.tries === 0 ? 1 : 0; game.tries = 0;
+      seen[e.id] = true; saveSeen(); refreshMarker(e.id); prog();
+      var msg = "✅ ¡Sí! " + g.n + " vive en " + e.name + "." + (g.ok.length > 1 ? " (También era correcto: " + g.ok.filter(function (x) { return x !== e.id; }).map(function (x) { return D.eco.filter(function (y) { return y.id === x; })[0].name; }).join(", ") + ".)" : "");
+      game.i++;
+      if (game.i >= D.game.length) {
+        panel.innerHTML = '<div class="gamebox"><h3>🎉 ¡Terminaste el reto!</h3><div class="q">' + game.score + ' de ' + D.game.length + ' al primer intento</div><div class="fb">' + msg + '</div></div><div class="guide"><img class="av" src="img/pose-ajolote-feliz.png" alt="Axo"><div><strong>Axo</strong><em>«Conocer dónde vive cada especie es el primer paso para protegerla.»</em></div></div><button class="btn btn-primary" type="button" id="g-again">Jugar otra vez</button> <button class="btn btn-ghost" type="button" id="g-list">Ver ecosistemas</button>';
+        $("g-again").onclick = function () { game = { i: 0, score: 0, tries: 0 }; ask(); };
+        $("g-list").onclick = function () { stopGame(); list(); };
+        game.done = true; return;
+      }
+      ask(msg);
+    } else {
+      game.tries++;
+      ask("❌ No: " + e.name + " no es su hogar principal. ¡Intenta de nuevo!");
+    }
+  }
+
+  /* ---------- Inicio ---------- */
+  applyFilter(); list();
+  var hsh = (location.hash || "").replace("#", "");
+  if (hsh === "megadiversos") toggleMega(true);
+  else if (hsh === "reto") $("t-game").click();
+  else if (hsh) open(hsh);
+})();
+</script>
+</body>
+</html>

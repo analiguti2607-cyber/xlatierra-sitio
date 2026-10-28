@@ -38,12 +38,18 @@
 
 window.XLT_CONTENT = {
 
+/* Actividades fuera de la ruta principal */
+extras: [
+  {icon:"🗺️", title:"Mapa interactivo de la biodiversidad", href:"mapa.html", tag:"Extra opcional",
+   desc:"Recorre ecosistemas de América Latina. Es parte del Módulo 2, pero puedes explorarlo cuando quieras."}
+],
+
 course: {
   id: "m1",
   title: "Introducción al cambio climático",
   label: "Módulo 1",
   subtitle: "Entiende qué está pasando con el clima, por qué, a quién le afecta más y qué puedes hacer. En español, con datos de México y América Latina y fuentes que puedes revisar.",
-  totalTime: "~2 h 45 min"
+  totalTime: "~2 h"
 },
 
 /* ======================= PERSONAJES =======================
@@ -52,15 +58,19 @@ course: {
    Para cambiar una imagen, reemplaza el archivo en img/ con el mismo nombre. */
 characters: {
   espiritu: {name:"Ameyalli", role:"El espíritu del agua · guía de la aventura", verb:"Descubrir", img:"img/personaje-espiritu.png",
+             poses:{feliz:"img/pose-espiritu-feliz.png", pensativo:"img/pose-espiritu-pensativo.png"},
              origin:"Los manantiales: el agua que brota de la tierra y alimenta ríos, humedales y cenotes",
              quote:"¡Cada descubrimiento nos acerca a un planeta mejor!"},
   ajolote:  {name:"Axo", role:"El ajolote experto en biodiversidad", verb:"Comprender", img:"img/personaje-ajolote.png",
+             poses:{feliz:"img/pose-ajolote-feliz.png", pensativo:"img/pose-ajolote-pensativo.png"},
              origin:"Los humedales de Xochimilco (ajolote, Ambystoma mexicanum)",
              quote:"¡Mira todo lo que podemos aprender de la naturaleza!"},
   jaguar:   {name:"Balam", role:"El jaguar guardián de los ecosistemas", verb:"Proteger", img:"img/personaje-jaguar.png",
+             poses:{feliz:"img/pose-jaguar-feliz.png", pensativo:"img/pose-jaguar-pensativo.png"},
              origin:"La Selva Maya (jaguar, Panthera onca)",
              quote:"¡Proteger la naturaleza también es nuestra responsabilidad!"},
   nutria:   {name:"Lontra", role:"La nutria exploradora y solucionadora", verb:"Actuar", img:"img/personaje-nutria.png",
+             poses:{feliz:"img/pose-nutria-feliz.png", pensativo:"img/pose-nutria-pensativo.png"},
              origin:"Los ríos de México (nutria de río neotropical, Lontra longicaudis)",
              quote:"¡Menos quedarnos con la duda y más ponernos en acción!"}
 },
@@ -75,7 +85,7 @@ units: [
 lessons: [
 
 /* ============================ UNIDAD 1 ============================ */
-{ id:"l1", unit:"u1", title:"Bienvenida: ¿qué es el cambio climático?", time:"10 min",
+{ id:"l1", unit:"u1", title:"Bienvenida: ¿qué es el cambio climático?", time:"8 min",
   blocks:[
   {t:"p", html:"En 2023, las olas de calor obligaron a suspender clases en <strong>18 estados de México</strong>. Tal vez lo viviste: salones sofocantes, entrenamientos cancelados, el ventilador que no alcanza. No fue solo «un año caluroso». Fue una señal de algo más grande, y de eso trata este curso."},
   {t:"note", kind:"info", title:"Cómo funciona este curso", html:"Son <strong>15 lecciones</strong> en 4 unidades. En cada una encontrarás preguntas <strong>¡Adivina!</strong> (no te preocupes por fallar: equivocarse antes de leer la respuesta ayuda a recordar), una <strong>respuesta corta</strong> y una <strong>larga</strong> para que elijas qué tan profundo quieres ir, datos con su fuente, y lecturas para profundizar. Al final hay un cuestionario y, si lo apruebas, tu certificado."},
@@ -102,7 +112,7 @@ lessons: [
   sources:"IPCC AR6 GT1, Resumen para responsables de políticas (2021); Gobierno de México, NDC 3.0 (2025); PINCC-UNAM; W3Techs; UNESCO, Informe GEM; investigación de escritorio Xlatierra."
 },
 
-{ id:"l2", unit:"u1", title:"Clima y tiempo: no son lo mismo", time:"8 min",
+{ id:"l2", unit:"u1", title:"Clima y tiempo: no son lo mismo", time:"6 min",
   blocks:[
   {t:"p", html:"Esta confusión parece pequeña, pero es la puerta de entrada a muchísima desinformación. Vale la pena entenderla bien."},
   {t:"table", head:["","Tiempo atmosférico","Clima"], rows:[
@@ -129,7 +139,7 @@ lessons: [
   sources:"IPCC AR6 GT1; Gobierno de México, NDC 3.0 (2025); Cook et al. (2017)."
 },
 
-{ id:"l3", unit:"u1", title:"El efecto invernadero: la cobija del planeta", time:"10 min",
+{ id:"l3", unit:"u1", title:"El efecto invernadero: la cobija del planeta", time:"8 min",
   blocks:[
   {t:"guess", q:"¿De dónde viene casi toda la energía que calienta la Tierra?",
    o:["Del núcleo de la Tierra","Del Sol","De los volcanes"], a:1,
@@ -163,7 +173,7 @@ lessons: [
   sources:"IPCC AR6 GT1 (2021); IPCC AR6 GT2, Resumen para todos (2022)."
 },
 
-{ id:"l4", unit:"u1", title:"Los gases que calientan", time:"10 min",
+{ id:"l4", unit:"u1", title:"Los gases que calientan", time:"8 min",
   blocks:[
   {t:"p", html:"No todos los gases de efecto invernadero son iguales. Se diferencian en tres cosas: <strong>cuánto calor atrapan</strong>, <strong>cuánto tiempo duran</strong> en la atmósfera y <strong>cuánto emitimos</strong>."},
   {t:"table", head:["Gas","¿De dónde sale?","Lo que hay que saber","Nivel en 2019"], rows:[
@@ -192,7 +202,7 @@ lessons: [
 },
 
 /* ============================ UNIDAD 2 ============================ */
-{ id:"l5", unit:"u2", title:"¿Cómo sabemos que somos nosotros?", time:"10 min",
+{ id:"l5", unit:"u2", title:"¿Cómo sabemos que somos nosotros?", time:"8 min",
   blocks:[
   {t:"p", html:"«El clima siempre ha cambiado». Es cierto, y es una de las objeciones más comunes. Entonces, ¿cómo sabe la ciencia que esta vez la causa somos nosotros? Hay tres pruebas que se refuerzan entre sí."},
   {t:"guess", q:"Si los científicos simulan el clima de los últimos 170 años usando SOLO causas naturales (Sol y volcanes), ¿qué pasa con la temperatura?",
@@ -219,7 +229,7 @@ lessons: [
   sources:"IPCC AR6 GT1 (2021); van der Linden et al. (2017), Global Challenges; Cook et al. (2017), PLOS ONE."
 },
 
-{ id:"l6", unit:"u2", title:"¿De dónde salen las emisiones?", time:"10 min",
+{ id:"l6", unit:"u2", title:"¿De dónde salen las emisiones?", time:"8 min",
   blocks:[
   {t:"p", html:"Las principales fuentes de gases de efecto invernadero son la <strong>quema de combustibles fósiles</strong> (carbón, petróleo y gas) para producir energía y mover el transporte, la <strong>deforestación</strong> y el cambio de bosques a tierras agrícolas, los <strong>procesos industriales</strong> como la producción de cemento, y la agricultura intensiva."},
   {t:"guess", q:"A nivel mundial, ¿qué sector produce más gases de efecto invernadero?",
@@ -252,7 +262,7 @@ lessons: [
   sources:"IPCC AR6 GT1 y GT3; Climate Watch / WRI, emisiones globales 2019; Poore y Nemecek (2018) vía Our World in Data."
 },
 
-{ id:"l7", unit:"u2", title:"¿Quién emite y cuánto?", time:"10 min",
+{ id:"l7", unit:"u2", title:"¿Quién emite y cuánto?", time:"8 min",
   blocks:[
   {t:"p", html:"El cambio climático es global, pero la responsabilidad no está repartida por igual. Depende mucho de cómo lo midas: hoy, en toda la historia o por persona."},
   /* APROBADO (fuente externa): porcentajes por país (Our World in Data / Global Carbon Project) */
@@ -283,7 +293,7 @@ lessons: [
 },
 
 /* ============================ UNIDAD 3 ============================ */
-{ id:"l8", unit:"u3", title:"México en datos: lo que ya está pasando", time:"12 min",
+{ id:"l8", unit:"u3", title:"México en datos: lo que ya está pasando", time:"9 min",
   blocks:[
   {t:"p", html:"Los impactos del cambio climático en México están documentados por el propio Gobierno en su Contribución Determinada a Nivel Nacional (NDC 3.0, 2025), en el Atlas Nacional de Vulnerabilidad al Cambio Climático del INECC y en investigaciones del Programa de Investigación en Cambio Climático de la UNAM."},
   {t:"h", text:"Calor"},
@@ -314,7 +324,7 @@ lessons: [
   sources:"Gobierno de México, NDC 3.0 (2025); INECC, Atlas Nacional de Vulnerabilidad al Cambio Climático; PINCC-UNAM."
 },
 
-{ id:"l9", unit:"u3", title:"Salud, comida y bolsillo", time:"10 min",
+{ id:"l9", unit:"u3", title:"Salud, comida y bolsillo", time:"8 min",
   blocks:[
   {t:"p", html:"El cambio climático no es «solo ambiental». Se cuela en la salud, en lo que comemos y en la economía de las familias."},
   {t:"h", text:"Salud"},
@@ -345,7 +355,7 @@ lessons: [
   sources:"UNICEF, Cambio climático, degradación ambiental y niñez en movilidad en ALC; Gobierno de México, NDC 3.0 (2025); investigación de escritorio Xlatierra (salud mental)."
 },
 
-{ id:"l10", unit:"u3", guide:"ajolote", title:"Biodiversidad y puntos de no retorno", time:"12 min",
+{ id:"l10", unit:"u3", guide:"ajolote", title:"Biodiversidad y puntos de no retorno", time:"9 min",
   blocks:[
   {t:"p", html:"La vida en el planeta también resiente el calentamiento: especies que se mueven, ecosistemas que se degradan y algunos sistemas que podrían cruzar umbrales de los que no hay regreso."},
   {t:"guess", q:"De las miles de especies estudiadas en el mundo, ¿cuántas ya cambiaron el lugar donde viven por el clima?",
@@ -376,7 +386,7 @@ lessons: [
   sources:"IPCC AR6 GT1 y GT2 (2021–2022); IPBES (2019); estudios sobre manglares del noroeste de México (investigación Xlatierra, Módulo 1)."
 },
 
-{ id:"l11", unit:"u3", title:"Justicia climática: ¿quién paga?", time:"12 min",
+{ id:"l11", unit:"u3", title:"Justicia climática: ¿quién paga?", time:"9 min",
   blocks:[
   {t:"guess", q:"¿Qué porcentaje de las emisiones globales produce América Latina y el Caribe?",
    o:["Entre 6.7% y 10%","Alrededor de 25%","Alrededor de 40%"], a:0,
@@ -408,7 +418,7 @@ lessons: [
 },
 
 /* ============================ UNIDAD 4 ============================ */
-{ id:"l12", unit:"u4", title:"Ciencia vs. desinformación: tu kit", time:"10 min",
+{ id:"l12", unit:"u4", title:"Ciencia vs. desinformación: tu kit", time:"8 min",
   blocks:[
   {t:"p", html:"El Foro Económico Mundial ubicó a la <strong>desinformación</strong> como el mayor riesgo global de corto plazo en 2024. En clima, la desinformación no solo confunde: retrasa decisiones. La buena noticia es que se puede aprender a detectarla."},
   {t:"guess", q:"Verdadero o falso: «La lluvia ácida causa el cambio climático».",
@@ -444,7 +454,7 @@ lessons: [
   sources:"Foro Económico Mundial, Global Risks Report 2024; Cook et al. (2017); van der Linden et al. (2017); estudios con universitarios en Veracruz y Baja California Sur (investigación de escritorio Xlatierra)."
 },
 
-{ id:"l13", unit:"u4", title:"El límite de 1.5 °C: ¿cuánto tiempo nos queda?", time:"10 min",
+{ id:"l13", unit:"u4", title:"El límite de 1.5 °C: ¿cuánto tiempo nos queda?", time:"8 min",
   blocks:[
   {t:"guess", q:"¿Qué significa el famoso límite de «1.5 °C»?",
    o:["La temperatura de un día caluroso","El aumento del promedio global de temperatura respecto a 1850–1900","La temperatura máxima permitida en México"], a:1,
@@ -475,7 +485,7 @@ lessons: [
   sources:"IPCC AR6 GT1 y Síntesis (2021–2023); IPCC SR1.5 (2018); OMM; CMNUCC, Acuerdo de París."
 },
 
-{ id:"l14", unit:"u4", title:"Soluciones: mitigar y adaptarnos", time:"12 min",
+{ id:"l14", unit:"u4", title:"Soluciones: mitigar y adaptarnos", time:"9 min",
   blocks:[
   {t:"p", html:"Frente al cambio climático hay dos tipos de respuesta, y necesitamos las dos:"},
   {t:"table", head:["","Mitigación","Adaptación"], rows:[
@@ -508,7 +518,9 @@ lessons: [
   sources:"Gobierno de México, NDC 3.0 (2025); PNUD, NDC 3.0 en ALC; IPCC AR6 GT3 y Síntesis; UNICEF; investigación Xlatierra, Módulo 1 (soluciones) y de escritorio (Veracruz, EDOMEX)."
 },
 
-{ id:"l15", unit:"u4", title:"De la preocupación a la acción", time:"14 min",
+{ id:"l14b", unit:"u4", soon:true, title:"Saberes indígenas y cambio climático", note:"La estamos construyendo con y desde las voces de los pueblos indígenas"},
+
+{ id:"l15", unit:"u4", title:"De la preocupación a la acción", time:"10 min",
   blocks:[
   {t:"p", html:"Llegaste a la última lección. Ya sabes qué es el cambio climático, por qué ocurre, a quién afecta y qué soluciones existen. Ahora viene la pregunta que más nos importa en Xlatierra: <strong>¿y ahora qué hago yo?</strong>"},
   {t:"note", kind:"info", title:"No eres la única persona con esa pregunta", html:"En una encuesta de Xlatierra a 51 personas, la mayoría jóvenes (octubre de 2026), el <strong>59%</strong> dijo que la información sobre clima «le dice el problema pero no qué hacer», y el <strong>55%</strong> respondió que no sabe por dónde empezar. En encuestas de la UNESCO, más del 90% de las y los jóvenes pide una educación climática con más acciones prácticas."},

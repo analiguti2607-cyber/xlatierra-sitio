@@ -6,7 +6,8 @@
 (function () {
   "use strict";
   var C = window.XLT_CONTENT, CFG = window.XLT_CONFIG || {};
-  var LESSONS = C.lessons, QUIZ = C.quiz, SELF = C.self;
+  var ALL = C.lessons, LESSONS = ALL.filter(function (l) { return !l.soon; }), QUIZ = C.quiz, SELF = C.self;
+  var REFS = C.refs || {}, SP = C.species || {};
   var KEY = "xlatierra_" + C.course.id + "_" + (CFG.storageVersion || "v1");
   var app = document.getElementById("app");
 
@@ -43,7 +44,8 @@
   var CH = C.characters || {};
   function ch(id) { return CH[id] || null; }
   function guideOf(L) { var u = C.units.filter(function (x) { return x.id === L.unit; })[0]; return ch(L.guide || (u && u.guide)); }
-  function avatar(c, cls) { return c ? '<img class="av ' + (cls || '') + '" src="' + c.img + '" alt="' + c.name + '" title="' + c.name + (c.origin ? ' · ' + c.origin : '') + '">' : ''; }
+  function pose(c, p) { return c && c.poses && c.poses[p] ? c.poses[p] : (c ? c.img : ""); }
+  function avatar(c, cls, p) { if (c && p) c = Object.assign({}, c, { img: pose(c, p) }); return c ? '<img class="av ' + (cls || '') + '" src="' + c.img + '" alt="' + c.name + '" title="' + c.name + (c.origin ? ' · ' + c.origin : '') + '">' : ''; }
   function idx(id) { for (var i = 0; i < LESSONS.length; i++) if (LESSONS[i].id === id) return i; return -1; }
 
   /* ---------- Router (permite usar el botón «atrás» del navegador) ---------- */
@@ -51,6 +53,8 @@
     var h = (location.hash || "").replace("#", "");
     if (h.indexOf("leccion-") === 0) { var i = idx(h.slice(8)); if (i >= 0) return lesson(i); }
     if (h === "recursos") return resources();
+    if (h === "referencias") return references();
+    if (h === "fichas") return gallery();
     if (h === "cuestionario") return allDone() ? quiz() : home();
     if (h === "certificado") return (S.quiz && S.quiz.pass) ? cert() : home();
     if (h === "privacidad") return privacy();
@@ -61,10 +65,10 @@
   /* ---------- Portada del curso ---------- */
   function home() {
     var pct = Math.round(100 * doneCount() / LESSONS.length);
-    var g0 = ch("espiritu");
+    var g0 = ch(C.course.heroGuide || "espiritu");
     var h = '<div class="hero"><div class="hero-row"><div><h1>' + C.course.label + ': ' + C.course.title + '</h1><p>' + C.course.subtitle + '</p>' +
       '<div class="tags"><span>' + LESSONS.length + ' lecciones</span><span>' + C.course.totalTime + '</span><span>Gratis</span><span>Certificado al aprobar</span></div></div>' +
-      (g0 ? '<figure class="hero-guide">' + avatar(g0, "big") + '<figcaption>«' + g0.quote + '»</figcaption></figure>' : '') + '</div></div>';
+      (g0 ? '<figure class="hero-guide">' + avatar(g0, "big", "feliz") + '<figcaption>«' + g0.quote + '»</figcaption></figure>' : '') + '</div></div>';
     h += '<div><strong>Tu avance:</strong> ' + doneCount() + ' de ' + LESSONS.length + ' lecciones</div><div class="bar"><div style="width:' + pct + '%"></div></div>';
     h += '<p class="hint">Tu avance se guarda en este navegador y dispositivo. Si cambias de celular o borras los datos del navegador, empezarás de nuevo.</p>';
     if (!S.pre) h += startBox();
@@ -75,19 +79,23 @@
     C.units.forEach(function (u) {
       var gu = ch(u.guide);
       h += '<div class="unit-head">' + avatar(gu) + '<div><h3 class="unit-h">' + u.title + '</h3><div class="unit-d">' + (gu ? '<span class="verb">' + gu.verb + '</span> Con ' + gu.name + ' · ' : '') + u.desc + '</div></div></div>';
-      LESSONS.forEach(function (l, i) {
+      ALL.forEach(function (l) {
         if (l.unit !== u.id) return;
-        var d = S.done[l.id], locked = !S.pre;
+        if (l.soon) { h += '<div class="card soon"><div class="num">🌱</div><div class="grow"><strong>' + l.title + '</strong><br><small>Próximamente · ' + (l.note || 'Esta lección está en preparación') + '</small></div><span class="tag">Próximamente</span></div>'; return; }
+        var i = idx(l.id), d = S.done[l.id], locked = !S.pre;
         h += '<div class="card' + (d ? ' done' : '') + (locked ? ' locked' : '') + '" data-go="' + l.id + '"><div class="num">' + (d ? '✓' : (i + 1)) + '</div><div class="grow"><strong>' + l.title + '</strong><br><small>' + l.time + (d ? ' · Completada' : '') + '</small></div><span>›</span></div>';
       });
     });
     var qs = allDone() ? (S.quiz && S.quiz.pass ? 'Aprobado · ' + Math.round(S.quiz.score * 100) + '%' : 'Disponible') : 'Se desbloquea al terminar las ' + LESSONS.length + ' lecciones';
     h += '<h3 class="unit-h">Cierre</h3><div class="card' + (allDone() ? '' : ' locked') + '" data-quiz="1"><div class="num">★</div><div class="grow"><strong>Cuestionario final y certificado</strong><br><small>' + qs + '</small></div><span>›</span></div>';
+    (C.extras || []).forEach(function (x) { h += '<a class="card extra" href="' + x.href + '"' + (x.ext ? ' target="_blank" rel="noopener"' : '') + '><div class="num">' + x.icon + '</div><div class="grow"><strong>' + x.title + '</strong> <span class="tag opt-tag">' + (x.tag || 'Opcional') + '</span><br><small>' + x.desc + '</small></div><span>›</span></a>'; });
+    if (Object.keys(REFS).length) h += '<div class="card" data-ref="1"><div class="num">📑</div><div class="grow"><strong>Referencias</strong><br><small>Todas las fuentes del módulo, con enlace</small></div><span>›</span></div>';
     h += '<div class="card" data-res="1"><div class="num">📚</div><div class="grow"><strong>Recursos complementarios</strong><br><small>Informes, cursos y datos para seguir aprendiendo</small></div><span>›</span></div>';
     app.innerHTML = h; toTop();
     app.querySelectorAll("[data-go]").forEach(function (c) { c.onclick = function () { if (S.pre) go("leccion-" + c.dataset.go); }; });
     app.querySelector("[data-quiz]").onclick = function () { if (allDone()) go(S.quiz && S.quiz.pass ? "certificado" : "cuestionario"); };
     app.querySelector("[data-res]").onclick = function () { go("recursos"); };
+    var rf = app.querySelector("[data-ref]"); if (rf) rf.onclick = function () { go("referencias"); };
     if (!S.pre) wireStart();
   }
 
@@ -133,12 +141,13 @@
     var L = LESSONS[i], unit = C.units.filter(function (u) { return u.id === L.unit; })[0];
     var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Lección ' + (i + 1) + ' de ' + LESSONS.length + ' · ' + L.time + '</small></div>';
     h += '<div class="bar"><div style="width:' + Math.round(100 * (i + 1) / LESSONS.length) + '%"></div></div>';
-    var gl = guideOf(L), firstOfUnit = i === 0 || LESSONS[i - 1].unit !== L.unit || L.guide;
+    var gl = guideOf(L); CUR_GUIDE = gl; var firstOfUnit = i === 0 || LESSONS[i - 1].unit !== L.unit || L.guide;
     h += '<small class="hint">' + (unit ? unit.title : '') + '</small><h1>' + L.title + '</h1>';
     if (gl) h += '<div class="guide">' + avatar(gl) + '<div><small>Te acompaña</small><strong>' + gl.name + '</strong> · <span class="verb">' + gl.verb + '</span>' + (firstOfUnit ? '<em>«' + gl.quote + '»</em>' : '') + '</div></div>';
     h += '<div id="body"></div>';
     h += '<div class="box"><strong>¿Qué te pareció esta lección?</strong><div class="rate" id="rate"></div></div>';
-    h += '<p class="src"><strong>Fuentes:</strong> ' + L.sources + '</p>';
+    if (L.refs && L.refs.length) h += refBox(L.refs);
+    else if (L.sources) h += '<p class="src"><strong>Fuentes:</strong> ' + L.sources + '</p>';
     h += '<div class="nav">' + (i > 0 ? '<a class="btn btn-ghost" href="#leccion-' + LESSONS[i - 1].id + '">← Anterior</a>' : '<span></span>') + '<button class="btn btn-primary" id="next">Completar lección →</button></div>';
     h += '<p class="hint" id="next-hint" style="text-align:right"></p>';
     app.innerHTML = h; toTop();
@@ -153,6 +162,7 @@
     });
     var next = document.getElementById("next"), hint = document.getElementById("next-hint");
     function check() {
+      if (!next) return;
       var ok = guesses.every(function (g) { return S.guess[g] !== undefined; });
       next.disabled = !ok; hint.textContent = ok ? "" : "Responde todas las preguntas ¡Adivina! para continuar.";
     }
@@ -169,6 +179,7 @@
     };
   }
 
+  var CUR_GUIDE = null;
   function render(body, b, key, guesses, check) {
     switch (b.t) {
       case "p": body.appendChild(el('<p>' + b.html + '</p>')); break;
@@ -192,10 +203,12 @@
         body.appendChild(w); break;
       case "guess":
         guesses.push(key);
-        var g = el('<div class="box guess"><span class="lbl">¡Adivina!</span><p><strong>' + b.q + '</strong></p><div class="opts"></div><div class="out"></div></div>');
+        var gg = CUR_GUIDE, gimg = gg && gg.poses ? '<img class="guess-av" src="' + pose(gg, "pensativo") + '" alt="' + gg.name + '">' : '';
+        var g = el('<div class="box guess">' + gimg + '<span class="lbl">¡Adivina!</span><p><strong>' + b.q + '</strong></p><div class="opts"></div><div class="out"></div></div>');
         var opts = g.querySelector(".opts"), out = g.querySelector(".out");
         var reveal = function (pick) {
           opts.querySelectorAll("button").forEach(function (x, j) { x.disabled = true; if (j === b.a) x.classList.add("ok"); else if (j === pick) x.classList.add("bad"); });
+          var gi = g.querySelector(".guess-av"); if (gi && pick === b.a) gi.src = pose(gg, "feliz");
           out.innerHTML = '<div class="exp">' + (pick === b.a ? '✅ <strong>¡Exacto!</strong> ' : '💡 <strong>No exactamente.</strong> ') + b.e + '</div>';
         };
         b.o.forEach(function (o, j) {
@@ -215,11 +228,139 @@
         body.appendChild(p); break;
       case "read":
         body.appendChild(el('<div class="read"><h4>📖 Para profundizar</h4>' + b.items.map(resItem).join("") + '</div>')); break;
+      case "fig": body.appendChild(el(figure(b))); break;
+      case "species": body.appendChild(el(speciesCard(SP[b.sp], true))); break;
+      case "cta": body.appendChild(el('<a class="cta" href="' + b.href + '"' + (b.ext ? ' target="_blank" rel="noopener"' : '') + '>' + (b.icon ? '<span class="cta-i">' + b.icon + '</span>' : '') + '<span><strong>' + b.title + '</strong><small>' + b.html + '</small></span><span class="cta-go">' + (b.btn || 'Abrir') + ' →</span></a>')); break;
+      case "match": guesses.push(key); body.appendChild(matchGame(b, key, check)); break;
+      case "web": guesses.push(key); body.appendChild(foodWeb(b, key, check)); break;
     }
   }
   function resItem(x) {
     var vid = x.type === "video" ? '<span class="tag vid">▶ Video' + (x.dur ? ' · ' + x.dur : '') + '</span> ' : '';
     return '<a class="res" href="' + x.url + '" target="_blank" rel="noopener"><strong>' + x.title + '</strong> ' + vid + '<span class="tag' + (x.lang === "EN" ? ' en' : '') + '">' + (x.lang === "EN" ? 'En inglés' : 'Español') + '</span><small>' + x.desc + '</small></a>';
+  }
+
+  /* ---------- Fotos, fichas, referencias ---------- */
+  function figure(b) {
+    return '<figure class="fig"><img src="' + b.src + '" alt="' + esc(b.alt || "") + '" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')"><figcaption>' + (b.cap ? b.cap + '<br>' : '') +
+      '<span class="credit">📷 ' + b.credit + ' · <a href="' + b.link + '" target="_blank" rel="noopener">' + b.license + '</a> · Foto real con licencia libre</span></figcaption></figure>';
+  }
+  function badge(kind, v) {
+    if (!v) return '';
+    var cls = { CR: "cr", EN: "en", VU: "vu", NT: "nt", LC: "lc", P: "cr", A: "vu", Pr: "nt", E: "cr" }[v.c] || "nt";
+    return '<span class="st ' + cls + '" title="' + esc(v.src || "") + '"><b>' + kind + '</b> ' + v.l + '</span>';
+  }
+  function speciesCard(s, inLesson) {
+    if (!s) return '';
+    var ax = ch("ajolote");
+    return '<div class="ficha">' + (inLesson && ax ? '<div class="ficha-top">' + avatar(ax, "", "feliz") + '<span><strong>Ficha de Axo</strong><small>Especie de la lección</small></span></div>' : '') +
+      (s.photo ? '<div class="ficha-ph">' + figure(s.photo) + '</div>' : '<div class="ficha-ph noph"><span>' + (s.icon || '🌿') + '</span><small>Foto pendiente de licencia libre</small></div>') +
+      '<div class="ficha-b"><h3>' + s.name + '</h3><p class="sci"><em>' + s.sci + '</em></p>' +
+      '<div class="sts">' + badge("UICN", s.iucn) + badge("NOM-059", s.nom) + '</div>' +
+      '<dl><dt>Dónde vive</dt><dd>' + s.where + '</dd><dt>Dato de Axo</dt><dd>' + s.fact + '</dd><dt>Qué la amenaza</dt><dd>' + s.threat + '</dd>' + (s.hope ? '<dt>Buenas noticias</dt><dd>' + s.hope + '</dd>' : '') + '</dl>' +
+      '<p class="ficha-src">Fuentes: ' + s.refs.map(function (r) { return refShort(r); }).join(" · ") + '</p></div></div>';
+  }
+  function refShort(id) { var r = REFS[id]; if (!r) return id; return r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener">' + r.short + '</a>' : r.short; }
+  function refFull(id) { var r = REFS[id]; if (!r) return ''; return r.text + (r.url ? ' <a href="' + r.url + '" target="_blank" rel="noopener">' + r.url.replace(/^https?:\/\//, '').slice(0, 70) + (r.url.length > 78 ? '…' : '') + '</a>' : ''); }
+  function refBox(ids) {
+    return '<details class="refs"><summary>📑 Fuentes de esta lección (' + ids.length + ')</summary><ol>' + ids.map(function (id) { return '<li>' + refFull(id) + '</li>'; }).join("") + '</ol>' +
+      '<p class="hint">Lo marcado como «conocimiento general» no viene de un informe específico; puedes ver el detalle en <a href="#referencias">Referencias</a>.</p></details>';
+  }
+  function references() {
+    var ids = Object.keys(REFS).sort(function (a, b) { return REFS[a].text.localeCompare(REFS[b].text, "es"); });
+    var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Referencias</small></div><h1>Referencias</h1>' +
+      '<p>Todas las fuentes que usamos en este módulo, en orden alfabético. Cada lección muestra al final las suyas. Si encuentras un error, escríbenos a ' + esc(CFG.contactEmail || "") + '.</p>' +
+      (C.refsNote ? '<div class="note info"><div>' + C.refsNote + '</div></div>' : '') +
+      '<ol class="reflist">' + ids.map(function (id) { return '<li id="ref-' + id + '">' + refFull(id) + '</li>'; }).join("") + '</ol>';
+    app.innerHTML = h; toTop();
+  }
+  function gallery() {
+    var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Fichas de especies</small></div><h1>Las fichas de Axo</h1>' +
+      '<p>Especies de América Latina que aparecen en el módulo. Las categorías de riesgo cambian con el tiempo: revisa siempre la fuente.</p>' +
+      '<div class="leg"><span class="st cr"><b>CR/P</b> mayor riesgo</span><span class="st en"><b>EN</b> en peligro</span><span class="st vu"><b>VU/A</b> vulnerable o amenazada</span><span class="st nt"><b>NT/Pr</b> casi amenazada o protección especial</span></div>' +
+      '<div class="fichas">' + Object.keys(SP).map(function (k) { return speciesCard(SP[k], false); }).join("") + '</div>';
+    app.innerHTML = h; toTop();
+  }
+
+  /* ---------- Actividad: ¿Quién vive aquí? ---------- */
+  function matchGame(b, key, check) {
+    var st = S.guess[key + "_m"] || {};
+    var w = el('<div class="box match"><span class="lbl">Actividad</span><h3>' + b.title + '</h3><p>' + b.q + '</p><div class="m-list"></div><div class="m-score"></div></div>').firstChild;
+    var list = w.querySelector(".m-list"), score = w.querySelector(".m-score");
+    function upd() {
+      var n = Object.keys(st).length, ok = Object.keys(st).filter(function (k) { return st[k] === b.items[k].a; }).length;
+      score.innerHTML = n < b.items.length ? 'Llevas ' + n + ' de ' + b.items.length : '<div class="exp">🎉 <strong>' + ok + ' de ' + b.items.length + ' correctas.</strong> ' + (b.done || '') + '</div>';
+      if (n === b.items.length) { S.guess[key] = ok; S.guess[key + "_ok"] = ok >= Math.ceil(b.items.length * 0.6); }
+      S.guess[key + "_m"] = st; save(); check();
+    }
+    b.items.forEach(function (it, i) {
+      var row = el('<div class="m-row"><div class="m-sp">' + (it.icon ? '<span class="m-ic">' + it.icon + '</span>' : '') + '<div><strong>' + it.n + '</strong>' + (it.sci ? ' <em>' + it.sci + '</em>' : '') + '</div></div><div class="m-opts"></div><div class="m-exp"></div></div>').firstChild;
+      var opts = row.querySelector(".m-opts"), ex = row.querySelector(".m-exp");
+      function show(j) {
+        opts.querySelectorAll("button").forEach(function (x, k) { x.disabled = true; if (k === it.a) x.classList.add("ok"); else if (k === j) x.classList.add("bad"); });
+        ex.innerHTML = (j === it.a ? '✅ ' : '💡 ') + it.e;
+      }
+      b.eco.forEach(function (e, j) {
+        var bt = document.createElement("button"); bt.type = "button"; bt.className = "chip"; bt.textContent = e;
+        bt.onclick = function () { st[i] = j; show(j); upd(); };
+        opts.appendChild(bt);
+      });
+      if (st[i] !== undefined) show(st[i]);
+      list.appendChild(row);
+    });
+    upd();
+    return w;
+  }
+
+  /* ---------- Actividad: La red de la vida ---------- */
+  function foodWeb(b, key, check) {
+    var w = el('<div class="box web"><span class="lbl">Actividad</span><h3>' + b.title + '</h3><p>' + b.q + '</p>' +
+      '<div class="web-wrap"><svg viewBox="0 0 600 430" class="web-svg" role="img" aria-label="Red alimentaria"></svg></div>' +
+      '<p class="web-info hint">Toca a un integrante para ver qué come y quién se lo come.</p>' +
+      '<div class="web-btns"><button type="button" class="btn btn-primary" data-x="1">' + b.removeLabel + '</button><button type="button" class="btn btn-ghost" data-r="1">Reiniciar</button></div>' +
+      '<div class="web-steps"></div></div>').firstChild;
+    var svg = w.querySelector("svg"), info = w.querySelector(".web-info"), steps = w.querySelector(".web-steps");
+    var NS = "http://www.w3.org/2000/svg", N = {}, E = [];
+    function mk(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+    var defs = mk("defs", {}); var mkr = mk("marker", { id: "arw", viewBox: "0 0 10 10", refX: "9", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
+    mkr.appendChild(mk("path", { d: "M0,0 L10,5 L0,10 z", fill: "#7a8786" })); defs.appendChild(mkr); svg.appendChild(defs);
+    b.links.forEach(function (l) {
+      var a = b.nodes.filter(function (n) { return n.id === l[0]; })[0], z = b.nodes.filter(function (n) { return n.id === l[1]; })[0];
+      var dx = z.x - a.x, dy = z.y - a.y, d = Math.sqrt(dx * dx + dy * dy), r = 40;
+      var ln = mk("line", { x1: a.x + dx / d * r, y1: a.y + dy / d * r, x2: z.x - dx / d * r, y2: z.y - dy / d * r, class: "edge", "marker-end": "url(#arw)" });
+      ln.dataset.a = l[0]; ln.dataset.z = l[1]; svg.appendChild(ln); E.push(ln);
+    });
+    b.nodes.forEach(function (n) {
+      var g = mk("g", { class: "node lvl" + n.lvl, transform: "translate(" + n.x + "," + n.y + ")", tabindex: "0" });
+      g.appendChild(mk("circle", { r: 36 }));
+      var t1 = mk("text", { y: -2, "text-anchor": "middle", class: "ic" }); t1.textContent = n.icon; g.appendChild(t1);
+      var t2 = mk("text", { y: 54, "text-anchor": "middle", class: "nm" }); t2.textContent = n.name; g.appendChild(t2);
+      g.onclick = function () { focus(n); }; g.onkeydown = function (e) { if (e.key === "Enter") focus(n); };
+      svg.appendChild(g); N[n.id] = g;
+    });
+    function focus(n) {
+      E.forEach(function (e) { e.classList.toggle("hi", e.dataset.a === n.id || e.dataset.z === n.id); });
+      info.innerHTML = '<strong>' + n.icon + ' ' + n.name + '</strong> <em>' + (n.sci || '') + '</em> · ' + n.role + '<br>' + n.eats;
+    }
+    function reset() { Object.keys(N).forEach(function (k) { N[k].classList.remove("gone", "boom", "down"); }); E.forEach(function (e) { e.classList.remove("hi", "gone"); }); steps.innerHTML = ""; info.innerHTML = "Toca a un integrante para ver qué come y quién se lo come."; }
+    function remove() {
+      reset(); N[b.remove].classList.add("gone");
+      E.forEach(function (e) { if (e.dataset.a === b.remove || e.dataset.z === b.remove) e.classList.add("gone"); });
+      steps.innerHTML = "";
+      b.cascade.forEach(function (c, i) {
+        setTimeout(function () {
+          (c.up || []).forEach(function (id) { N[id].classList.add("boom"); });
+          (c.down || []).forEach(function (id) { N[id].classList.add("down"); });
+          steps.appendChild(el('<div class="step"><b>' + (i + 1) + '</b><span>' + c.text + '</span></div>').firstChild);
+          if (i === b.cascade.length - 1) {
+            steps.appendChild(el('<div class="exp">' + b.done + '</div>').firstChild);
+            if (S.guess[key] === undefined) { S.guess[key] = 1; S.guess[key + "_ok"] = true; save(); check(); }
+          }
+        }, 700 * (i + 1));
+      });
+    }
+    w.querySelector("[data-x]").onclick = remove; w.querySelector("[data-r]").onclick = reset;
+    return w;
   }
 
   /* ---------- Recursos ---------- */
@@ -281,9 +422,9 @@
 
   /* ---------- Certificado ---------- */
   function cert() {
-    var gc = ch("espiritu");
+    var gc = ch(C.course.certGuide || C.course.heroGuide || "espiritu");
     var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Certificado</small></div><h1>¡Lo lograste! 🌱</h1>' +
-      (gc ? '<div class="guide">' + avatar(gc) + '<div><strong>' + gc.name + '</strong><em>«' + gc.quote + '»</em></div></div>' : '');
+      (gc ? '<div class="guide">' + avatar(gc, "", "feliz") + '<div><strong>' + gc.name + '</strong><em>«' + gc.quote + '»</em></div></div>' : '');
     if (!S.post) h += '<div class="box"><h3>Último paso: ¿cómo te sientes ahora?</h3><p>Las mismas preguntas del inicio, para ver tu cambio.</p><div id="post"></div><button class="btn btn-primary" id="post-go" disabled>Guardar</button></div>';
     h += '<div id="change"></div>';
     if (S.post) h += '<div class="box"><label><strong>Tu nombre como quieres que aparezca en el certificado</strong></label><input type="text" id="name" maxlength="60" value="' + esc(S.cert && S.cert.name) + '" style="margin:10px 0"><button class="btn btn-primary" id="make">Generar certificado</button><p class="hint">Tu nombre solo se usa para dibujar el certificado en tu dispositivo. No se envía a ningún lado.</p></div><canvas id="cert" width="1600" height="1130" style="display:none"></canvas><div id="dl"></div>';
@@ -297,7 +438,8 @@
           var d = {}; SELF.forEach(function (q, i) { d["antes_" + (i + 1)] = S.pre ? S.pre[i] : ""; d["despues_" + (i + 1)] = tmp[i]; });
           var lp = LESSONS[LESSONS.length - 1], pk = lp.blocks.filter(function (b) { return b.t === "pick"; })[0];
           d.primer_paso = (pk && S.pick[pk.id] != null) ? pk.o[S.pick[pk.id]] : "";
-          d.que_hare = S.reflect.r15a || ""; d.con_quien = S.reflect.r15b || ""; d.cuando = S.reflect.r15c || ""; d.como_sabre = S.reflect.r15d || "";
+          var P = C.course.plan || ["r15a", "r15b", "r15c", "r15d"];
+          d.que_hare = S.reflect[P[0]] || ""; d.con_quien = S.reflect[P[1]] || ""; d.cuando = S.reflect[P[2]] || ""; d.como_sabre = S.reflect[P[3]] || "";
           send("final", d); S.finalSent = true; save();
         }
         cert();

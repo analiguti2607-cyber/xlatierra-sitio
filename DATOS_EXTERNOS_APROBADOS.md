@@ -49,3 +49,64 @@ Aun así, antes de publicar ábrelos una vez para confirmar que siguen funcionan
 | Nutria de río neotropical: *Lontra longicaudis*, presente en ríos de México | Página de inicio, Lontra | Revista *Therya*, Asociación Mexicana de Mastozoología |
 
 Aprobados por Ana Ceci el 28/10/2026. No se incluyeron estatus de conservación; si se agregan, verificarlos antes en CONABIO o en la NOM-059-SEMARNAT.
+
+---
+
+# Módulo 2 · «Conocer para proteger: biodiversidad de América Latina»
+Revisión del 28/10/2026. **Todo lo de esta sección está PENDIENTE DE TU APROBACIÓN** (y de la revisión de CONABIO).
+
+## A. Datos de tu investigación (NotebookLM) que comprobé en la fuente original ✅
+| Dato | Fuente original revisada |
+|---|---|
+| Definición de biodiversidad (3 niveles) | CDB 1992, art. 2 |
+| 17 países megadiversos ≈ 70% de la biodiversidad; México 10–12% de las especies; 2.º reptiles (975), 3.º mamíferos (587), 5.º anfibios (430), 11.º aves (+1,100); +23 mil plantas vasculares, ~11,600 endémicas | CONABIO, biodiversidad.gob.mx/pais/programanacionalderestauracion/contexto (cita a Llorente-Bousquets y Ocegueda 2008) |
+| Américas: 7 de los 17 países más biodiversos; 40% de la capacidad de los ecosistemas; 22.8% de la huella ecológica; 13% de la población; ~1/4 de 14,000 especies en alto riesgo | IPBES 2018, resumen para responsables de políticas, mensajes A1, A4, B2 |
+| Transformado: Selva Atlántica 88%, bosque seco Mesoamérica 72% / Caribe 66%, Río de la Plata 70%, Cerrado 50%, Chaco 34%, Amazonía 17%; Pantanal ~12% (1976–2008) | IPBES 2018, resumen, sección B |
+| Cambio climático, impulsor de más rápido crecimiento a 2050; poblaciones ~31% más pequeñas que al asentamiento europeo, 40% en 2050; contribuciones +24 billones USD/año; 65% en declive (21% fuerte); +50% con problemas de agua; +60% de lenguas en dificultad; <20% de áreas clave protegidas | Comunicado IPBES 23/03/2018 (ES) |
+| IPV 2024: −73% global, −95% ALC, agua dulce −85%, terrestres −69%, marinas −56%, ~35,000 poblaciones de 5,495 especies; Amazonía 14–17% deforestada, punto de inflexión 20–25% | WWF, Informe Planeta Vivo 2024, resumen ES, págs. 5–6 |
+| FAO-FILAC: +300 estudios; 320–380 Mha; ~1/3 del carbono de los bosques de ALC; 14% del carbono tropical mundial; 34,000 MtC; pérdida de carbono 0.3 / 0.6 / 3.6%; 28% de la cuenca y 2.6% de emisiones; 45% de bosques intactos; 4.9% vs 11.2%; 2.8×/2.5×/2× menos deforestación; 42.8–59.7 Mt CO₂/año = 9–12.6 M vehículos; 47% de territorios = áreas protegidas; +150% deforestación en Brasil 2016–2018; monitoreo participativo confiable | Comunicado FAO 25/03/2021 e informe FAO-FILAC 2021 (págs. 47, 48, 54, 71, 89) |
+| Meta 3 (30×30) | Guía de la Meta 3, UICN 2024 (texto oficial) |
+| Ajolote: P en NOM-059, CR en UICN; distribución; amenazas | PACE Ambystoma, SEMARNAT/CONANP 2018, pág. 39 |
+| Nutria: A en NOM-059, NT en UICN (2015) | Cruz García et al. 2017, THERYA 8(2) |
+| Jaguar NT (UICN 2017), el felino más grande de América | Quigley et al. 2017 (UICN) |
+
+## B. Errores de NotebookLM que CORREGÍ ⚠️ (no los uses en otros materiales)
+1. **IPV 2024, Norteamérica y Europa:** el documento decía −28% y −23%. El informe dice **−39% (Norteamérica)** y **−35% (Europa y Asia Central)**.
+2. **Arrecifes:** no es «perdieron 50% en los 70 y quedaba 10% en 2003». La cobertura de coral del Caribe **pasó de ~50% a ~10%** en tres décadas (Gardner et al., 2003, *Science*).
+3. **Tortuga carey −57%:** ese dato es de la **isla Milman, Australia**, no de América Latina. No lo usé.
+4. **«El cambio climático es responsable directo del −95%»:** falso. El WWF dice que la principal amenaza es la pérdida de hábitat; el cambio climático es una amenaza adicional.
+5. **Lobo mexicano:** desde la modificación de 2019 ya no es «E»; pasó a **«P» (en peligro)**.
+6. **Delfines 2023:** «más de 330 en dos lagos» no lo pude confirmar. Usé el dato verificable: **209 cadáveres en el lago Tefé** (Instituto Mamirauá vía Mongabay, 2024).
+7. **Rankings de México:** otro documento oficial dice «1.º en reptiles, 2.º en mamíferos». Usé la cifra de la CONABIO y lo explico en la lección como ejemplo de pensamiento crítico.
+8. **Socio Bosque (196 comunidades, 1.45 Mha), Petcacab y Prevfogo (17 Mha):** **no aparecen en el informe FAO-FILAC**. No los usé. Usé lo que sí dice: los programas de pago por conservación financiaron a cientos de comunidades para conservar más de 4 millones de hectáreas (pág. 71).
+9. **Costo de titulación «5–29 y 7–42 veces»:** la FAO dice **«entre 5 y 42 veces»** menos. No lo usé en el curso.
+10. **Saraguato de la Selva Maya:** en la península de Yucatán es *Alouatta pigra* (no *A. palliata*). **Queñuas en el Cerrado:** error (son andinas); lo quité.
+11. **Total de la NOM-059:** NotebookLM dice 2,606; Excélsior (2026) dice 2,678. En el curso dice «más de 2,600».
+12. **«0.7 °C desde 1900»:** la IPBES lo da desde 1980. No lo usé (el Módulo 1 ya cubre la temperatura).
+
+## C. Datos NUEVOS que agregué de fuentes externas (pendientes de tu aprobación) 🟡
+| Dato | Fuente |
+|---|---|
+| Vaquita: 7–10 individuos en 2025, con crías | Sea Shepherd / SEMARNAT, comunicado conjunto 28/10/2025 |
+| Jaguar: 5,326 en México (3.er censo, 2025) | Xataka 2026, sobre la Alianza Nacional para la Conservación del Jaguar |
+| Delfín de río: 209 cadáveres en el lago Tefé, agua >40 °C (2023); delfín rosado EN | Mongabay 2024 (Instituto Mamirauá, ICMBio) |
+| Quetzal NT, de Oaxaca/Chiapas a Panamá | BirdLife International 2023 (UICN) |
+| Oso andino VU, único oso de Sudamérica, distribución y amenazas | World Land Trust |
+| Tortuga carey CR | UICN (Mortimer y Donnelly 2008) — **no pude abrir la ficha de la UICN; verifícalo** |
+| Jaguar y vaquita «P» en NOM-059 | Ampliamente citado, pero **no pude abrir el anexo del DOF**; verifícalo en Enciclovida |
+| Lista de los 6 países megadiversos latinoamericanos | Mittermeier et al. 1997 (coincide con «7 de 17» de la IPBES) |
+| NOM-059: más de 2,600 especies; CONABIO prepara actualización | Excélsior, 5/06/2026 |
+| Tortuga de bisagra de Coahuila «P» desde 2019 | DOF 14/11/2019 (preámbulo) |
+
+## D. Conocimiento general (marcado así en el curso y el mapa) 📘
+Neotenia del ajolote; por qué la región es tan diversa (trópicos, montañas, encuentro de faunas); dónde vive cada especie de la actividad «¿Quién vive aquí?»; dietas de la red de la Selva Maya y la cascada trófica; «especie paraguas»; corredores biológicos; especies que suben la montaña; funcionamiento de NaturaLista; descripciones de Galápagos, Patagonia, Cuatro Ciénegas, páramos y las especies sin ficha del mapa.
+
+## E. Fotos (licencia libre, con crédito)
+| Foto | Autor | Licencia |
+|---|---|---|
+| Jaguar, Pantanal | Charles J. Sharp | CC BY-SA 4.0 |
+| Ajolote | David J. Stang | CC BY-SA 4.0 |
+| Delfín de río boliviano | Ramon y Suzanne Vargas (iNaturalist) | CC BY-SA 4.0 |
+| Vaquitas | Paula Olson / NOAA | Dominio público |
+| Quetzal | Francesco Veronesi | CC BY-SA 2.0 |
+Se cargan desde Wikimedia Commons. Oso andino, nutria y carey quedaron sin foto (marcado «Foto pendiente»).
