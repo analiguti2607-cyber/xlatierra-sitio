@@ -105,7 +105,7 @@
     <div id="map" role="application" aria-label="Mapa interactivo de ecosistemas de América Latina"></div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
   </div>
-  <p class="credits">Las ubicaciones son <strong>aproximadas</strong>: marcan el centro de cada región, no sus límites exactos. Mapa base: © colaboradores de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> y <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>. Fronteras: Natural Earth vía world-atlas. Fotos con licencia libre, con su crédito en cada una. Fuentes completas en <a href="biodiversidad.html#referencias">Referencias del Módulo 2</a>.</p>
+  <p class="credits">Las ubicaciones son <strong>aproximadas</strong>: marcan el centro de cada región, no sus límites exactos. Mapa base: © colaboradores de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Fronteras: Natural Earth vía world-atlas. Fotos con licencia libre, con su crédito en cada una. Fuentes completas en <a href="biodiversidad.html#referencias">Referencias del Módulo 2</a>.</p>
 </main>
 
 <div class="modal" id="modal"><div class="inner"><button class="x" id="mx" aria-label="Cerrar">×</button><div id="mbody"></div></div></div>
@@ -133,9 +133,9 @@
 
   /* ---------- Mapa base ---------- */
   var map = L.map("map", { zoomControl: true, minZoom: 2, worldCopyJump: true }).setView([-8, -75], 3);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: "abcd", maxZoom: 18
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a>',
+    maxZoom: 19
   }).addTo(map);
 
   /* ---------- Marcadores ---------- */
