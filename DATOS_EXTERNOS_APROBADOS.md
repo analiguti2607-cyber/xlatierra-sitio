@@ -39,3 +39,13 @@ Todos fueron **aprobados por Ana Ceci el 27 de octubre de 2026**. Este archivo q
 Todos los links de lecturas y recursos vienen de tus fuentes de NotebookLM, de los cursos
 de Climate Science que me pasaste o de la base de fuentes que armamos (documento 03).
 Aun así, antes de publicar ábrelos una vez para confirmar que siguen funcionando.
+
+## Personajes (agregado el 28/10/2026)
+| Dato | Dónde está | Fuente |
+|---|---|---|
+| *Ameyalli* significa «manantial» en náhuatl | Página de inicio, Ameyalli | Diccionario en línea de náhuatl, Wired Humanities (Universidad de Oregon) |
+| Ajolote: *Ambystoma mexicanum*, de los humedales de Xochimilco | Página de inicio, Axo | UNAM Global; Mongabay Latam |
+| Jaguar: *Panthera onca* | Página de inicio, Balam | Nombre científico estándar |
+| Nutria de río neotropical: *Lontra longicaudis*, presente en ríos de México | Página de inicio, Lontra | Revista *Therya*, Asociación Mexicana de Mastozoología |
+
+Aprobados por Ana Ceci el 28/10/2026. No se incluyeron estatus de conservación; si se agregan, verificarlos antes en CONABIO o en la NOM-059-SEMARNAT.

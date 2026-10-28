@@ -40,6 +40,14 @@ section{padding:44px 0}
 .about{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start}
 .photo{aspect-ratio:1/1;border-radius:22px;background:var(--soft);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px}
 @media(max-width:640px){.about{grid-template-columns:1fr}.photo{max-width:220px}}
+.pj{background:#fff;border-radius:var(--radius);padding:18px 18px 16px;box-shadow:var(--shadow);text-align:center}
+.pj img{width:150px;height:150px;object-fit:contain;margin:0 auto 6px}
+.pj h3{margin:8px 0 2px}
+.pj-role{font-size:.85rem;color:var(--terra);font-weight:600;margin-bottom:8px}
+.pj p{font-size:.92rem;text-align:left}
+.pj-verb{display:inline-block;background:var(--gold);color:#fff;font-weight:600;font-size:.75rem;padding:2px 12px;border-radius:999px}
+.pj-origin{font-size:.85rem!important;background:var(--soft);border-radius:12px;padding:8px 10px;color:var(--ink)}
+.pj-quote{font-style:italic;color:var(--teal);text-align:center!important;margin-bottom:0}
 .band{background:var(--teal);color:#fff;border-radius:26px;padding:34px 28px;text-align:center}
 .band h2{color:#fff}
 </style>
@@ -116,6 +124,55 @@ section{padding:44px 0}
   </div>
 </section>
 
+<!-- ============ EQUIPO (PERSONAJES) ============
+     Para editar: cambia el texto entre las etiquetas. Las imágenes están en img/. -->
+<section id="equipo">
+  <div class="wrap">
+    <div class="kicker">Te acompañan en el camino</div>
+    <h2>Conoce al equipo de Xlatierra</h2>
+    <p style="max-width:720px">Cuatro personajes te acompañan en un recorrido de aprendizaje: de la curiosidad a la capacidad de actuar por tu comunidad. Cada uno viene de un ecosistema de México, y el agua es lo que los une.</p>
+    <div class="arc"><span>Descubrir</span><em>→</em><span>Comprender</span><em>→</em><span>Proteger</span><em>→</em><span>Actuar</span></div>
+    <div class="grid g4" style="margin-top:22px">
+      <div class="pj">
+        <img src="img/personaje-espiritu.png" alt="Ameyalli, el espíritu del agua">
+        <span class="pj-verb">Descubrir</span>
+        <h3>Ameyalli</h3>
+        <div class="pj-role">El espíritu del agua · guía de la aventura</div>
+        <p>Te acompaña a lo largo del curso, introduce cada tema y convierte lo complejo en explicaciones sencillas.</p>
+        <p class="pj-origin">📍 Viene de los manantiales: <em>ameyalli</em> significa «manantial» en náhuatl, el agua que brota de la tierra y alimenta ríos, humedales y cenotes.</p>
+        <p class="pj-quote">«¡Cada descubrimiento nos acerca a un planeta mejor!»</p>
+      </div>
+      <div class="pj">
+        <img src="img/personaje-ajolote.png" alt="Axo, el ajolote">
+        <span class="pj-verb">Comprender</span>
+        <h3>Axo</h3>
+        <div class="pj-role">El ajolote experto en biodiversidad</div>
+        <p>El pequeño científico del equipo: le encanta descubrir especies, explorar hábitats y compartir datos sorprendentes sobre la naturaleza.</p>
+        <p class="pj-origin">📍 Viene de los humedales de Xochimilco. Es un ajolote (<em>Ambystoma mexicanum</em>).</p>
+        <p class="pj-quote">«¡Mira todo lo que podemos aprender de la naturaleza!»</p>
+      </div>
+      <div class="pj">
+        <img src="img/personaje-jaguar.png" alt="Balam, el jaguar">
+        <span class="pj-verb">Proteger</span>
+        <h3>Balam</h3>
+        <div class="pj-role">El jaguar guardián de los ecosistemas</div>
+        <p>La fuerza del equipo: nos recuerda que todos los seres vivos están conectados y qué está en juego.</p>
+        <p class="pj-origin">📍 Viene de la Selva Maya. Es un jaguar (<em>Panthera onca</em>).</p>
+        <p class="pj-quote">«¡Proteger la naturaleza también es nuestra responsabilidad!»</p>
+      </div>
+      <div class="pj">
+        <img src="img/personaje-nutria.png" alt="Lontra, la nutria">
+        <span class="pj-verb">Actuar</span>
+        <h3>Lontra</h3>
+        <div class="pj-role">La nutria exploradora y solucionadora</div>
+        <p>La aventurera del grupo: protagoniza los retos y te invita a pasar de la teoría a la práctica.</p>
+        <p class="pj-origin">📍 Viene de los ríos de México. Es una nutria de río neotropical (<em>Lontra longicaudis</em>).</p>
+        <p class="pj-quote">«¡Menos quedarnos con la duda y más ponernos en acción!»</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ QUIÉN ============ -->
 <section id="quien">
   <div class="wrap about">
@@ -123,7 +180,8 @@ section{padding:44px 0}
     <div>
       <div class="kicker">Quién está detrás</div>
       <h2>Ana Cecilia Licéaga Gutiérrez</h2>
-            <p>Ana Cecilia Licéaga Gutiérrez es estudiante de Ingeniería Mecánica en el Tecnológico de Monterrey, Campus Estado de México, e impulsora de iniciativas de educación climática y participación juvenil. A los 16 años comenzó a involucrarse en la organización de Conferencias Locales de la Juventud sobre Cambio Climático (LCOY) en México, formando parte de su equipo organizador durante tres años. También formó parte de la UNICEF Youth Leadership Network, donde posteriormente se integró al equipo de gestión de una red de más de 200 jóvenes comprometidos con la acción climática.</p>
+      <!-- BIOGRAFÍA: edita el texto entre <p> y </p>. Cada <p>...</p> es un párrafo. -->
+      <p>Ana Cecilia Licéaga Gutiérrez (Ana Ceci) es estudiante de Ingeniería Mecánica en el Tecnológico de Monterrey, Campus Estado de México, e impulsora de iniciativas de educación climática y participación juvenil. A los 16 años comenzó a involucrarse en la organización de Conferencias Locales de la Juventud sobre Cambio Climático (LCOY) en México, formando parte de su equipo organizador durante tres años. También formó parte de la UNICEF Youth Leadership Network, donde posteriormente se integró al equipo de gestión de una red de más de 200 jóvenes comprometidos con la acción climática.</p>
       <p>Su interés por acercar el conocimiento ambiental a más jóvenes la llevó a desarrollar Xlatierra, un proyecto de educación climática en español que busca hacer la información más accesible, comprensible y cercana a las realidades de las comunidades hispanohablantes.</p>
       <p>Xlatierra se desarrolla en el marco de <strong>BeVisioneers: The Mercedes-Benz Fellowship</strong>, programa del que Ana Ceci es fellow y a través del cual impulsa esta iniciativa.</p>
     </div>

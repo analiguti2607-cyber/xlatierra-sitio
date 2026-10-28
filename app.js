@@ -40,6 +40,10 @@
   function allDone() { return doneCount() === LESSONS.length; }
   function go(h) { if (location.hash === "#" + h) route(); else location.hash = h; }
   function toTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+  var CH = C.characters || {};
+  function ch(id) { return CH[id] || null; }
+  function guideOf(L) { var u = C.units.filter(function (x) { return x.id === L.unit; })[0]; return ch(L.guide || (u && u.guide)); }
+  function avatar(c, cls) { return c ? '<img class="av ' + (cls || '') + '" src="' + c.img + '" alt="' + c.name + '" title="' + c.name + (c.origin ? ' · ' + c.origin : '') + '">' : ''; }
   function idx(id) { for (var i = 0; i < LESSONS.length; i++) if (LESSONS[i].id === id) return i; return -1; }
 
   /* ---------- Router (permite usar el botón «atrás» del navegador) ---------- */
@@ -57,8 +61,10 @@
   /* ---------- Portada del curso ---------- */
   function home() {
     var pct = Math.round(100 * doneCount() / LESSONS.length);
-    var h = '<div class="hero"><h1>' + C.course.label + ': ' + C.course.title + '</h1><p>' + C.course.subtitle + '</p>' +
-      '<div class="tags"><span>' + LESSONS.length + ' lecciones</span><span>' + C.course.totalTime + '</span><span>Gratis</span><span>Certificado al aprobar</span></div></div>';
+    var g0 = ch("espiritu");
+    var h = '<div class="hero"><div class="hero-row"><div><h1>' + C.course.label + ': ' + C.course.title + '</h1><p>' + C.course.subtitle + '</p>' +
+      '<div class="tags"><span>' + LESSONS.length + ' lecciones</span><span>' + C.course.totalTime + '</span><span>Gratis</span><span>Certificado al aprobar</span></div></div>' +
+      (g0 ? '<figure class="hero-guide">' + avatar(g0, "big") + '<figcaption>«' + g0.quote + '»</figcaption></figure>' : '') + '</div></div>';
     h += '<div><strong>Tu avance:</strong> ' + doneCount() + ' de ' + LESSONS.length + ' lecciones</div><div class="bar"><div style="width:' + pct + '%"></div></div>';
     h += '<p class="hint">Tu avance se guarda en este navegador y dispositivo. Si cambias de celular o borras los datos del navegador, empezarás de nuevo.</p>';
     if (!S.pre) h += startBox();
@@ -67,7 +73,8 @@
       if (next) h += '<div class="nav" style="margin:6px 0 10px"><span></span><a class="btn btn-primary" href="#leccion-' + next.id + '">' + (doneCount() ? 'Continuar donde me quedé' : 'Empezar') + ' →</a></div>';
     }
     C.units.forEach(function (u) {
-      h += '<h3 class="unit-h">' + u.title + '</h3><div class="unit-d">' + u.desc + '</div>';
+      var gu = ch(u.guide);
+      h += '<div class="unit-head">' + avatar(gu) + '<div><h3 class="unit-h">' + u.title + '</h3><div class="unit-d">' + (gu ? '<span class="verb">' + gu.verb + '</span> Con ' + gu.name + ' · ' : '') + u.desc + '</div></div></div>';
       LESSONS.forEach(function (l, i) {
         if (l.unit !== u.id) return;
         var d = S.done[l.id], locked = !S.pre;
@@ -126,7 +133,10 @@
     var L = LESSONS[i], unit = C.units.filter(function (u) { return u.id === L.unit; })[0];
     var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Lección ' + (i + 1) + ' de ' + LESSONS.length + ' · ' + L.time + '</small></div>';
     h += '<div class="bar"><div style="width:' + Math.round(100 * (i + 1) / LESSONS.length) + '%"></div></div>';
-    h += '<small class="hint">' + (unit ? unit.title : '') + '</small><h1>' + L.title + '</h1><div id="body"></div>';
+    var gl = guideOf(L), firstOfUnit = i === 0 || LESSONS[i - 1].unit !== L.unit || L.guide;
+    h += '<small class="hint">' + (unit ? unit.title : '') + '</small><h1>' + L.title + '</h1>';
+    if (gl) h += '<div class="guide">' + avatar(gl) + '<div><small>Te acompaña</small><strong>' + gl.name + '</strong> · <span class="verb">' + gl.verb + '</span>' + (firstOfUnit ? '<em>«' + gl.quote + '»</em>' : '') + '</div></div>';
+    h += '<div id="body"></div>';
     h += '<div class="box"><strong>¿Qué te pareció esta lección?</strong><div class="rate" id="rate"></div></div>';
     h += '<p class="src"><strong>Fuentes:</strong> ' + L.sources + '</p>';
     h += '<div class="nav">' + (i > 0 ? '<a class="btn btn-ghost" href="#leccion-' + LESSONS[i - 1].id + '">← Anterior</a>' : '<span></span>') + '<button class="btn btn-primary" id="next">Completar lección →</button></div>';
@@ -169,7 +179,9 @@
           b.rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join("") + '</tr>'; }).join("") + '</table></div>')); break;
       case "stats":
         body.appendChild(el('<div class="stats">' + b.items.map(function (s) { return '<div class="stat"><b>' + s.n + '</b><span>' + s.l + '</span><i>Fuente: ' + s.s + '</i></div>'; }).join("") + '</div>')); break;
-      case "note": body.appendChild(el('<div class="note ' + b.kind + '"><h4>' + b.title + '</h4><div>' + b.html + '</div></div>')); break;
+      case "note":
+        var na = b.kind === "act" ? ch("nutria") : null;
+        body.appendChild(el('<div class="note ' + b.kind + (na ? ' with-av' : '') + '">' + (na ? avatar(na) : '') + '<div><h4>' + b.title + '</h4><div>' + b.html + '</div></div></div>')); break;
       case "land": if (b.html) body.appendChild(el('<div class="note land"><h4>🌱 Saberes del territorio</h4><div>' + b.html + '</div></div>')); break;
       case "answers":
         var w = el('<div class="box"><div class="tabs"><button type="button" class="tab on" data-m="s">Respuesta corta</button><button type="button" class="tab" data-m="l">Respuesta larga</button></div><div class="ans"><p>' + b.short + '</p></div></div>');
@@ -206,7 +218,8 @@
     }
   }
   function resItem(x) {
-    return '<a class="res" href="' + x.url + '" target="_blank" rel="noopener"><strong>' + x.title + '</strong> <span class="tag' + (x.lang === "EN" ? ' en' : '') + '">' + (x.lang === "EN" ? 'En inglés' : 'Español') + '</span><small>' + x.desc + '</small></a>';
+    var vid = x.type === "video" ? '<span class="tag vid">▶ Video' + (x.dur ? ' · ' + x.dur : '') + '</span> ' : '';
+    return '<a class="res" href="' + x.url + '" target="_blank" rel="noopener"><strong>' + x.title + '</strong> ' + vid + '<span class="tag' + (x.lang === "EN" ? ' en' : '') + '">' + (x.lang === "EN" ? 'En inglés' : 'Español') + '</span><small>' + x.desc + '</small></a>';
   }
 
   /* ---------- Recursos ---------- */
@@ -268,7 +281,9 @@
 
   /* ---------- Certificado ---------- */
   function cert() {
-    var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Certificado</small></div><h1>¡Lo lograste! 🌱</h1>';
+    var gc = ch("espiritu");
+    var h = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a><small>Certificado</small></div><h1>¡Lo lograste! 🌱</h1>' +
+      (gc ? '<div class="guide">' + avatar(gc) + '<div><strong>' + gc.name + '</strong><em>«' + gc.quote + '»</em></div></div>' : '');
     if (!S.post) h += '<div class="box"><h3>Último paso: ¿cómo te sientes ahora?</h3><p>Las mismas preguntas del inicio, para ver tu cambio.</p><div id="post"></div><button class="btn btn-primary" id="post-go" disabled>Guardar</button></div>';
     h += '<div id="change"></div>';
     if (S.post) h += '<div class="box"><label><strong>Tu nombre como quieres que aparezca en el certificado</strong></label><input type="text" id="name" maxlength="60" value="' + esc(S.cert && S.cert.name) + '" style="margin:10px 0"><button class="btn btn-primary" id="make">Generar certificado</button><p class="hint">Tu nombre solo se usa para dibujar el certificado en tu dispositivo. No se envía a ningún lado.</p></div><canvas id="cert" width="1600" height="1130" style="display:none"></canvas><div id="dl"></div>';

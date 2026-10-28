@@ -28,6 +28,12 @@
    pick     elegir una opción      {t:"pick", id:"único", q:"...", o:["..."]}
    read     para profundizar       {t:"read", items:[{title:"...", url:"...", desc:"...", lang:"ES|EN"}]}
    land     saberes del territorio {t:"land", html:""}   (vacío = no se muestra)
+
+   En «read» y «resources» puedes agregar videos con type:"video" y duracion:
+   {title:"...", url:"...", desc:"...", lang:"ES", type:"video", dur:"10 min"}
+
+   Cada unidad tiene un personaje guía (guide). Una lección puede usar otro
+   con guide:"ajolote" (ver PERSONAJES abajo).
    ===================================================================== */
 
 window.XLT_CONTENT = {
@@ -40,11 +46,30 @@ course: {
   totalTime: "~2 h 45 min"
 },
 
+/* ======================= PERSONAJES =======================
+   Aparecen en el índice del curso (uno por unidad), al inicio de cada
+   lección y en los retos. Para cambiar textos, edita aquí.
+   Para cambiar una imagen, reemplaza el archivo en img/ con el mismo nombre. */
+characters: {
+  espiritu: {name:"Ameyalli", role:"El espíritu del agua · guía de la aventura", verb:"Descubrir", img:"img/personaje-espiritu.png",
+             origin:"Los manantiales: el agua que brota de la tierra y alimenta ríos, humedales y cenotes",
+             quote:"¡Cada descubrimiento nos acerca a un planeta mejor!"},
+  ajolote:  {name:"Axo", role:"El ajolote experto en biodiversidad", verb:"Comprender", img:"img/personaje-ajolote.png",
+             origin:"Los humedales de Xochimilco (ajolote, Ambystoma mexicanum)",
+             quote:"¡Mira todo lo que podemos aprender de la naturaleza!"},
+  jaguar:   {name:"Balam", role:"El jaguar guardián de los ecosistemas", verb:"Proteger", img:"img/personaje-jaguar.png",
+             origin:"La Selva Maya (jaguar, Panthera onca)",
+             quote:"¡Proteger la naturaleza también es nuestra responsabilidad!"},
+  nutria:   {name:"Lontra", role:"La nutria exploradora y solucionadora", verb:"Actuar", img:"img/personaje-nutria.png",
+             origin:"Los ríos de México (nutria de río neotropical, Lontra longicaudis)",
+             quote:"¡Menos quedarnos con la duda y más ponernos en acción!"}
+},
+
 units: [
-  {id:"u1", title:"Unidad 1 · Lo básico", desc:"Qué es el cambio climático y cómo funciona."},
-  {id:"u2", title:"Unidad 2 · Las causas", desc:"Cómo sabemos que somos nosotros, y quién emite."},
-  {id:"u3", title:"Unidad 3 · Impactos y justicia", desc:"Lo que ya está pasando, y a quién le pega más."},
-  {id:"u4", title:"Unidad 4 · Soluciones y acción", desc:"Cómo separar ciencia de mito, qué funciona y qué puedes hacer tú."}
+  {id:"u1", guide:"espiritu", title:"Unidad 1 · Lo básico", desc:"Qué es el cambio climático y cómo funciona."},
+  {id:"u2", guide:"ajolote", title:"Unidad 2 · Las causas", desc:"Cómo sabemos que somos nosotros, y quién emite."},
+  {id:"u3", guide:"jaguar", title:"Unidad 3 · Impactos y justicia", desc:"Lo que ya está pasando, y a quién le pega más."},
+  {id:"u4", guide:"nutria", title:"Unidad 4 · Soluciones y acción", desc:"Cómo separar ciencia de mito, qué funciona y qué puedes hacer tú."}
 ],
 
 lessons: [
@@ -69,6 +94,7 @@ lessons: [
   {t:"p", html:"Y no basta con «haber oído del tema». En una encuesta de la UNESCO a 17,000 jóvenes de 166 países, el 90% dijo haber recibido información sobre cambio climático en la escuela, pero casi <strong>un tercio no sabía explicarlo</strong> y más del 40% solo lo entendía en términos muy generales. Este curso busca que tú sí puedas explicarlo, y hacer algo con eso."},
   {t:"reflect", id:"r1", q:"¿Recuerdas algún momento en que sentiste que el clima de tu ciudad estaba cambiando (calor, lluvias, agua, aire)? Descríbelo en dos o tres líneas."},
   {t:"read", items:[
+    {title:"El cambio climático explicado", url:"https://www.youtube.com/watch?v=miEJI0XQiN4", desc:"El Robot de Platón (2016). Una explicación amena; algunos datos ya son de hace años.", lang:"ES", type:"video", dur:"10 min"},
     {title:"IPCC · Cambio climático 2021: Resumen para todos", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/outreach/IPCC_AR6_WGI_SummaryForAll_Spanish.pdf", desc:"La versión más accesible del informe científico más importante del mundo.", lang:"ES"},
     {title:"IPCC en español", url:"https://www.ipcc.ch/languages-2/spanish/", desc:"Todos los materiales del IPCC disponibles en español.", lang:"ES"}]},
   {t:"land", html:""}
@@ -129,6 +155,7 @@ lessons: [
   {t:"note", kind:"info", title:"Un mar que se calienta y se acidifica", html:"Al absorber calor y CO₂, el océano cambia. Las olas de calor marinas y la acidificación han provocado episodios de <strong>blanqueamiento masivo de corales</strong> en regiones tropicales, incluido el Caribe y México. Cuando los arrecifes se degradan, se pierde pesca y la protección natural de la costa frente a tormentas. Y la acidificación de la superficie del océano ya supera lo registrado en los últimos 2 millones de años."},
   {t:"reflect", id:"r3", q:"Explica el efecto invernadero con tus propias palabras, como si se lo contaras a alguien de 12 años."},
   {t:"read", items:[
+    {title:"Cambio climático y efecto invernadero", url:"https://www.youtube.com/watch?v=F-ztU2l46z4", desc:"ONU-REDD Ecuador (2014). Explicación institucional del efecto invernadero.", lang:"ES", type:"video"},
     {title:"IPCC · Resumen para responsables de políticas (GT1) en español", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WG1_SPM_Spanish.pdf", desc:"Más técnico, pero es la fuente original de muchas cifras de este curso.", lang:"ES"},
     {title:"Climate Science · Efecto invernadero", url:"https://climatescience.org/es/advanced-greenhouse-effect", desc:"Curso interactivo gratuito en español para profundizar.", lang:"ES"}]},
   {t:"land", html:""}
@@ -280,6 +307,7 @@ lessons: [
   {t:"note", kind:"warn", title:"El Bosque, Tabasco", html:"En la comunidad costera de El Bosque, en Tabasco, la erosión y el avance del mar destruyeron de forma irreversible el territorio donde vivían las familias. No es una proyección: ya pasó."},
   {t:"reflect", id:"r8", q:"¿Cuál de estos impactos (calor, sequía, agua, costas, huracanes) afecta más a tu estado o ciudad? ¿Cómo lo notas?"},
   {t:"read", items:[
+    {title:"5 revelaciones del informe de la ONU sobre cambio climático y qué dice sobre América Latina", url:"https://www.youtube.com/watch?v=4QEW0DHWIlg", desc:"BBC News Mundo (2021). Lo que dice el IPCC sobre nuestra región.", lang:"ES", type:"video"},
     {title:"PNUD · NDC 3.0 en América Latina y el Caribe", url:"https://climatepromise.undp.org/sites/default/files/research_report_document/UNDP_NDC%203.0%20en%20LAC-%20ambicio%CC%81n%2C%20inclusividad%20y%20ruta%20hacia%20la%20sostenibilidad_FINAL.pdf", desc:"Qué se están comprometiendo a hacer los países de la región, incluido México.", lang:"ES"}]},
   {t:"land", html:""}
   ],
@@ -317,7 +345,7 @@ lessons: [
   sources:"UNICEF, Cambio climático, degradación ambiental y niñez en movilidad en ALC; Gobierno de México, NDC 3.0 (2025); investigación de escritorio Xlatierra (salud mental)."
 },
 
-{ id:"l10", unit:"u3", title:"Biodiversidad y puntos de no retorno", time:"12 min",
+{ id:"l10", unit:"u3", guide:"ajolote", title:"Biodiversidad y puntos de no retorno", time:"12 min",
   blocks:[
   {t:"p", html:"La vida en el planeta también resiente el calentamiento: especies que se mueven, ecosistemas que se degradan y algunos sistemas que podrían cruzar umbrales de los que no hay regreso."},
   {t:"guess", q:"De las miles de especies estudiadas en el mundo, ¿cuántas ya cambiaron el lugar donde viven por el clima?",
@@ -338,6 +366,10 @@ lessons: [
    e:"Si pierde demasiados árboles, la selva podría transformarse en sabana y convertirse en una fuente de carbono que amplifica el calentamiento por sí misma."},
   {t:"reflect", id:"r10", q:"¿Qué especie, paisaje o ecosistema de tu región te dolería perder? ¿Por qué?"},
   {t:"read", items:[
+    {title:"El ajolote de Xochimilco, a punto de la extinción", url:"https://www.youtube.com/watch?v=JPDKZrPJjGk", desc:"UNAM Global (2019). Por qué el ajolote está en peligro y qué se hace para salvarlo.", lang:"ES", type:"video"},
+    {title:"Por los humedales de Xochimilco", url:"https://ciencia.unam.mx/contenido/video/349/por-los-humedales-de-xochimilco", desc:"Ciencia UNAM (2022). Ajolotes, chinampas, aves migratorias y un proyecto de rescate con la comunidad.", lang:"ES", type:"video"},
+    {title:"México: el ajolote pelea contra la extinción en Xochimilco", url:"https://es.mongabay.com/2019/02/mexico-ajolote-xochimilco-video/", desc:"Mongabay Latam (2019). Periodismo ambiental sobre la lucha por el ajolote.", lang:"ES", type:"video"},
+    {title:"CONABIO · Ecosistemas de México", url:"https://www.youtube.com/watch?v=NAr27_PK0kw", desc:"Biodiversidad Mexicana – CONABIO (2011). Un recorrido por los ecosistemas del país.", lang:"ES", type:"video"},
     {title:"IPCC · Cómo el cambio climático afecta la vida en la Tierra (Resumen para todos)", url:"https://www.iai.int/administrador/assets/images/ckfinder/files/IPCC_AR6_WGII_ResumenParaTodos_Impactos%20(1).pdf", desc:"Impactos en ecosistemas y personas, explicados de forma sencilla.", lang:"ES"}]},
   {t:"land", html:""}
   ],
@@ -366,6 +398,7 @@ lessons: [
     {n:"38%", l:"de los hogares rurales conectados, frente a 77% de los urbanos", s:"CEPAL / PNUD"}]},
   {t:"reflect", id:"r11", q:"En tu ciudad o comunidad, ¿quién crees que sufre más el calor, la falta de agua o las inundaciones? ¿Por qué?"},
   {t:"read", items:[
+    {title:"CEPAL · Acuerdo de Escazú", url:"https://www.youtube.com/watch?v=djV934JKVNQ", desc:"Carlos Vives en colaboración con la CEPAL (2021). El acuerdo que protege a quienes defienden su territorio.", lang:"ES", type:"video"},
     {title:"UNICEF · Cambio climático, degradación ambiental y niñez en movilidad en ALC", url:"https://www.unicef.org/lac/en/media/48821/file/COTM%20-%20Cambio%20clim%C3%A1tico%20brief%20SP%20v5.1%20WEB.pdf.pdf", desc:"El informe de donde salen muchas cifras sobre niñez y juventud.", lang:"ES"},
     {title:"CIDH · Tercer informe sobre personas defensoras de derechos humanos en las Américas", url:"https://www.oas.org/es/cidh/informes/pdfs/2025/Tercer-informe-personas-defensoras-DDHH.pdf", desc:"Sobre la situación de quienes defienden su territorio.", lang:"ES"},
     {title:"PNUMA · Financiamiento para la transición justa en ALC", url:"https://www.unepfi.org/wordpress/wp-content/uploads/2025/11/Financiamiento-para-la-Transicion-Justa-en-America-Latia-y-el-Caribe.pdf", desc:"Cómo financiar un cambio que no deje a nadie atrás.", lang:"ES"}]},
@@ -434,6 +467,7 @@ lessons: [
   {t:"note", kind:"heart", title:"Sin alarmismo", html:"Pasar 1.5 °C no significa que «se acabó el mundo». El cambio climático no es todo o nada: <strong>1.6 °C es peor que 1.5 °C, pero mucho mejor que 1.7 °C o 2 °C</strong>. Cada tonelada de CO₂ que se evita hoy reduce riesgos reales mañana. Por eso nunca es tarde para actuar."},
   {t:"reflect", id:"r13", q:"¿Qué te genera saber que la década de 2030 es clave? ¿Preocupación, motivación, ambas? Escríbelo con honestidad."},
   {t:"read", items:[
+    {title:"¿Es demasiado tarde para frenar el cambio climático? Bueno, es complicado", url:"https://www.youtube.com/watch?v=p1EJBEn3HuQ", desc:"En Pocas Palabras – Kurzgesagt (2021). Animación sobre por qué cada décima de grado cuenta.", lang:"ES", type:"video", dur:"10 min"},
     {title:"IPCC · Cómo garantizar un futuro habitable para todos (Resumen para todos)", url:"https://archive.iai.int/administrador/assets/images/ckfinder/files/IPCC_AR6_WGII_ResumenParaTodos_FuturoHabitable.pdf", desc:"Qué podemos hacer todavía, según la ciencia.", lang:"ES"},
     {title:"Climate Science · Política climática", url:"https://climatescience.org/es/advanced-global-climate-politics", desc:"Curso gratuito en español sobre cómo se negocia el clima entre países.", lang:"ES"}]},
   {t:"land", html:""}
@@ -465,6 +499,7 @@ lessons: [
   {t:"p", html:"El IPCC recuerda algo importante: la voluntad individual de cambiar se concreta cuando hay <strong>políticas públicas, leyes, infraestructura e instituciones</strong> que facilitan las opciones sostenibles. Por eso la acción climática no es solo personal: también es colectiva y política."},
   {t:"reflect", id:"r14", q:"Elige una solución de esta lección. ¿Cómo podría aplicarse en tu escuela, trabajo o colonia?"},
   {t:"read", items:[
+    {title:"CONABIO · Manglares de México", url:"https://www.youtube.com/watch?v=PQNYItdkiV0", desc:"Biodiversidad Mexicana – CONABIO (2011). Qué son los manglares y por qué importan.", lang:"ES", type:"video"},
     {title:"UNICEF · Herramientas para la acción climática", url:"https://www.unicef.org/uruguay/media/11681/file/herramientas-para-la-accion-climatica-imprenta.pdf.pdf", desc:"Guía práctica pensada para niñas, niños y jóvenes.", lang:"ES"},
     {title:"Climate Science · Adaptación", url:"https://climatescience.org/es/advanced-what-is-adaptation", desc:"Curso gratuito en español sobre cómo prepararnos.", lang:"ES"},
     {title:"Climate Science · Innovación industrial", url:"https://climatescience.org/es/advanced-steel-climate", desc:"Cómo hacer edificios, ropa y otros productos de forma sostenible.", lang:"ES"}]},
@@ -503,6 +538,7 @@ lessons: [
   {t:"reflect", id:"r15c", q:"¿Cuándo voy a dar el primer paso?"},
   {t:"reflect", id:"r15d", q:"¿Cómo sabré que funcionó?"},
   {t:"read", items:[
+    {title:"#Futuristas · Cambio climático", url:"https://www.bancomundial.org/es/news/video/2021/09/15/futuristas-cambio-clim-tico", desc:"Banco Mundial con Vice (2021). Jóvenes de América Latina que ya están cambiando el futuro.", lang:"ES", type:"video", dur:"2 min"},
     {title:"PNUD · Juventudes por la Acción Climática (curso gratuito)", url:"https://www.learningfornature.org/es/courses/juventudes-por-la-accion-climatica-programa-de-formacion-para-jovenes-de-latinoamerica/", desc:"Formación en participación y negociación climática para jóvenes de América Latina.", lang:"ES"},
     {title:"Climate Science · Acción personal", url:"https://climatescience.org/es/advanced-sustainable-diet", desc:"Cosas concretas que puedes hacer en tu vida diaria.", lang:"ES"},
     {title:"UNICEF · Herramientas para la acción climática", url:"https://www.unicef.org/uruguay/media/11681/file/herramientas-para-la-accion-climatica-imprenta.pdf.pdf", desc:"Ideas y pasos para organizar acciones con otras personas.", lang:"ES"}]},
@@ -541,6 +577,18 @@ self: [
 
 /* ======================= RECURSOS COMPLEMENTARIOS ======================= */
 resources: [
+ {cat:"Videos en español", items:[
+   {title:"5 revelaciones del informe de la ONU sobre cambio climático y qué dice sobre América Latina", url:"https://www.youtube.com/watch?v=4QEW0DHWIlg", desc:"BBC News Mundo (2021). Lo que dice el IPCC sobre nuestra región.", lang:"ES", type:"video"},
+   {title:"El cambio climático explicado", url:"https://www.youtube.com/watch?v=miEJI0XQiN4", desc:"El Robot de Platón (2016). Una explicación amena; algunos datos ya son de hace años.", lang:"ES", type:"video", dur:"10 min"},
+   {title:"Cambio climático y efecto invernadero", url:"https://www.youtube.com/watch?v=F-ztU2l46z4", desc:"ONU-REDD Ecuador (2014). Explicación institucional del efecto invernadero.", lang:"ES", type:"video"},
+   {title:"¿Es demasiado tarde para frenar el cambio climático? Bueno, es complicado", url:"https://www.youtube.com/watch?v=p1EJBEn3HuQ", desc:"En Pocas Palabras – Kurzgesagt (2021). Animación sobre por qué cada décima de grado cuenta.", lang:"ES", type:"video", dur:"10 min"},
+   {title:"El ajolote de Xochimilco, a punto de la extinción", url:"https://www.youtube.com/watch?v=JPDKZrPJjGk", desc:"UNAM Global (2019). Por qué el ajolote está en peligro y qué se hace para salvarlo.", lang:"ES", type:"video"},
+   {title:"Por los humedales de Xochimilco", url:"https://ciencia.unam.mx/contenido/video/349/por-los-humedales-de-xochimilco", desc:"Ciencia UNAM (2022). Ajolotes, chinampas, aves migratorias y un proyecto de rescate con la comunidad.", lang:"ES", type:"video"},
+   {title:"México: el ajolote pelea contra la extinción en Xochimilco", url:"https://es.mongabay.com/2019/02/mexico-ajolote-xochimilco-video/", desc:"Mongabay Latam (2019). Periodismo ambiental sobre la lucha por el ajolote.", lang:"ES", type:"video"},
+   {title:"CONABIO · Ecosistemas de México", url:"https://www.youtube.com/watch?v=NAr27_PK0kw", desc:"Biodiversidad Mexicana – CONABIO (2011). Un recorrido por los ecosistemas del país.", lang:"ES", type:"video"},
+   {title:"CONABIO · Manglares de México", url:"https://www.youtube.com/watch?v=PQNYItdkiV0", desc:"Biodiversidad Mexicana – CONABIO (2011). Qué son los manglares y por qué importan.", lang:"ES", type:"video"},
+   {title:"CEPAL · Acuerdo de Escazú", url:"https://www.youtube.com/watch?v=djV934JKVNQ", desc:"Carlos Vives en colaboración con la CEPAL (2021). El acuerdo que protege a quienes defienden su territorio.", lang:"ES", type:"video"},
+   {title:"#Futuristas · Cambio climático", url:"https://www.bancomundial.org/es/news/video/2021/09/15/futuristas-cambio-clim-tico", desc:"Banco Mundial con Vice (2021). Jóvenes de América Latina que ya están cambiando el futuro.", lang:"ES", type:"video", dur:"2 min"}]},
  {cat:"Informes científicos en español", items:[
    {title:"IPCC · Cambio climático 2021: Resumen para todos", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/outreach/IPCC_AR6_WGI_SummaryForAll_Spanish.pdf", desc:"La ciencia física del clima, en lenguaje accesible.", lang:"ES"},
    {title:"IPCC · Resumen para responsables de políticas (GT1)", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WG1_SPM_Spanish.pdf", desc:"La versión técnica oficial.", lang:"ES"},
