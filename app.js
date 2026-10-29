@@ -252,13 +252,12 @@
   }
   function speciesCard(s, inLesson) {
     if (!s) return '';
-    var ax = ch("ajolote");
-    return '<div class="ficha">' + (inLesson && ax ? '<div class="ficha-top">' + avatar(ax, "", "feliz") + '<span><strong>Ficha de Axo</strong><small>Especie de la lección</small></span></div>' : '') +
+    return '<div class="ficha-wrap' + (inLesson ? '' : ' sm') + '"><img class="ficha-axo" src="img/axo-ficha.png" alt="Axo, el ajolote, con una idea"><div class="ficha"><div class="ficha-top"><strong>Ficha de Axo</strong></div>' +
       (s.photo ? '<div class="ficha-ph">' + figure(s.photo) + '</div>' : '<div class="ficha-ph noph"><span>' + (s.icon || '🌿') + '</span><small>Foto pendiente de licencia libre</small></div>') +
       '<div class="ficha-b"><h3>' + s.name + '</h3><p class="sci"><em>' + s.sci + '</em></p>' +
       '<div class="sts">' + badge("UICN", s.iucn) + badge("NOM-059", s.nom) + '</div>' +
       '<dl><dt>Dónde vive</dt><dd>' + s.where + '</dd><dt>Dato de Axo</dt><dd>' + s.fact + '</dd><dt>Qué la amenaza</dt><dd>' + s.threat + '</dd>' + (s.hope ? '<dt>Buenas noticias</dt><dd>' + s.hope + '</dd>' : '') + '</dl>' +
-      '<p class="ficha-src">Fuentes: ' + s.refs.map(function (r) { return refShort(r); }).join(" · ") + '</p></div></div>';
+      '<p class="ficha-src">Fuentes: ' + s.refs.map(function (r) { return refShort(r); }).join(" · ") + '</p></div></div></div>';
   }
   function refShort(id) { var r = REFS[id]; if (!r) return id; return r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener">' + r.short + '</a>' : r.short; }
   function refFull(id) { var r = REFS[id]; if (!r) return ''; return r.text + (r.url ? ' <a href="' + r.url + '" target="_blank" rel="noopener">' + r.url.replace(/^https?:\/\//, '').slice(0, 70) + (r.url.length > 78 ? '…' : '') + '</a>' : ''); }

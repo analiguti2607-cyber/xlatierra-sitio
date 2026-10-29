@@ -62,6 +62,8 @@
 .modal.on{display:flex}
 .modal .inner{max-width:440px;width:100%;max-height:90vh;overflow:auto;position:relative}
 .modal .inner .ficha{margin:0}
+.modal .inner{padding-top:4px}.modal .inner .ficha-wrap{margin-top:118px}
+.modal .x{top:125px!important}.modal .ficha-top{padding-right:54px}
 .modal .x{position:absolute;right:10px;top:10px;z-index:2;background:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
 .credits{font-size:.78rem;color:var(--muted);margin:0 0 30px}
 .badge-done{background:var(--gold);color:#fff;border-radius:14px;padding:10px 12px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
@@ -226,10 +228,10 @@
   function ficha(k) {
     var s = SP[k]; if (!s) return;
     var ph = s.photo ? '<div class="ficha-ph"><figure class="fig"><img src="' + s.photo.src + '" alt="' + (s.photo.alt || "") + '" onerror="this.parentNode.classList.add(\'noimg\')"><figcaption>' + s.photo.cap + '<span class="credit">📷 ' + s.photo.credit + ' · <a href="' + s.photo.link + '" target="_blank" rel="noopener">' + s.photo.license + '</a></span></figcaption></figure></div>' : '<div class="ficha-ph noph"><span>' + s.icon + '</span><small>Foto pendiente de licencia libre</small></div>';
-    $("mbody").innerHTML = '<div class="ficha"><div class="ficha-top"><img class="av" src="img/pose-ajolote-feliz.png" alt="Axo"><span><strong>Ficha de Axo</strong></span></div>' + ph +
+    $("mbody").innerHTML = '<div class="ficha-wrap sm"><img class="ficha-axo" src="img/axo-ficha.png" alt="Axo, el ajolote, con una idea"><div class="ficha"><div class="ficha-top"><strong>Ficha de Axo</strong></div>' + ph +
       '<div class="ficha-b"><h3>' + s.name + '</h3><p class="sci"><em>' + s.sci + '</em></p><div class="sts">' + badge("UICN", s.iucn) + badge("NOM-059", s.nom) + '</div>' +
       '<dl><dt>Dónde vive</dt><dd>' + s.where + '</dd><dt>Dato de Axo</dt><dd>' + s.fact + '</dd><dt>Qué la amenaza</dt><dd>' + s.threat + '</dd>' + (s.hope ? '<dt>Buenas noticias</dt><dd>' + s.hope + '</dd>' : '') + '</dl>' +
-      '<p class="ficha-src">Fuentes: ' + s.refs.map(refLink).join(" · ") + '</p></div></div>';
+      '<p class="ficha-src">Fuentes: ' + s.refs.map(refLink).join(" · ") + '</p></div></div></div>';
     $("modal").classList.add("on"); $("mx").focus();
   }
   $("mx").onclick = function () { $("modal").classList.remove("on"); };

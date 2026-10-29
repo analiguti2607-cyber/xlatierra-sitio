@@ -158,3 +158,15 @@ details.refs li,.reflist li{margin:8px 0;line-height:1.45}
 .reflist{font-size:.9rem;background:#fff;border-radius:16px;padding:16px 16px 16px 36px;box-shadow:var(--shadow)}
 .reflist a,details.refs a{word-break:break-word}
 .ext-tag{font-size:.72rem;background:#fbf1d6;color:#8a6a00;padding:1px 8px;border-radius:999px}
+
+/* ---- Axo asomándose sobre la ficha ---- */
+.ficha-wrap{position:relative;margin:170px 0 22px}
+.ficha-wrap .ficha{margin:0;position:relative}
+.ficha-axo{position:absolute;z-index:3;width:200px;height:auto;top:-151px;left:-8px;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.08))}
+.ficha-top{justify-content:flex-end;padding:9px 16px;min-height:40px}
+.ficha-top strong{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+@media(min-width:1060px){.ficha-wrap:not(.sm) .ficha-axo{left:-72px}}
+@media(max-width:560px){.ficha-wrap{margin-top:132px}.ficha-axo{width:155px;top:-117px;left:-4px}}
+.ficha-wrap.sm{margin-top:132px}
+.ficha-wrap.sm .ficha-axo{width:155px;top:-117px;left:-4px}
+.fichas{row-gap:24px}
