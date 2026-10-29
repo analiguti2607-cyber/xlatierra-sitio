@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapas · Xlatierra</title>
+<meta name="description" content="Mapas interactivos de Xlatierra: impactos del cambio climático en México y biodiversidad de América Latina.">
+<link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<style>
+.page{padding:36px 0 50px}
+.kicker{font-weight:600;color:var(--terra);text-transform:uppercase;font-size:.8rem;letter-spacing:.08em;margin-bottom:6px}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:22px}
+.mod{background:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.mod-top{padding:22px 22px 0;display:flex;gap:14px;align-items:flex-end;min-height:150px;color:#fff}
+.mod-top img{width:130px;height:130px;object-fit:contain;margin-left:auto;margin-bottom:-6px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+.mod-top .lbl{font-weight:600;font-size:.8rem;background:rgba(255,255,255,.2);padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:8px}
+.mod-top h2{color:#fff;margin:0 0 12px;font-size:1.45rem}
+.m1 .mod-top{background:linear-gradient(130deg,#125d55,#3a8b80)}
+.m2 .mod-top{background:linear-gradient(130deg,#b25b5d,#d08a6e)}
+.mod-b{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1}
+.mod-b ul{padding-left:18px;margin:6px 0 14px}
+.mod-b li{margin-bottom:4px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tags span{background:var(--soft);color:var(--teal);border-radius:999px;padding:4px 12px;font-size:.82rem}
+.mod-b .btn{margin-top:auto;align-self:flex-start}
+.prog{font-size:.85rem;color:var(--muted);margin:-4px 0 12px}
+.extra{display:flex;gap:18px;align-items:center;background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:20px 22px;margin-top:22px;border:2px dashed var(--gold)}
+.extra .ic{font-size:2.6rem}
+.extra .pill{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px}
+@media(max-width:640px){.extra{flex-direction:column;align-items:flex-start}}
+.maps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:22px}
+.mapc{background:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:2px solid transparent;transition:border-color .15s}
+.mapc:hover{border-color:var(--blue)}
+.mapc-top{position:relative;height:170px;background:radial-gradient(circle at 40% 35%,#cfe5dc,#9cc7c0 60%,#76a8b8);overflow:hidden}
+.mapc-top .pin{position:absolute;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);font-size:15px}
+.mapc-top img{position:absolute;right:12px;bottom:-4px;height:150px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+.mapc-b{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1}
+.mapc-b .lbl{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px;margin-bottom:8px;align-self:flex-start}
+.mapc-b h2{margin:0 0 6px;font-size:1.35rem}
+.mapc-b .btn{margin-top:auto;align-self:flex-start}
+.soon-map{border:2px dashed var(--line);box-shadow:none;background:#fbf8f1;cursor:default}
+.soon-map:hover{border-color:var(--line)}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo-rectangular.png" alt="Xlatierra"></a>
+    <nav>
+      <a href="index.html" class="hide-sm">Inicio</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="mapas.html">Mapas</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap page">
+  <div class="kicker">Gratis · interactivos · con fuentes</div>
+  <h1>Mapas de Xlatierra</h1>
+  <p style="max-width:720px">Explora lo que está pasando en nuestro territorio, lugar por lugar. Cada mapa acompaña a un módulo, pero puedes abrirlo cuando quieras, aunque no hayas tomado el curso.</p>
+  <div class="maps">
+    <a class="mapc" href="mapa-mexico.html">
+      <div class="mapc-top" style="background:radial-gradient(circle at 40% 40%,#f3e2c4,#e6c79a 60%,#d9a76a)">
+        <span class="pin" style="left:14%;top:22%;background:#c4572f">☀️</span>
+        <span class="pin" style="left:30%;top:46%;background:#a8802a">🌽</span>
+        <span class="pin" style="left:42%;top:68%;background:#1f5f8b">🌊</span>
+        <span class="pin" style="left:22%;top:62%;background:#3f7d3a">🌿</span>
+        <span class="pin" style="left:52%;top:40%;background:#125d55">💡</span>
+        <img src="img/pose-espiritu-pensativo.png" alt="Ameyalli">
+      </div>
+      <div class="mapc-b"><span class="lbl">Módulo 1 · Cambio climático</span><h2>Impactos del cambio climático en México</h2>
+        <p>Sequía, costas, huracanes, campo y soluciones que ya están en marcha, región por región.</p>
+        <span class="btn btn-primary">Abrir el mapa →</span></div>
+    </a>
+    <a class="mapc" href="mapa.html">
+      <div class="mapc-top">
+        <span class="pin" style="left:14%;top:20%;background:#2f7fa3">💧</span>
+        <span class="pin" style="left:28%;top:42%;background:#3f7d3a">🌳</span>
+        <span class="pin" style="left:44%;top:64%;background:#b86544">⛰️</span>
+        <span class="pin" style="left:36%;top:18%;background:#1f5f8b">🌊</span>
+        <span class="pin" style="left:10%;top:64%;background:#3f7d3a">🌳</span>
+        <img src="img/pose-ajolote-feliz.png" alt="Axo">
+      </div>
+      <div class="mapc-b"><span class="lbl">Módulo 2 · Biodiversidad</span><h2>Biodiversidad de América Latina</h2>
+        <p>15 ecosistemas de México a la Patagonia, países megadiversos, cuánto se ha transformado cada región y el reto «¿Dónde vive?».</p>
+        <span class="btn btn-primary">Abrir el mapa →</span></div>
+    </a>
+    <div class="mapc soon-map">
+      <div class="mapc-top" style="background:#eef2ef"><img src="img/pose-nutria-pensativo.png" alt="Lontra" style="right:50%;transform:translateX(50%)"></div>
+      <div class="mapc-b"><span class="lbl">Próximamente</span><h2>Más mapas en camino</h2>
+        <p>Cada módulo nuevo traerá su propio mapa.</p></div>
+    </div>
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div><strong>Xlatierra</strong><br>Educación climática en español, para jóvenes de América Latina.</div>
+    <div><a href="index.html">Inicio</a></div>
+  </div>
+</footer>
+</body>
+</html>
