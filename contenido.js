@@ -40,8 +40,8 @@ window.XLT_CONTENT = {
 
 /* Actividades fuera de la ruta principal */
 extras: [
-  {icon:"🗺️", title:"Mapa interactivo de la biodiversidad", href:"mapa.html", tag:"Extra opcional",
-   desc:"Recorre ecosistemas de América Latina. Es parte del Módulo 2, pero puedes explorarlo cuando quieras."}
+  {icon:"🇲🇽", title:"Mapa de impactos en México", href:"mapa-mexico.html", tag:"Extra opcional",
+   desc:"Sequía, costas, huracanes, campo y soluciones: lo que ya está pasando en el país, región por región."}
 ],
 
 course: {
@@ -86,6 +86,7 @@ lessons: [
 
 /* ============================ UNIDAD 1 ============================ */
 { id:"l1", unit:"u1", title:"Bienvenida: ¿qué es el cambio climático?", time:"8 min",
+  refs:["ipcc_wg1","ndc30","pincc","w3techs","unesco_gem","xlt_escritorio"],
   blocks:[
   {t:"p", html:"En 2023, las olas de calor obligaron a suspender clases en <strong>18 estados de México</strong>. Tal vez lo viviste: salones sofocantes, entrenamientos cancelados, el ventilador que no alcanza. No fue solo «un año caluroso». Fue una señal de algo más grande, y de eso trata este curso."},
   {t:"note", kind:"info", title:"Cómo funciona este curso", html:"Son <strong>15 lecciones</strong> en 4 unidades. En cada una encontrarás preguntas <strong>¡Adivina!</strong> (no te preocupes por fallar: equivocarse antes de leer la respuesta ayuda a recordar), una <strong>respuesta corta</strong> y una <strong>larga</strong> para que elijas qué tan profundo quieres ir, datos con su fuente, y lecturas para profundizar. Al final hay un cuestionario y, si lo apruebas, tu certificado."},
@@ -113,6 +114,7 @@ lessons: [
 },
 
 { id:"l2", unit:"u1", title:"Clima y tiempo: no son lo mismo", time:"6 min",
+  refs:["ipcc_wg1","ndc30","cook2017"],
   blocks:[
   {t:"p", html:"Esta confusión parece pequeña, pero es la puerta de entrada a muchísima desinformación. Vale la pena entenderla bien."},
   {t:"table", head:["","Tiempo atmosférico","Clima"], rows:[
@@ -125,6 +127,19 @@ lessons: [
   {t:"guess", q:"Si 2027 tuviera un invierno especialmente frío en el norte de México, ¿qué podríamos concluir?",
    o:["Que el calentamiento global se detuvo","Nada sobre el clima por sí solo: hay que ver la tendencia de décadas","Que los científicos se equivocaron"], a:1,
    e:"Un invierno es tiempo, no clima. La tendencia de largo plazo es la que importa, y esa sigue subiendo."},
+  {t:"match", title:"¿Clima o tiempo?", q:"Ameyalli escuchó estas frases. Decide si cada una habla del <strong>tiempo</strong> (lo que pasa en horas o días) o del <strong>clima</strong> (lo típico a lo largo de décadas).",
+   eco:["🌦️ Tiempo","📊 Clima"],
+   done:"Truco para no confundirte: si la frase habla de hoy, ayer, mañana o «este» invierno, es tiempo. Si habla de lo que «suele» pasar o de tendencias de muchos años, es clima.",
+   items:[
+    {n:"«Mañana va a llover en Monterrey.»", icon:"☔", a:0, e:"Es un pronóstico de un día: tiempo."},
+    {n:"«En la Ciudad de México, la temporada de lluvias suele ir de mayo a octubre.»", icon:"📅", a:1, e:"Describe lo que pasa normalmente año con año: clima."},
+    {n:"«Hoy hay una ola de calor en Hermosillo.»", icon:"🥵", a:0, e:"Es lo que pasa hoy: tiempo. (Que las olas de calor sean más frecuentes con los años sí sería clima.)"},
+    {n:"«Este invierno fue muy frío en Chihuahua.»", icon:"🥶", a:0, e:"Una sola temporada es tiempo. Por eso un invierno frío no desmiente el calentamiento."},
+    {n:"«La temperatura promedio de México ha aumentado desde inicios del siglo XX.»", icon:"📈", a:1, e:"Es una tendencia de más de un siglo: clima."},
+    {n:"«Ayer granizó en Puebla.»", icon:"🧊", a:0, e:"Un evento de un día: tiempo."},
+    {n:"«En el norte de México predominan los climas secos.»", icon:"🌵", a:1, e:"Describe las condiciones típicas de una región: clima."},
+    {n:"«Los veranos en Mérida suelen ser calurosos y húmedos.»", icon:"🌴", a:1, e:"«Suelen» es la palabra clave: lo típico es clima."}
+   ]},
   {t:"h", text:"México se calienta más rápido"},
   {t:"stats", items:[
     {n:"3.2 °C", l:"por siglo: ritmo de calentamiento de México", s:"NDC 3.0 México"},
@@ -140,6 +155,7 @@ lessons: [
 },
 
 { id:"l3", unit:"u1", title:"El efecto invernadero: la cobija del planeta", time:"8 min",
+  refs:["ipcc_wg1","ipcc_wg2_todos"],
   blocks:[
   {t:"guess", q:"¿De dónde viene casi toda la energía que calienta la Tierra?",
    o:["Del núcleo de la Tierra","Del Sol","De los volcanes"], a:1,
@@ -149,6 +165,13 @@ lessons: [
     "<strong>1. Entra:</strong> la luz del Sol atraviesa la atmósfera y calienta la superficie de la Tierra, el suelo y el mar.",
     "<strong>2. Sale:</strong> la superficie caliente devuelve esa energía hacia afuera como <strong>radiación infrarroja</strong>, una forma de calor que no podemos ver.",
     "<strong>3. Se atrapa:</strong> los gases de efecto invernadero absorben parte de esa radiación y la vuelven a emitir en todas direcciones, incluida de regreso hacia la superficie y la parte baja de la atmósfera."]},
+  {t:"greenhouse", title:"La cobija del planeta", q:"Mueve el control para cambiar la cantidad de gases de efecto invernadero. Mira las flechas: las amarillas son la luz del Sol que entra, las punteadas son el calor que se escapa al espacio y las rojas, el calor que la cobija regresa a la superficie.",
+   levels:[
+    {short:"Sin gases", name:"Sin cobija", temp:"−18 °C", text:"Sin efecto invernadero, casi todo el calor se escaparía al espacio. La Tierra sería un planeta helado de unos −18 °C en promedio."},
+    {short:"Natural", name:"La cobija natural", temp:"≈ 15 °C", text:"El efecto invernadero natural mantiene la Tierra unos 33 °C más caliente que sin él. Gracias a esta cobija existe la vida como la conocemos."},
+    {short:"Hoy", name:"Hoy: una cobija más gruesa", temp:"+1.1 °C", text:"Desde el siglo XIX hemos agregado gases. Entra la misma energía del Sol, pero sale menos: el planeta ya está 1.1 °C más caliente que en la época preindustrial."},
+    {short:"Más gases", name:"Si seguimos emitiendo", temp:"sube…", text:"Cada tonelada de CO₂ engrosa la cobija y se queda ahí durante siglos. Mientras sigamos sumando emisiones, la temperatura seguirá subiendo. Por eso hay que llegar a cero emisiones netas."}
+   ]},
   {t:"answers",
    short:"Los gases de efecto invernadero funcionan como una cobija: dejan entrar la luz del Sol, pero atrapan parte del calor que la Tierra intenta soltar. Esa cobija es natural y necesaria. El problema es que, desde el siglo XIX, la hemos hecho mucho más gruesa.",
    long:"<p>Sin efecto invernadero, la temperatura media de la Tierra sería unos <strong>33 °C más fría</strong>, alrededor de <strong>−18 °C</strong>: un planeta congelado donde la vida como la conocemos no sería posible. Así que el efecto invernadero no es el villano.</p><p>El problema es el <strong>exceso</strong>. Desde el inicio de la industrialización hemos inyectado una cantidad constante de gases que rompe el equilibrio de energía del planeta: entra la misma energía del Sol, pero sale menos. Esa energía que se queda es la que calienta al planeta.</p>"},
@@ -174,6 +197,7 @@ lessons: [
 },
 
 { id:"l4", unit:"u1", title:"Los gases que calientan", time:"8 min",
+  refs:["ipcc_wg1"],
   blocks:[
   {t:"p", html:"No todos los gases de efecto invernadero son iguales. Se diferencian en tres cosas: <strong>cuánto calor atrapan</strong>, <strong>cuánto tiempo duran</strong> en la atmósfera y <strong>cuánto emitimos</strong>."},
   {t:"table", head:["Gas","¿De dónde sale?","Lo que hay que saber","Nivel en 2019"], rows:[
@@ -203,6 +227,7 @@ lessons: [
 
 /* ============================ UNIDAD 2 ============================ */
 { id:"l5", unit:"u2", title:"¿Cómo sabemos que somos nosotros?", time:"8 min",
+  refs:["ipcc_wg1","vdlinden2017","cook2017"],
   blocks:[
   {t:"p", html:"«El clima siempre ha cambiado». Es cierto, y es una de las objeciones más comunes. Entonces, ¿cómo sabe la ciencia que esta vez la causa somos nosotros? Hay tres pruebas que se refuerzan entre sí."},
   {t:"guess", q:"Si los científicos simulan el clima de los últimos 170 años usando SOLO causas naturales (Sol y volcanes), ¿qué pasa con la temperatura?",
@@ -230,6 +255,7 @@ lessons: [
 },
 
 { id:"l6", unit:"u2", title:"¿De dónde salen las emisiones?", time:"8 min",
+  refs:["ipcc_wg1","ipcc_wg3","climatewatch","owid_food","ndc30"],
   blocks:[
   {t:"p", html:"Las principales fuentes de gases de efecto invernadero son la <strong>quema de combustibles fósiles</strong> (carbón, petróleo y gas) para producir energía y mover el transporte, la <strong>deforestación</strong> y el cambio de bosques a tierras agrícolas, los <strong>procesos industriales</strong> como la producción de cemento, y la agricultura intensiva."},
   {t:"guess", q:"A nivel mundial, ¿qué sector produce más gases de efecto invernadero?",
@@ -241,6 +267,18 @@ lessons: [
     ["Agricultura y uso del suelo","Ganado, fertilizantes, arrozales, deforestación","~12%"],
     ["Procesos industriales","Reacciones químicas al fabricar cemento, químicos y otros materiales","~6%"],
     ["Residuos","Basureros y aguas residuales (sobre todo metano)","~3%"]]},
+  /* PENDIENTE DE APROBACIÓN (fuente externa): reparto sectorial de la NDC 3.0, pág. 46 */
+  {t:"order", title:"¿De dónde salen las emisiones de México?", q:"Ahora en México. Ordena estos sectores del que <strong>más</strong> emite al que <strong>menos</strong>. Toca primero el que creas que emite más.",
+   unit:"%",
+   items:[
+    {n:"Transporte", icon:"🚗", v:23},
+    {n:"Generación de electricidad", icon:"⚡", v:19},
+    {n:"Industria", icon:"🏭", v:18},
+    {n:"Agricultura y ganadería", icon:"🐄", v:17},
+    {n:"Residuos", icon:"🗑️", v:9},
+    {n:"Petróleo y gas", icon:"🛢️", v:8}
+   ],
+   done:"Fuente: Gobierno de México, NDC 3.0 (2025), pág. 46. Son los porcentajes con que se reparte el esfuerzo de reducción al 2030 según el peso de cada sector en el Inventario Nacional de Emisiones (datos preliminares de 2024). Uso de la tierra y silvicultura, y residencial y comercial, suman 3% cada uno."},
   {t:"answers",
    short:"La mayor parte de las emisiones viene de la energía que usamos para movernos, producir y vivir. Por eso cambiar cómo producimos y usamos la energía es la solución más grande, aunque no la única.",
    long:"<p>Cuando talamos un bosque para sembrar o criar ganado, el carbono que guardaban los árboles y el suelo regresa a la atmósfera. Los bosques y suelos sanos son <strong>sumideros de carbono</strong>: absorben más CO₂ del que liberan. Perderlos suma emisiones y quita una protección.</p><p>Los basureros también emiten: cuando la basura orgánica, como los restos de comida, se pudre sin oxígeno, produce metano.</p>"},
@@ -263,6 +301,7 @@ lessons: [
 },
 
 { id:"l7", unit:"u2", title:"¿Quién emite y cuánto?", time:"8 min",
+  refs:["pnuma2025","owid_co2"],
   blocks:[
   {t:"p", html:"El cambio climático es global, pero la responsabilidad no está repartida por igual. Depende mucho de cómo lo midas: hoy, en toda la historia o por persona."},
   /* APROBADO (fuente externa): porcentajes por país (Our World in Data / Global Carbon Project) */
@@ -294,6 +333,7 @@ lessons: [
 
 /* ============================ UNIDAD 3 ============================ */
 { id:"l8", unit:"u3", title:"México en datos: lo que ya está pasando", time:"9 min",
+  refs:["ndc30","inecc_atlas","pincc"],
   blocks:[
   {t:"p", html:"Los impactos del cambio climático en México están documentados por el propio Gobierno en su Contribución Determinada a Nivel Nacional (NDC 3.0, 2025), en el Atlas Nacional de Vulnerabilidad al Cambio Climático del INECC y en investigaciones del Programa de Investigación en Cambio Climático de la UNAM."},
   {t:"h", text:"Calor"},
@@ -325,6 +365,7 @@ lessons: [
 },
 
 { id:"l9", unit:"u3", title:"Salud, comida y bolsillo", time:"8 min",
+  refs:["unicef_lac","ndc30","xlt_escritorio"],
   blocks:[
   {t:"p", html:"El cambio climático no es «solo ambiental». Se cuela en la salud, en lo que comemos y en la economía de las familias."},
   {t:"h", text:"Salud"},
@@ -356,6 +397,7 @@ lessons: [
 },
 
 { id:"l10", unit:"u3", guide:"ajolote", title:"Biodiversidad y puntos de no retorno", time:"9 min",
+  refs:["ipcc_wg1","ipcc_wg2_todos","ipbes2019","xlt_m1"],
   blocks:[
   {t:"p", html:"La vida en el planeta también resiente el calentamiento: especies que se mueven, ecosistemas que se degradan y algunos sistemas que podrían cruzar umbrales de los que no hay regreso."},
   {t:"guess", q:"De las miles de especies estudiadas en el mundo, ¿cuántas ya cambiaron el lugar donde viven por el clima?",
@@ -387,6 +429,7 @@ lessons: [
 },
 
 { id:"l11", unit:"u3", title:"Justicia climática: ¿quién paga?", time:"9 min",
+  refs:["unicef_lac","pnuma2025","cidh2025","escazu","pnud_conexiones","xlt_escritorio"],
   blocks:[
   {t:"guess", q:"¿Qué porcentaje de las emisiones globales produce América Latina y el Caribe?",
    o:["Entre 6.7% y 10%","Alrededor de 25%","Alrededor de 40%"], a:0,
@@ -419,17 +462,9 @@ lessons: [
 
 /* ============================ UNIDAD 4 ============================ */
 { id:"l12", unit:"u4", title:"Ciencia vs. desinformación: tu kit", time:"8 min",
+  refs:["wef2024","cook2017","vdlinden2017","xlt_escritorio"],
   blocks:[
   {t:"p", html:"El Foro Económico Mundial ubicó a la <strong>desinformación</strong> como el mayor riesgo global de corto plazo en 2024. En clima, la desinformación no solo confunde: retrasa decisiones. La buena noticia es que se puede aprender a detectarla."},
-  {t:"guess", q:"Verdadero o falso: «La lluvia ácida causa el cambio climático».",
-   o:["Verdadero","Falso"], a:1,
-   e:"<strong>Falso.</strong> Son problemas distintos: la lluvia ácida es contaminación del aire que cae con la lluvia. En un estudio con universitarios de Veracruz, el <strong>69.5%</strong> creía que la lluvia ácida causa el cambio climático. Es una confusión muy común."},
-  {t:"guess", q:"Verdadero o falso: «El agujero en la capa de ozono es lo que calienta al planeta».",
-   o:["Verdadero","Falso"], a:1,
-   e:"<strong>Falso.</strong> El agujero de ozono deja pasar más radiación ultravioleta, que daña piel y ojos. El calentamiento lo causan los gases de efecto invernadero que atrapan radiación infrarroja. En un estudio en Baja California Sur esta confusión también apareció con frecuencia."},
-  {t:"guess", q:"Verdadero o falso: «Para ser imparciales, los medios deben dar el mismo espacio a científicos y a negacionistas».",
-   o:["Verdadero","Falso"], a:1,
-   e:"<strong>Falso.</strong> Se llama <strong>falso equilibrio</strong>: presentar como un debate 50/50 algo en lo que el 97% de especialistas coincide distorsiona la percepción del consenso."},
   {t:"h", text:"Tu kit de 5 herramientas"},
   {t:"list", items:[
     "<strong>1. Busca el consenso:</strong> ¿qué dicen el IPCC u organismos científicos? Una opinión aislada no pesa lo mismo que miles de estudios.",
@@ -437,6 +472,20 @@ lessons: [
     "<strong>3. Revisa credenciales:</strong> ¿quien habla es experto en clima o en otra cosa? Recuerda la Petición de Oregón.",
     "<strong>4. Ojo con los datos escogidos a modo:</strong> un invierno frío o una gráfica de pocos meses no muestran la tendencia. Pregunta siempre: ¿de cuántos años son estos datos?",
     "<strong>5. Triangula:</strong> confirma cifras en fuentes oficiales como IPCC, UNESCO, CEPAL, UNICEF, PNUMA o INECC."]},
+  {t:"deck", title:"¿Mito o dato?", q:"Usa tu kit. Lee cada tarjeta y decide si es un <strong>dato</strong> respaldado por la ciencia o un <strong>mito</strong>.",
+   labels:["Dato","Mito"], icons:["✅","❌"],
+   cards:[
+    {t:"La lluvia ácida causa el cambio climático.", a:1, e:"Son problemas distintos: la lluvia ácida es contaminación del aire que cae con la lluvia. En un estudio con universitarios de Veracruz, el 69.5% creía esta confusión."},
+    {t:"Los océanos absorben alrededor del 91% del calor extra que hemos atrapado.", a:0, e:"Según el IPCC, el océano guarda la mayor parte; la atmósfera, apenas cerca de 1%."},
+    {t:"El agujero en la capa de ozono es lo que calienta al planeta.", a:1, e:"El agujero de ozono deja pasar más radiación ultravioleta. El calentamiento lo causan los gases de efecto invernadero, que atrapan radiación infrarroja."},
+    {t:"El clima siempre ha cambiado, así que el calentamiento actual es natural.", a:1, e:"Es cierto que el clima ha cambiado antes, pero el IPCC concluye que el calentamiento de 1.1 °C desde la era preindustrial se debe a la actividad humana."},
+    {t:"México se calienta más rápido que el promedio mundial.", a:0, e:"México se calienta a un ritmo de 3.2 °C por siglo, frente a 2 °C del promedio mundial (NDC 3.0)."},
+    {t:"Un invierno muy frío demuestra que el calentamiento global se detuvo.", a:1, e:"Un invierno es tiempo, no clima. Usar un dato corto para negar una tendencia de décadas es «escoger datos a modo»."},
+    {t:"Alrededor del 97% de especialistas en clima coincide en que el calentamiento actual lo causamos los humanos.", a:0, e:"Es el consenso científico, documentado en varios estudios."},
+    {t:"Para ser imparciales, los medios deben dar el mismo espacio a científicos y a negacionistas.", a:1, e:"Eso se llama falso equilibrio: presenta como debate 50/50 algo en lo que casi todos los especialistas coinciden."},
+    {t:"Sin efecto invernadero, la Tierra sería un planeta helado de unos −18 °C.", a:0, e:"El efecto invernadero natural es necesario para la vida; el problema es el exceso de gases."},
+    {t:"La «Petición de Oregón» demostró que miles de científicos del clima niegan el calentamiento.", a:1, e:"Tenía firmas falsas y menos del 1% de los firmantes tenía formación en ciencias atmosféricas."}
+   ]},
   {t:"h", text:"Ponlo a prueba"},
   {t:"p", html:"<em>Los siguientes titulares son ejemplos inventados para practicar.</em>"},
   {t:"guess", q:"«¡Récord de frío en enero! Los científicos se equivocaron con el calentamiento global». ¿Qué herramienta te ayuda más?",
@@ -455,6 +504,7 @@ lessons: [
 },
 
 { id:"l13", unit:"u4", title:"El límite de 1.5 °C: ¿cuánto tiempo nos queda?", time:"8 min",
+  refs:["ipcc_wg1","ipcc_wg3","ipcc_sr15","omm2024","paris"],
   blocks:[
   {t:"guess", q:"¿Qué significa el famoso límite de «1.5 °C»?",
    o:["La temperatura de un día caluroso","El aumento del promedio global de temperatura respecto a 1850–1900","La temperatura máxima permitida en México"], a:1,
@@ -465,11 +515,11 @@ lessons: [
   {t:"h", text:"El presupuesto de carbono"},
   {t:"p", html:"Como hay una relación casi directa entre el CO₂ acumulado y la temperatura, la ciencia puede calcular cuánto CO₂ «nos queda» antes de pasar 1.5 °C. A inicios de 2020, ese presupuesto era de unas <strong>400 mil millones de toneladas</strong> de CO₂ para tener un 67% de probabilidad de no superarlo. Al ritmo reciente de emisiones, de unas 40 mil millones de toneladas al año, ese presupuesto se agota en alrededor de una década si no hay recortes fuertes."},
   {t:"guess", q:"Según el IPCC, ¿cuánto deben bajar las emisiones globales para 2030 para mantener 1.5 °C al alcance?",
-   o:["Alrededor de 10%","Entre 43% y 50%","Alrededor de 90%"], a:1,
-   e:"Entre <strong>43% y 50%</strong> respecto a los niveles de la década de 2010, y llegar a <strong>emisiones netas cero</strong> hacia 2050."},
+   o:["Alrededor de 10%","Alrededor de 43%","Alrededor de 90%"], a:1,
+   e:"Alrededor de <strong>43%</strong> respecto a los niveles de 2019 (y el CO₂, alrededor de 48%), y llegar a <strong>emisiones netas cero de CO₂</strong> hacia 2050."},
   {t:"stats", items:[
     {n:"2021–2040", l:"periodo en que es muy probable alcanzar o superar 1.5 °C en promedio, sobre todo en los años 2030", s:"IPCC AR6"},
-    {n:"−43 a −50%", l:"emisiones para 2030", s:"IPCC AR6"},
+    {n:"−43%", l:"gases de efecto invernadero para 2030 respecto a 2019 (CO₂: −48%)", s:"IPCC AR6 GT3"},
     {n:"2050", l:"emisiones netas cero", s:"IPCC AR6"}]},
   /* APROBADO (fuente externa): dato de la OMM sobre 2024 y Acuerdo de París */
   {t:"note", kind:"info", title:"Dato reciente", html:"La Organización Meteorológica Mundial reportó que <strong>2024</strong> fue el primer año calendario en superar 1.5 °C sobre la época preindustrial. Un solo año no significa haber cruzado el límite de largo plazo, que se mide en promedios de varias décadas, pero muestra qué tan cerca estamos."},
@@ -486,14 +536,25 @@ lessons: [
 },
 
 { id:"l14", unit:"u4", title:"Soluciones: mitigar y adaptarnos", time:"9 min",
+  refs:["ndc30","pnud_ndc_lac","ipcc_wg3","unicef_lac","xlt_m1","xlt_escritorio"],
   blocks:[
   {t:"p", html:"Frente al cambio climático hay dos tipos de respuesta, y necesitamos las dos:"},
   {t:"table", head:["","Mitigación","Adaptación"], rows:[
     ["¿Qué busca?","Reducir las emisiones para que el calentamiento no empeore","Prepararnos para los impactos que ya no podemos evitar"],
     ["Ejemplos","Energía renovable, proteger bosques y manglares, eficiencia, menos desperdicio","Escuelas y viviendas resistentes, sistemas de alerta, manejo del agua, planes de riesgo"]]},
-  {t:"guess", q:"¿Cuál de estas acciones es de ADAPTACIÓN?",
-   o:["Instalar paneles solares","Preparar a una escuela con un plan ante inundaciones","Reducir el uso de carbón"], a:1,
-   e:"Un plan ante inundaciones prepara a la comunidad para un impacto. Las otras dos reducen emisiones: son mitigación."},
+  {t:"match", title:"¿Mitigar o adaptarnos?", q:"Lontra te reta: clasifica cada solución. ¿Reduce emisiones (<strong>mitigación</strong>) o nos prepara para los impactos (<strong>adaptación</strong>)?",
+   eco:["🔻 Mitigación","🛡️ Adaptación"],
+   done:"Necesitamos las dos: mitigar para que el problema no crezca y adaptarnos a lo que ya está pasando. Algunas soluciones, como los manglares, hacen las dos cosas.",
+   items:[
+    {n:"Instalar paneles solares en una escuela", icon:"☀️", a:0, e:"Produce electricidad sin quemar combustibles fósiles: reduce emisiones."},
+    {n:"Un plan escolar ante inundaciones", icon:"🌊", a:1, e:"Prepara a la comunidad para un impacto: adaptación."},
+    {n:"Proteger y restaurar manglares", icon:"🌿", a:0, e:"Guardan mucho carbono (carbono azul), así que es mitigación. ¡Y además protegen la costa de tormentas, que es adaptación! Hace las dos cosas."},
+    {n:"Sistemas de alerta ante olas de calor", icon:"📢", a:1, e:"Avisan a tiempo para protegernos de un impacto: adaptación."},
+    {n:"Mejorar la eficiencia energética de los edificios", icon:"💡", a:0, e:"Usar menos energía para lo mismo reduce emisiones."},
+    {n:"Construir viviendas resistentes a huracanes", icon:"🏠", a:1, e:"Reduce el daño de un impacto: adaptación."},
+    {n:"Economía circular: reparar, reusar y reciclar materiales", icon:"♻️", a:0, e:"Fabricar menos materiales nuevos evita emisiones."},
+    {n:"Cuidar y manejar mejor el agua ante sequías", icon:"🚰", a:1, e:"Nos prepara para tener agua aunque llueva menos: adaptación."}
+   ]},
   {t:"h", text:"Soluciones que ya funcionan en la región"},
   {t:"list", items:[
     "<strong>Manglares (carbono azul):</strong> almacenan de 3 a 5 veces más carbono por área que los bosques tropicales maduros y protegen la costa de tormentas. En México, evitar su deforestación y restaurarlos podría mitigar <strong>2.20 millones de toneladas de CO₂e al año</strong> para 2030. Jamaica, Bahamas y Panamá ya los incluyen en sus NDC. <em>Límite real:</em> no sustituyen la urgencia de descarbonizar la energía y el transporte.",
@@ -521,6 +582,7 @@ lessons: [
 { id:"l14b", unit:"u4", soon:true, title:"Saberes indígenas y cambio climático", note:"La estamos construyendo con y desde las voces de los pueblos indígenas"},
 
 { id:"l15", unit:"u4", title:"De la preocupación a la acción", time:"10 min",
+  refs:["encuesta_xlt","unesco_gem","frontiers2025","xlt_escritorio"],
   blocks:[
   {t:"p", html:"Llegaste a la última lección. Ya sabes qué es el cambio climático, por qué ocurre, a quién afecta y qué soluciones existen. Ahora viene la pregunta que más nos importa en Xlatierra: <strong>¿y ahora qué hago yo?</strong>"},
   {t:"note", kind:"info", title:"No eres la única persona con esa pregunta", html:"En una encuesta de Xlatierra a 51 personas, la mayoría jóvenes (octubre de 2026), el <strong>59%</strong> dijo que la información sobre clima «le dice el problema pero no qué hacer», y el <strong>55%</strong> respondió que no sabe por dónde empezar. En encuestas de la UNESCO, más del 90% de las y los jóvenes pide una educación climática con más acciones prácticas."},
@@ -549,6 +611,9 @@ lessons: [
   {t:"reflect", id:"r15b", q:"¿Con quién lo voy a hacer?"},
   {t:"reflect", id:"r15c", q:"¿Cuándo voy a dar el primer paso?"},
   {t:"reflect", id:"r15d", q:"¿Cómo sabré que funcionó?"},
+  {t:"commit", title:"Tu tarjeta de compromiso", q:"Convierte tu plan en una imagen para descargar y compartir en tus redes. Lontra la firma contigo.",
+   pick:"p15", what:"r15a", who:"r15b", when:"r15c", img:"img/pose-nutria-feliz.png", footer:"@x.latierra",
+   options:["Explicarle a alguien qué es el cambio climático con lo que aprendí aquí","Revisar una noticia o video sobre clima con el kit contra la desinformación","Buscar un grupo, club o colectivo ambiental en mi escuela o ciudad","Proponer un proyecto concreto en mi escuela, trabajo o colonia","Cambiar un hábito de transporte, comida o energía"]},
   {t:"read", items:[
     {title:"#Futuristas · Cambio climático", url:"https://www.bancomundial.org/es/news/video/2021/09/15/futuristas-cambio-clim-tico", desc:"Banco Mundial con Vice (2021). Jóvenes de América Latina que ya están cambiando el futuro.", lang:"ES", type:"video", dur:"2 min"},
     {title:"PNUD · Juventudes por la Acción Climática (curso gratuito)", url:"https://www.learningfornature.org/es/courses/juventudes-por-la-accion-climatica-programa-de-formacion-para-jovenes-de-latinoamerica/", desc:"Formación en participación y negociación climática para jóvenes de América Latina.", lang:"ES"},
@@ -561,6 +626,39 @@ lessons: [
 ],
 
 /* ======================= CUESTIONARIO FINAL ======================= */
+/* ===================== REFERENCIAS ===================== */
+refsNote: "<strong>Cómo usamos las fuentes.</strong> Las cifras de este módulo vienen de la investigación de Xlatierra (Módulo 1) y de fuentes externas aprobadas. Cada lección muestra al final sus fuentes. Si encuentras un error, escríbenos.",
+refs: {
+  ipcc_wg1: {short:"IPCC AR6 GT1, 2021", text:"IPCC (2021). <em>Cambio climático 2021: Bases físicas. Resumen para responsables de políticas</em>. Contribución del Grupo de Trabajo I al Sexto Informe de Evaluación.", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WG1_SPM_Spanish.pdf"},
+  ipcc_wg2_todos: {short:"IPCC AR6 GT2, 2022", text:"IPCC (2022). <em>Cambio climático 2022: Impactos, adaptación y vulnerabilidad. Resumen para todos</em>.", url:"https://www.iai.int/administrador/assets/images/ckfinder/files/IPCC_AR6_WGII_ResumenParaTodos_Impactos%20(1).pdf"},
+  ipcc_wg3: {short:"IPCC AR6 GT3, 2022", text:"IPCC (2022). <em>Cambio climático 2022: Mitigación del cambio climático. Resumen para responsables de políticas</em> (sección C.1.1: −43% de GEI y −48% de CO₂ al 2030 respecto a 2019).", url:"https://www.ipcc.ch/report/ar6/wg3/"},
+  ipcc_sr15: {short:"IPCC SR1.5, 2018", text:"IPCC (2018). <em>Calentamiento global de 1.5 °C</em>. Informe especial.", url:"https://www.ipcc.ch/sr15/"},
+  ndc30: {short:"NDC 3.0 México, 2025", text:"Gobierno de México (2025). <em>Contribución Determinada a Nivel Nacional (NDC 3.0)</em>. Presentada a la CMNUCC.", url:"https://unfccc.int/sites/default/files/2025-11/NDC%203.0%20Me%CC%81xico_spanish.pdf"},
+  pnud_ndc_lac: {short:"PNUD, NDC 3.0 en ALC", text:"PNUD. <em>NDC 3.0 en América Latina y el Caribe: ambición, inclusividad y ruta hacia la sostenibilidad</em>.", url:"https://climatepromise.undp.org/sites/default/files/research_report_document/UNDP_NDC%203.0%20en%20LAC-%20ambicio%CC%81n%2C%20inclusividad%20y%20ruta%20hacia%20la%20sostenibilidad_FINAL.pdf"},
+  pincc: {short:"PINCC-UNAM", text:"Programa de Investigación en Cambio Climático, UNAM.", url:"https://www.pincc.unam.mx"},
+  inecc_atlas: {short:"INECC", text:"INECC. <em>Atlas Nacional de Vulnerabilidad al Cambio Climático</em>.", url:""},
+  w3techs: {short:"W3Techs", text:"W3Techs. <em>Usage statistics of content languages for websites</em>.", url:"https://w3techs.com/technologies/overview/content_language"},
+  unesco_gem: {short:"UNESCO, Informe GEM", text:"UNESCO. <em>Informe de Seguimiento de la Educación en el Mundo (GEM)</em>.", url:"https://www.unesco.org/gem-report/es"},
+  cook2017: {short:"Cook et al., 2017", text:"Cook, J., Lewandowsky, S. y Ecker, U. (2017). Neutralizing misinformation through inoculation. <em>PLOS ONE</em>, 12(5).", url:"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0175799"},
+  vdlinden2017: {short:"van der Linden et al., 2017", text:"van der Linden, S. et al. (2017). Inoculating the public against misinformation about climate change. <em>Global Challenges</em>. Resumen de Yale Program on Climate Change Communication.", url:"https://climatecommunication.yale.edu/publications/inoculate-public-misinformation-climate-change/"},
+  climatewatch: {short:"Climate Watch / WRI", text:"Climate Watch / World Resources Institute. Emisiones globales de gases de efecto invernadero por sector, 2019.", url:"https://www.climatewatchdata.org/"},
+  owid_food: {short:"Our World in Data (alimentos)", text:"Ritchie, H. y Roser, M. <em>Environmental impacts of food production</em>. Our World in Data, con datos de Poore y Nemecek (2018).", url:"https://ourworldindata.org/environmental-impacts-of-food"},
+  owid_co2: {short:"Our World in Data (CO₂)", text:"Our World in Data / Global Carbon Project. <em>CO₂ emissions</em>.", url:"https://ourworldindata.org/co2-emissions"},
+  pnuma2025: {short:"PNUMA FI, 2025", text:"PNUMA FI (2025). <em>Financiamiento para la transición justa en América Latina y el Caribe</em>.", url:"https://www.unepfi.org/wordpress/wp-content/uploads/2025/11/Financiamiento-para-la-Transicion-Justa-en-America-Latia-y-el-Caribe.pdf"},
+  unicef_lac: {short:"UNICEF ALC", text:"UNICEF. <em>Cambio climático, degradación ambiental y niñez en movilidad en América Latina y el Caribe</em>.", url:"https://www.unicef.org/lac/en/media/48821/file/COTM%20-%20Cambio%20clim%C3%A1tico%20brief%20SP%20v5.1%20WEB.pdf.pdf"},
+  cidh2025: {short:"CIDH, 2025", text:"CIDH (2025). <em>Tercer informe sobre la situación de las personas defensoras de derechos humanos en las Américas</em>.", url:"https://www.oas.org/es/cidh/informes/pdfs/2025/Tercer-informe-personas-defensoras-DDHH.pdf"},
+  escazu: {short:"Acuerdo de Escazú", text:"CEPAL. <em>Acuerdo Regional sobre el Acceso a la Información, la Participación Pública y el Acceso a la Justicia en Asuntos Ambientales en América Latina y el Caribe</em> (Acuerdo de Escazú).", url:"https://www.cepal.org/es/acuerdodeescazu"},
+  pnud_conexiones: {short:"PNUD / CEPAL", text:"PNUD. <em>Conexiones perdidas</em> (datos de conectividad de hogares en América Latina, con cifras de CEPAL).", url:""},
+  ipbes2019: {short:"IPBES, 2019", text:"IPBES (2019). <em>Informe de la Evaluación Mundial sobre la Diversidad Biológica y los Servicios de los Ecosistemas</em>.", url:"https://www.ipbes.net/global-assessment"},
+  wef2024: {short:"WEF, 2024", text:"Foro Económico Mundial (2024). <em>Global Risks Report 2024</em>.", url:"https://www.weforum.org/publications/global-risks-report-2024/"},
+  omm2024: {short:"OMM", text:"Organización Meteorológica Mundial (2025). Confirmación de 2024 como el primer año calendario más de 1.5 °C sobre la era preindustrial.", url:"https://wmo.int"},
+  paris: {short:"Acuerdo de París, 2015", text:"CMNUCC (2015). <em>Acuerdo de París</em>.", url:"https://unfccc.int/es/process-and-meetings/the-paris-agreement"},
+  frontiers2025: {short:"Frontiers in Education, 2025", text:"Meta-análisis sobre los efectos de la educación climática en conocimiento, actitudes y conducta. <em>Frontiers in Education</em> (2025).", url:""},
+  encuesta_xlt: {short:"Encuesta Xlatierra, 2026", text:"Xlatierra (2026). Encuesta a 51 personas, la mayoría jóvenes, octubre de 2026.", url:""},
+  xlt_m1: {short:"Investigación Xlatierra, Módulo 1", text:"Investigación documental de Xlatierra para el Módulo 1 (NotebookLM), con las fuentes citadas en cada dato.", url:""},
+  xlt_escritorio: {short:"Investigación de escritorio Xlatierra", text:"Investigación de escritorio de Xlatierra: estudios con universitarios de Veracruz y Baja California Sur, Reserva Chico Mendes, salud mental y ecoansiedad, brecha lingüística en ciencia.", url:""}
+},
+
 quiz: [
  {q:"¿Cuál es la diferencia entre tiempo y clima?", o:["Son lo mismo","El tiempo es lo de hoy; el clima es el promedio de al menos 30 años","El clima es lo de hoy; el tiempo es el promedio"], a:1},
  {q:"¿Cuánto se ha calentado el planeta respecto a 1850–1900?", o:["Alrededor de 0.3 °C","Alrededor de 1.1 °C","Alrededor de 3 °C"], a:1},
@@ -575,7 +673,7 @@ quiz: [
  {q:"¿Qué plantea la justicia climática?", o:["Que todos contaminamos igual","Que quienes menos emiten suelen sufrir más y deben participar en las decisiones","Que es solo un tema de animales"], a:1},
  {q:"Verdadero o falso: la lluvia ácida causa el cambio climático.", o:["Verdadero","Falso"], a:1},
  {q:"Presentar un tema científico resuelto como un debate 50/50 se llama…", o:["Falso equilibrio","Consenso","Triangulación"], a:0},
- {q:"Para mantener 1.5 °C al alcance, ¿cuánto deben bajar las emisiones globales para 2030?", o:["Alrededor de 10%","Entre 43% y 50%","Alrededor de 90%"], a:1},
+ {q:"Para mantener 1.5 °C al alcance, ¿cuánto deben bajar las emisiones globales para 2030?", o:["Alrededor de 10%","Alrededor de 43%","Alrededor de 90%"], a:1},
  {q:"Preparar a una escuela con un plan ante inundaciones es un ejemplo de…", o:["Mitigación","Adaptación","Greenwashing"], a:1}
 ],
 

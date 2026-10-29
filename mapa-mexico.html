@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de impactos en México · Xlatierra</title>
+<meta name="description" content="Mapa interactivo de los impactos del cambio climático en México: calor y sequía, agua y costas, campo, ecosistemas y soluciones, con fuentes.">
+<link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="curso.css">
+<style>
+.map-hero{padding:22px 0 8px}
+.map-hero .wrap{display:flex;gap:16px;align-items:center}
+.map-hero img.axo{width:96px;height:96px;object-fit:contain;flex:0 0 auto}
+.map-hero h1{margin:0 0 4px}
+.map-hero p{margin:0;color:var(--muted);max-width:720px}
+.pill{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.toolbar .chip.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.toolbar .sp{flex:1}
+.prog{font-size:.85rem;color:var(--muted)}
+.prog b{color:var(--teal)}
+.layout{display:grid;grid-template-columns:1fr 380px;gap:14px;margin-bottom:30px}
+#map{height:72vh;min-height:460px;border-radius:20px;box-shadow:var(--shadow);z-index:1}
+.panel{background:#fff;border-radius:20px;box-shadow:var(--shadow);height:72vh;min-height:460px;overflow:auto;padding:16px 18px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}#map{height:58vh;min-height:360px}.panel{height:auto;min-height:0}}
+.list-item{display:flex;gap:10px;align-items:center;padding:9px 6px;border-bottom:1px solid #eef2f2;cursor:pointer;border-radius:10px}
+.list-item:hover{background:var(--soft)}
+.list-item .dot{flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+.list-item small{display:block;color:var(--muted);font-size:.78rem;line-height:1.3}
+.list-item .seen{margin-left:auto;color:var(--teal);font-weight:700}
+.mk{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.35);transition:transform .2s}
+.mk.seen::after{content:"✓";position:absolute;right:-6px;top:-6px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mk.active{transform:scale(1.25)}
+.leaflet-div-icon{background:none;border:none}
+.d-head h2{margin:0}
+.d-meta{font-size:.85rem;color:var(--muted);margin:2px 0 10px}
+.d-type{display:inline-block;color:#fff;font-size:.75rem;font-weight:600;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.factbox{background:#fbf1d6;border-radius:14px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.factbox h4{margin:0 0 4px;font-size:.95rem;color:#8a6a00}
+.lossbar{margin:10px 0}
+.lossbar .t{display:flex;justify-content:space-between;font-size:.82rem}
+.lossbar .b{height:12px;border-radius:999px;background:#e3efe6;overflow:hidden}
+.lossbar .b div{height:100%;background:linear-gradient(90deg,#c9922a,#a33b3b)}
+.spchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.spchip{font-family:inherit;font-size:.82rem;border:2px solid var(--line);background:var(--cream);border-radius:999px;padding:5px 11px;cursor:default}
+.spchip.link{cursor:pointer;border-color:var(--rose);background:#fbeeee}
+.spchip .g{font-size:.68rem;color:#8a6a00}
+.d-nav{display:flex;gap:8px;justify-content:space-between;margin-top:14px;flex-wrap:wrap}
+.d-src{font-size:.74rem;color:#6d7a79;margin-top:12px}
+.general{font-size:.72rem;background:#fbf1d6;color:#8a6a00;padding:1px 8px;border-radius:999px}
+.gamebox{background:linear-gradient(120deg,#125d55,#2f7f74);color:#fff;border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.gamebox h3{color:#fff;margin:0 0 4px}
+.gamebox .q{font-size:1.1rem;font-weight:600;margin:6px 0}
+.gamebox .fb{background:rgba(255,255,255,.15);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:.9rem}
+.legend{background:#fff;padding:8px 10px;border-radius:12px;box-shadow:var(--shadow);font-size:.78rem;line-height:1.5}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.modal{position:fixed;inset:0;background:rgba(10,30,28,.55);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal .inner{max-width:440px;width:100%;max-height:90vh;overflow:auto;position:relative}
+.modal .inner .ficha{margin:0}
+.modal .inner{padding-top:4px}.modal .inner .ficha-wrap{margin-top:118px}
+.modal .x{top:125px!important}.modal .ficha-top{padding-right:54px}
+.modal .x{position:absolute;right:10px;top:10px;z-index:2;background:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
+.credits{font-size:.78rem;color:var(--muted);margin:0 0 30px}
+.badge-done{background:var(--gold);color:#fff;border-radius:14px;padding:10px 12px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.badge-done img{width:54px;height:54px;object-fit:contain}
+.natstats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0 14px}
+.natstats div{background:var(--cream);border-radius:12px;padding:8px 10px;border-top:4px solid var(--terra);font-size:.8rem;line-height:1.3}
+.natstats b{display:block;font-family:'Caudex',serif;color:var(--terra);font-size:1.2rem}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo-rectangular.png" alt="Xlatierra"></a>
+    <nav>
+      <a href="index.html" class="hide-sm">Inicio</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="curso.html" class="btn btn-primary" style="padding:9px 18px">Módulo 1</a>
+    </nav>
+  </div>
+</header>
+
+<div class="map-hero">
+  <div class="wrap">
+    <img class="axo" src="img/pose-espiritu-pensativo.png" alt="Ameyalli, el espíritu del agua, pensativa">
+    <div>
+      <span class="pill">Actividad extra · Módulo 1 · opcional</span>
+      <h1>Mapa de impactos del cambio climático en México</h1>
+      <p>Ameyalli te muestra lo que ya está pasando en el país, región por región, y algunas soluciones que ya están en marcha. Toca un punto para ver el dato y su fuente.</p>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="toolbar" id="filters"></div>
+  <div class="toolbar">
+    <button class="chip" id="t-tour" type="button">🧭 Recorrido guiado</button>
+    <span class="sp"></span>
+    <span class="prog" id="prog"></span>
+  </div>
+  <div class="layout">
+    <div id="map" role="application" aria-label="Mapa interactivo de impactos del cambio climático en México"></div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+  <p class="credits">Las ubicaciones son <strong>aproximadas</strong>: señalan la región, no un punto exacto. Mapa base: © colaboradores de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Datos: investigación de Xlatierra para el Módulo 1, con la fuente en cada punto. Fuentes completas en <a href="curso.html#referencias">Referencias del Módulo 1</a>.</p>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div><strong>Xlatierra</strong><br>Educación climática en español, para jóvenes de América Latina.</div>
+    <div><a href="cursos.html">Ver cursos</a></div>
+  </div>
+</footer>
+
+<script src="contenido.js"></script>
+<script src="mapa-mexico-datos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.XLT_MAPMX, C = window.XLT_CONTENT || {}, REFS = C.refs || {};
+  var KEY = "xlatierra_mapamx_v1", seen = {};
+  try { seen = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { seen = {}; }
+  function saveSeen() { try { localStorage.setItem(KEY, JSON.stringify(seen)); } catch (e) {} }
+  function $(id) { return document.getElementById(id); }
+  var panel = $("panel"), filter = "all", tourOn = false;
+  var map = L.map("map", { minZoom: 4 }).setView([23.5, -101.5], 5);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a>', maxZoom: 19
+  }).addTo(map);
+  var M = {};
+  D.pts.forEach(function (e) {
+    var t = D.types[e.type];
+    var icon = L.divIcon({ className: "", iconSize: [38, 38], iconAnchor: [19, 19],
+      html: '<div class="mk' + (seen[e.id] ? ' seen' : '') + '" id="mk-' + e.id + '" style="background:' + t.color + ';position:relative">' + t.icon + '</div>' });
+    M[e.id] = L.marker([e.lat, e.lng], { icon: icon, title: e.name, keyboard: true }).addTo(map).on("click", function () { open(e.id); });
+  });
+  function refresh(id) { var el = $("mk-" + id); if (el) el.classList.toggle("seen", !!seen[id]); }
+  function active(id) { document.querySelectorAll(".mk").forEach(function (x) { x.classList.remove("active"); }); var el = $("mk-" + id); if (el) el.classList.add("active"); }
+  var fb = $("filters");
+  [["all", "Todos", "✨"]].concat(Object.keys(D.types).map(function (k) { return [k, D.types[k].label, D.types[k].icon]; })).forEach(function (f) {
+    var b = document.createElement("button"); b.type = "button"; b.className = "chip" + (f[0] === "all" ? " on" : ""); b.textContent = f[2] + " " + f[1];
+    b.onclick = function () { filter = f[0]; fb.querySelectorAll(".chip").forEach(function (x) { x.classList.remove("on"); }); b.classList.add("on"); D.pts.forEach(function (e) { if (vis(e)) M[e.id].addTo(map); else map.removeLayer(M[e.id]); }); list(); };
+    fb.appendChild(b);
+  });
+  function vis(e) { return filter === "all" || e.type === filter; }
+  function prog() { var n = D.pts.filter(function (e) { return seen[e.id]; }).length; $("prog").innerHTML = "Explorados: <b>" + n + " de " + D.pts.length + "</b>"; return n; }
+  function refLink(id) { var r = REFS[id]; if (!r) return ""; return r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener">' + r.short + '</a>' : r.short; }
+  function list() {
+    tourOn = false; $("t-tour").classList.remove("on"); active(null);
+    var n = prog(), h = '';
+    if (n === D.pts.length) h += '<div class="badge-done"><img src="img/pose-espiritu-feliz.png" alt=""><div><strong>¡Recorriste todo el mapa!</strong><br><small>Ahora ya sabes qué está pasando en México. Lontra te espera en la lección 15 para pasar a la acción.</small></div></div>';
+    h += '<h3 style="margin-top:0">México en cifras</h3><div class="natstats">' + D.national.map(function (s) { return '<div><b>' + s.n + '</b>' + s.l + '</div>'; }).join("") + '</div><p class="hint" style="margin-top:-6px">Fuente: ' + refLink("ndc30") + ' (investigación Xlatierra, Módulo 1).</p>';
+    h += '<h3>Regiones</h3>';
+    D.pts.filter(vis).forEach(function (e) { var t = D.types[e.type];
+      h += '<div class="list-item" data-id="' + e.id + '" tabindex="0"><span class="dot" style="background:' + t.color + '">' + t.icon + '</span><div><strong>' + e.name + '</strong><small>' + e.place + '</small></div>' + (seen[e.id] ? '<span class="seen">✓</span>' : '') + '</div>'; });
+    panel.innerHTML = h; panel.scrollTop = 0;
+    panel.querySelectorAll(".list-item").forEach(function (x) { x.onclick = function () { open(x.dataset.id); }; x.onkeydown = function (ev) { if (ev.key === "Enter") open(x.dataset.id); }; });
+  }
+  function open(id, fromTour) {
+    var e = D.pts.filter(function (x) { return x.id === id; })[0]; if (!e) return;
+    if (!fromTour) { tourOn = false; $("t-tour").classList.remove("on"); }
+    seen[id] = true; saveSeen(); refresh(id); prog(); active(id);
+    map.flyTo([e.lat, e.lng], e.zoom || 7, { duration: .9 });
+    var t = D.types[e.type], L2 = (C.lessons || []).filter(function (l) { return l.id === e.lesson; })[0];
+    var vs = D.pts.filter(vis), i = vs.map(function (x) { return x.id; }).indexOf(id);
+    var h = '<span class="d-type" style="background:' + t.color + '">' + t.icon + ' ' + t.label + '</span><h2>' + e.name + '</h2><div class="d-meta">📍 ' + e.place + '</div>' +
+      '<p>' + e.desc + '</p><div class="factbox"><h4>📌 Dato clave</h4>' + e.fact + '<div class="d-src">Fuente: ' + e.refs.map(refLink).join(" · ") + '</div></div>' +
+      (e.why ? '<p><strong>¿Por qué importa?</strong> ' + e.why + '</p>' : '') +
+      (L2 ? '<a class="cta" style="margin:12px 0" href="curso.html#leccion-' + L2.id + '"><span class="cta-i">📘</span><span><strong>Aprende más</strong><small>Módulo 1 · ' + L2.title + '</small></span><span class="cta-go">Ir →</span></a>' : '') +
+      '<div class="d-nav"><button class="btn btn-ghost" id="d-back" type="button">← Lista</button>' +
+      (tourOn ? '<button class="btn btn-primary" id="d-next" type="button">' + (i < vs.length - 1 ? 'Siguiente parada →' : 'Terminar recorrido ✓') + '</button>'
+        : '<span>' + (i > 0 ? '<button class="btn btn-ghost" id="d-prev" type="button">‹</button> ' : '') + (i < vs.length - 1 ? '<button class="btn btn-ghost" id="d-nx" type="button">›</button>' : '') + '</span>') + '</div>';
+    panel.innerHTML = h; panel.scrollTop = 0;
+    $("d-back").onclick = list;
+    var dn = $("d-next"); if (dn) dn.onclick = function () { if (i < vs.length - 1) open(vs[i + 1].id, true); else list(); };
+    var dp = $("d-prev"); if (dp) dp.onclick = function () { open(vs[i - 1].id); };
+    var dx = $("d-nx"); if (dx) dx.onclick = function () { open(vs[i + 1].id); };
+    if (window.innerWidth < 900) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  $("t-tour").onclick = function () { tourOn = true; this.classList.add("on"); var vs = D.pts.filter(vis); if (vs.length) open(vs[0].id, true); };
+  list();
+  var hsh = (location.hash || "").replace("#", ""); if (hsh) open(hsh);
+})();
+</script>
+</body>
+</html>

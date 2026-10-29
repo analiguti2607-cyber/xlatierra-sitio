@@ -110,3 +110,22 @@ Neotenia del ajolote; por qué la región es tan diversa (trópicos, montañas, 
 | Vaquitas | Paula Olson / NOAA | Dominio público |
 | Quetzal | Francesco Veronesi | CC BY-SA 2.0 |
 Se cargan desde Wikimedia Commons. Oso andino, nutria y carey quedaron sin foto (marcado «Foto pendiente»).
+
+---
+
+# Módulo 1 · actividades nuevas (28/10/2026) — PENDIENTE DE TU APROBACIÓN
+
+## Dato externo nuevo 🟡
+| Dato | Dónde se usa | Fuente |
+|---|---|---|
+| Reparto sectorial de México: transporte 23%, electricidad 19%, industria 18%, agricultura y ganadería 17%, residuos 9%, petróleo y gas 8%, uso de suelo 3%, residencial y comercial 3% | Actividad «¿De dónde salen las emisiones de México?» (lección 6) | NDC 3.0 México (2025), pág. 46. **Ojo:** el documento lo presenta como el reparto del esfuerzo de reducción al 2030 «conforme al criterio de responsabilidad», según el peso de cada sector en el inventario nacional (datos preliminares 2024). Así lo explica la actividad. |
+
+## Corrección ⚠️
+- **Reducción al 2030 (lecciones 13 y cuestionario):** decía «entre 43% y 50% respecto a la década de 2010». El IPCC AR6 (Grupo de Trabajo III, SPM C.1.1) dice **43% de los gases de efecto invernadero y 48% del CO₂ para 2030, respecto a 2019**. Ya está corregido.
+
+## Verificación ✅ / pendiente 🔍
+- ✅ «México se calienta 3.2 °C por siglo frente a 2 °C mundial»: NDC 3.0, pág. 20.
+- 🔍 Las demás cifras de México (86% de municipios en sequía, 64% de estrés hídrico, Golfo de México +44%, 984 muertes, 88,910 millones de pesos, etc.) vienen de tu investigación y están en los capítulos de adaptación y de pérdidas y daños de la NDC 3.0 (págs. 67 en adelante). Mi herramienta solo pudo leer hasta la pág. 48, así que no las pude confirmar. **Si me mandas el PDF de la NDC 3.0 como archivo adjunto, las verifico una por una.**
+
+## Actividades que solo reorganizan datos ya aprobados
+«¿Clima o tiempo?», «La cobija del planeta», «¿Mito o dato?», «¿Mitigar o adaptarnos?», «Tu tarjeta de compromiso» y el «Mapa de impactos en México» usan solo información que ya estaba en el Módulo 1. Ubicaciones del mapa: aproximadas.

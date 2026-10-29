@@ -233,6 +233,10 @@
       case "cta": body.appendChild(el('<a class="cta" href="' + b.href + '"' + (b.ext ? ' target="_blank" rel="noopener"' : '') + '>' + (b.icon ? '<span class="cta-i">' + b.icon + '</span>' : '') + '<span><strong>' + b.title + '</strong><small>' + b.html + '</small></span><span class="cta-go">' + (b.btn || 'Abrir') + ' →</span></a>')); break;
       case "match": guesses.push(key); body.appendChild(matchGame(b, key, check)); break;
       case "web": guesses.push(key); body.appendChild(foodWeb(b, key, check)); break;
+      case "deck": guesses.push(key); body.appendChild(deckGame(b, key, check)); break;
+      case "order": guesses.push(key); body.appendChild(orderGame(b, key, check)); break;
+      case "greenhouse": body.appendChild(greenhouse(b)); break;
+      case "commit": body.appendChild(commitCard(b)); break;
     }
   }
   function resItem(x) {
@@ -361,6 +365,153 @@
     w.querySelector("[data-x]").onclick = remove; w.querySelector("[data-r]").onclick = reset;
     return w;
   }
+
+  /* ---------- Actividad: ¿Mito o dato? (tarjetas) ---------- */
+  function deckGame(b, key, check) {
+    var st = S.guess[key + "_d"] || {}, i = 0;
+    var w = el('<div class="box deck"><span class="lbl">Actividad</span><h3>' + b.title + '</h3><p>' + b.q + '</p><div class="deck-card"></div><div class="deck-score"></div></div>').firstChild;
+    var card = w.querySelector(".deck-card"), score = w.querySelector(".deck-score");
+    function ok() { return Object.keys(st).filter(function (k) { return st[k] === b.cards[k].a; }).length; }
+    function finish() {
+      var n = ok(); S.guess[key] = n; S.guess[key + "_ok"] = n >= Math.ceil(b.cards.length * 0.6); save(); check();
+      card.innerHTML = '<div class="deck-end"><b>' + n + ' de ' + b.cards.length + '</b><span>' + (n === b.cards.length ? '¡Perfecto! Tu kit funciona.' : 'Bien. Repasa las que fallaste: así se entrena el ojo.') + '</span>' +
+        '<ol>' + b.cards.map(function (c, k) { return '<li class="' + (st[k] === c.a ? 'ok' : 'bad') + '"><strong>' + b.labels[c.a] + ':</strong> «' + c.t + '»</li>'; }).join("") + '</ol>' +
+        '<button type="button" class="btn btn-ghost" data-again="1">Jugar otra vez</button></div>';
+      card.querySelector("[data-again]").onclick = function () { st = {}; i = 0; show(); };
+    }
+    function show() {
+      score.textContent = "Tarjeta " + Math.min(i + 1, b.cards.length) + " de " + b.cards.length;
+      if (i >= b.cards.length) { score.textContent = ""; return finish(); }
+      var c = b.cards[i];
+      card.innerHTML = '<div class="deck-q">«' + c.t + '»</div><div class="deck-btns">' + b.labels.map(function (l, j) { return '<button type="button" class="btn ' + (j === 0 ? 'deck-a' : 'deck-b') + '" data-j="' + j + '">' + (b.icons ? b.icons[j] + ' ' : '') + l + '</button>'; }).join("") + '</div><div class="deck-exp"></div>';
+      card.querySelectorAll("[data-j]").forEach(function (bt) {
+        bt.onclick = function () {
+          var j = +bt.dataset.j; st[i] = j; S.guess[key + "_d"] = st; save();
+          card.querySelectorAll("[data-j]").forEach(function (x) { x.disabled = true; if (+x.dataset.j === c.a) x.classList.add("ok"); else if (+x.dataset.j === j) x.classList.add("bad"); });
+          card.querySelector(".deck-exp").innerHTML = '<div class="exp">' + (j === c.a ? '✅ <strong>¡Bien!</strong> ' : '💡 <strong>No.</strong> ') + '<strong>Es ' + b.labels[c.a].toLowerCase() + '.</strong> ' + c.e + '</div><button type="button" class="btn btn-primary deck-next">' + (i < b.cards.length - 1 ? 'Siguiente →' : 'Ver resultado') + '</button>';
+          card.querySelector(".deck-next").onclick = function () { i++; show(); };
+        };
+      });
+    }
+    if (Object.keys(st).length >= b.cards.length) { i = b.cards.length; finish(); } else show();
+    return w;
+  }
+
+  /* ---------- Actividad: ordenar (¿de dónde salen?) ---------- */
+  function orderGame(b, key, check) {
+    var pickd = (S.guess[key + "_o"] || []).slice();
+    var w = el('<div class="box order"><span class="lbl">Actividad</span><h3>' + b.title + '</h3><p>' + b.q + '</p><div class="o-pool"></div><ol class="o-list"></ol><div class="o-btns"><button type="button" class="btn btn-ghost" data-reset="1">Reiniciar</button></div><div class="o-res"></div></div>').firstChild;
+    var pool = w.querySelector(".o-pool"), list = w.querySelector(".o-list"), res = w.querySelector(".o-res");
+    var correct = b.items.map(function (x, k) { return k; }).sort(function (a, c) { return b.items[c].v - b.items[a].v; });
+    function draw() {
+      pool.innerHTML = ""; list.innerHTML = "";
+      b.items.forEach(function (it, k) {
+        if (pickd.indexOf(k) >= 0) return;
+        var bt = document.createElement("button"); bt.type = "button"; bt.className = "chip"; bt.textContent = it.icon + " " + it.n;
+        bt.onclick = function () { pickd.push(k); S.guess[key + "_o"] = pickd; save(); draw(); };
+        pool.appendChild(bt);
+      });
+      pickd.forEach(function (k, pos) { list.appendChild(el('<li>' + b.items[k].icon + ' ' + b.items[k].n + '</li>').firstChild); });
+      if (pickd.length < b.items.length) { pool.insertAdjacentHTML("afterbegin", '<p class="hint" style="width:100%;margin:0">' + (pickd.length ? 'Sigue: ¿cuál va en el lugar ' + (pickd.length + 1) + '?' : 'Toca primero el que crees que emite MÁS.') + '</p>'); res.innerHTML = ""; return; }
+      var hits = pickd.filter(function (k, pos) { return correct[pos] === k; }).length, max = b.items[correct[0]].v;
+      res.innerHTML = '<div class="exp"><strong>Acertaste ' + hits + ' de ' + b.items.length + ' posiciones.</strong> Este es el orden real:</div>' +
+        '<div class="o-bars">' + correct.map(function (k, pos) { var it = b.items[k], mine = pickd.indexOf(k); return '<div class="o-row"><span class="o-n">' + (pos + 1) + '. ' + it.icon + ' ' + it.n + (mine === pos ? ' ✅' : ' <small>(tú: ' + (mine + 1) + '.º)</small>') + '</span><span class="o-bar"><i style="width:' + (it.v / max * 100) + '%"></i></span><b>' + it.v + b.unit + '</b></div>'; }).join("") + '</div>' +
+        (b.done ? '<p class="hint" style="margin-top:8px">' + b.done + '</p>' : '');
+      if (S.guess[key] === undefined) { S.guess[key] = hits; S.guess[key + "_ok"] = hits >= 3; save(); check(); }
+    }
+    w.querySelector("[data-reset]").onclick = function () { pickd = []; S.guess[key + "_o"] = pickd; save(); draw(); };
+    draw();
+    return w;
+  }
+
+  /* ---------- Actividad: la cobija del planeta ---------- */
+  function greenhouse(b) {
+    var w = el('<div class="box gh"><span class="lbl">Actividad</span><h3>' + b.title + '</h3><p>' + b.q + '</p>' +
+      '<svg class="gh-svg" viewBox="0 0 600 330" role="img" aria-label="Animación del efecto invernadero"></svg>' +
+      '<div class="gh-ctrl"><input type="range" min="0" max="3" step="1" value="1" aria-label="Cantidad de gases de efecto invernadero"><div class="gh-ticks">' + b.levels.map(function (l) { return '<span>' + l.short + '</span>'; }).join("") + '</div></div>' +
+      '<div class="gh-info"></div></div>').firstChild;
+    var svg = w.querySelector("svg"), rng = w.querySelector("input"), info = w.querySelector(".gh-info");
+    var NS = "http://www.w3.org/2000/svg";
+    function mk(t, a, txt) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (txt) e.textContent = txt; return e; }
+    function render(lv) {
+      var L = b.levels[lv]; svg.innerHTML = "";
+      var defs = mk("defs", {}); var g1 = mk("linearGradient", { id: "ghsky", x1: 0, y1: 0, x2: 0, y2: 1 });
+      g1.appendChild(mk("stop", { offset: "0", "stop-color": "#0f2a3a" })); g1.appendChild(mk("stop", { offset: "1", "stop-color": "#2e6e8a" })); defs.appendChild(g1); svg.appendChild(defs);
+      svg.appendChild(mk("rect", { x: 0, y: 0, width: 600, height: 330, fill: "url(#ghsky)", rx: 16 }));
+      svg.appendChild(mk("circle", { cx: 70, cy: 55, r: 30, fill: "#f6c945" }));
+      svg.appendChild(mk("text", { x: 70, y: 105, "text-anchor": "middle", fill: "#fff", "font-size": 12 }, "Sol"));
+      // atmósfera (la cobija)
+      var op = [0, .25, .45, .7][lv];
+      svg.appendChild(mk("path", { d: "M0,170 Q300,120 600,170 L600,205 Q300,160 0,205 Z", fill: "#cfad30", "fill-opacity": op, stroke: lv ? "#cfad30" : "none", "stroke-opacity": .6 }));
+      if (lv) svg.appendChild(mk("text", { x: 520, y: 158, fill: "#fbe7a1", "font-size": 12, "text-anchor": "middle" }, "gases (la cobija)"));
+      // suelo
+      var hue = ["#7fb3c9", "#4f8a5b", "#9c8a3a", "#b86544"][lv];
+      svg.appendChild(mk("path", { d: "M0,330 L0,268 Q300,236 600,268 L600,330 Z", fill: hue }));
+      // rayos de sol entrando
+      for (var i = 0; i < 3; i++) { var x = 120 + i * 60; svg.appendChild(mk("line", { x1: 90 + i * 8, y1: 75 + i * 6, x2: x + 60, y2: 255, stroke: "#f6c945", "stroke-width": 3, class: "gh-in", style: "animation-delay:" + (i * .3) + "s" })); }
+      // calor saliendo: n flechas escapan, m regresan
+      var esc = [5, 3, 2, 1][lv], back = [0, 2, 3, 4][lv];
+      for (var e = 0; e < esc; e++) { var xx = 330 + e * 45; svg.appendChild(mk("path", { d: "M" + xx + ",255 Q" + (xx + 15) + ",160 " + (xx + 5) + ",20", stroke: "#e8735a", "stroke-width": 3, fill: "none", "stroke-dasharray": "6 6", class: "gh-out", style: "animation-delay:" + (e * .25) + "s" })); }
+      for (var r = 0; r < back; r++) { var xb = 300 + r * 55; svg.appendChild(mk("path", { d: "M" + xb + ",255 Q" + (xb + 20) + ",170 " + (xb + 30) + ",185 Q" + (xb + 40) + ",200 " + (xb + 45) + ",255", stroke: "#ff5a3c", "stroke-width": 3.5, fill: "none", class: "gh-back", style: "animation-delay:" + (r * .3) + "s" })); }
+      // termómetro
+      svg.appendChild(mk("rect", { x: 40, y: 150, width: 18, height: 100, rx: 9, fill: "#fff", "fill-opacity": .9 }));
+      var lvlH = [15, 45, 62, 85][lv];
+      svg.appendChild(mk("rect", { x: 44, y: 246 - lvlH, width: 10, height: lvlH, rx: 5, fill: ["#4a90c2", "#e0a33a", "#e0703a", "#c43b2b"][lv] }));
+      svg.appendChild(mk("circle", { cx: 49, cy: 252, r: 12, fill: ["#4a90c2", "#e0a33a", "#e0703a", "#c43b2b"][lv] }));
+      svg.appendChild(mk("text", { x: 70, y: 200, fill: "#fff", "font-size": 15, "font-weight": 700 }, L.temp));
+      info.innerHTML = '<strong>' + L.name + '.</strong> ' + L.text;
+    }
+    rng.oninput = function () { render(+rng.value); };
+    render(1);
+    return w;
+  }
+
+  /* ---------- Actividad: tarjeta de compromiso ---------- */
+  function commitCard(b) {
+    var w = el('<div class="box commit"><span class="lbl">Actividad</span><h3>' + b.title + '</h3><p>' + b.q + '</p>' +
+      '<div class="field"><label>Tu nombre o apodo (opcional, solo se dibuja en tu dispositivo)</label><input type="text" maxlength="40" class="c-name"></div>' +
+      '<button type="button" class="btn btn-primary c-make">Crear mi tarjeta</button><p class="hint c-hint"></p>' +
+      '<canvas width="1080" height="1350" class="c-cv" style="display:none"></canvas><div class="c-dl"></div></div>').firstChild;
+    w.querySelector(".c-make").onclick = function () {
+      var pk = b.pick ? S.pick[b.pick] : null, step = (pk != null && b.options) ? b.options[pk] : "", what = (S.reflect[b.what] || "").trim(), when = (S.reflect[b.when] || "").trim(), who = (S.reflect[b.who] || "").trim();
+      var hint = w.querySelector(".c-hint");
+      if (!step && !what) { hint.textContent = "Primero elige tu primer paso o escribe qué vas a hacer (arriba)."; return; }
+      hint.textContent = "";
+      var cv = w.querySelector(".c-cv"), x = cv.getContext("2d"), W = 1080, H = 1350, name = w.querySelector(".c-name").value.trim();
+      cv.style.display = "block";
+      function wrap(t, y, max, lh, font, col, align) {
+        x.font = font; x.fillStyle = col; x.textAlign = align || "left"; var words = String(t).split(" "), line = "", lines = [];
+        words.forEach(function (wd) { var test = line ? line + " " + wd : wd; if (x.measureText(test).width > max && line) { lines.push(line); line = wd; } else line = test; });
+        if (line) lines.push(line); lines = lines.slice(0, 5);
+        lines.forEach(function (l, i) { x.fillText(l, align === "center" ? W / 2 : 110, y + i * lh); }); return y + lines.length * lh;
+      }
+      x.fillStyle = "#125d55"; x.fillRect(0, 0, W, H);
+      x.fillStyle = "#fdf8ef"; roundRect(x, 60, 60, W - 120, H - 120, 40); x.fill();
+      x.fillStyle = "#cfad30"; x.fillRect(60, 60, W - 120, 18);
+      wrap("MI COMPROMISO POR EL CLIMA", 170, 860, 50, "600 34px Poppins, sans-serif", "#b86544", "center");
+      var y = wrap(name ? name + " se compromete a:" : "Me comprometo a:", 250, 860, 56, "700 48px Caudex, serif", "#125d55", "center");
+      y = wrap("«" + (what || step) + "»", y + 40, 860, 62, "600 46px Poppins, sans-serif", "#1d2b2a");
+      if (what && step) y = wrap("Mi primer paso: " + step, y + 26, 860, 42, "300 32px Poppins, sans-serif", "#1d2b2a");
+      if (who) y = wrap("Con: " + who, y + 18, 860, 42, "300 32px Poppins, sans-serif", "#1d2b2a");
+      if (when) y = wrap("Cuándo: " + when, y + 10, 860, 42, "300 32px Poppins, sans-serif", "#1d2b2a");
+      var img = new Image();
+      img.onload = function () { var s = 420, hh = img.height * s / img.width; x.drawImage(img, W - s - 80, H - hh - 150, s, hh); end(); };
+      img.onerror = end; img.src = b.img;
+      function end() {
+        x.font = "300 28px Poppins, sans-serif"; x.fillStyle = "#5b6b6a"; x.textAlign = "left";
+        x.fillText("Aprendí con Xlatierra", 110, H - 190); x.font = "600 30px Poppins, sans-serif"; x.fillStyle = "#125d55"; x.fillText(b.footer || "#Xlatierra", 110, H - 145);
+        var url; try { url = cv.toDataURL("image/png"); } catch (e) { url = null; }
+        w.querySelector(".c-dl").innerHTML = '<div class="nav">' + (url ? '<a class="btn btn-primary" download="Mi_compromiso_Xlatierra.png" href="' + url + '">Descargar mi tarjeta</a>' : '') + '<button type="button" class="btn btn-ghost c-share">Compartir</button></div><p class="hint">Súbela a tus historias y etiqueta a @x.latierra.</p>';
+        w.querySelector(".c-share").onclick = function () {
+          var txt = "Mi compromiso por el clima: " + (what || step) + " 🌱 #Xlatierra";
+          if (navigator.share) navigator.share({ title: "Xlatierra", text: txt, url: location.href.split("#")[0] }).catch(function () {});
+          else { try { navigator.clipboard.writeText(txt); alert("Texto copiado"); } catch (e) {} }
+        };
+      }
+    };
+    return w;
+  }
+  function roundRect(x, a, b2, w2, h2, r) { x.beginPath(); x.moveTo(a + r, b2); x.arcTo(a + w2, b2, a + w2, b2 + h2, r); x.arcTo(a + w2, b2 + h2, a, b2 + h2, r); x.arcTo(a, b2 + h2, a, b2, r); x.arcTo(a, b2, a + w2, b2, r); x.closePath(); }
 
   /* ---------- Recursos ---------- */
   function resources() {
