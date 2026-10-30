@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refugio de líderes · Xlatierra</title>
+<meta name="description" content="Un espacio de Xlatierra para respirar, encontrar buenas noticias, música y comunidad, y transformar la ecoansiedad en acción.">
+<link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<style>
+.page{padding:28px 16px 50px}
+.kicker{font-weight:600;color:var(--terra);text-transform:uppercase;font-size:.8rem;letter-spacing:.08em;margin-bottom:6px}
+.hero-r{display:flex;gap:24px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#e3efe9,#f6ecd9);border-radius:28px;padding:28px}
+.hero-r .txt{flex:1;min-width:260px}
+.hero-r img{width:190px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+.chips a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none;color:var(--teal);font-size:.88rem}
+.chips a:hover{border-color:var(--teal)}
+.sec{margin-top:44px;scroll-margin-top:80px}
+.card{background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:22px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.muted{color:var(--muted);font-size:.9rem}
+.src{font-size:.8rem;color:var(--muted);margin-top:8px}
+.src a{color:var(--muted)}
+/* Ánimo */
+.animo{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.animo img{width:120px;transition:transform .3s}
+.animo .msg{flex:1;min-width:220px;font-family:'Caudex',Georgia,serif;font-size:1.3rem;color:var(--teal);line-height:1.4;min-height:3em}
+.animo .who{font-family:'Poppins',sans-serif;font-size:.85rem;color:var(--muted);margin-top:6px}
+.pop{animation:pop .4s ease}
+@keyframes pop{0%{transform:scale(.8);opacity:.2}100%{transform:scale(1);opacity:1}}
+/* Termómetro */
+.moods{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.moods button{font-family:inherit;background:var(--soft);border:2px solid transparent;border-radius:16px;padding:12px 8px;cursor:pointer;font-size:.92rem;color:var(--ink)}
+.moods button span{display:block;font-size:1.8rem}
+.moods button.on{border-color:var(--teal);background:#fff}
+.mood-out{display:none;border-left:4px solid var(--gold);background:#fbf6e6;border-radius:12px;padding:14px 16px}
+.mood-out .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.mood-out .acts a{font-size:.88rem;padding:8px 14px}
+/* Respira */
+.breath{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px 0}
+.bubble-w{width:230px;height:230px;display:flex;align-items:center;justify-content:center;position:relative}
+.bubble{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d8eef0,#76a8b8 70%,#4f8c9c);box-shadow:0 0 0 12px rgba(118,168,184,.15);transition:width 4s ease-in-out,height 4s ease-in-out}
+.bubble.big{width:220px;height:220px}
+.bubble-w img{position:absolute;width:86px;bottom:-6px;right:-14px}
+.b-label{font-family:'Caudex',Georgia,serif;font-size:1.5rem;color:var(--teal);min-height:1.6em}
+.pausas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:10px}
+.pausa{background:var(--soft);border-radius:16px;padding:14px}
+.pausa .ic{font-size:1.6rem}
+.pausa button{margin-top:8px;font-size:.82rem;padding:7px 14px}
+/* Noticias */
+.semana{background:linear-gradient(135deg,#125d55,#3a8b80);color:#fff;border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+.semana h3{color:#fff;font-size:1.5rem}
+.semana .src,.semana .src a{color:#d8ece8}
+.semana .lbl{display:inline-block;background:rgba(255,255,255,.2);border-radius:999px;padding:3px 12px;font-size:.78rem;font-weight:600;margin-bottom:8px}
+.news{background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column}
+.news .ic{font-size:1.8rem}
+.news h4{font-size:1.1rem;margin:6px 0}
+.news .meta{font-size:.8rem;color:var(--terra);font-weight:600}
+.news .src{margin-top:auto;padding-top:8px}
+.volv{border-top:5px solid var(--gold)}
+/* Música */
+.music iframe{width:100%;border:0;border-radius:14px}
+.empty{border:2px dashed var(--line);border-radius:18px;padding:18px;text-align:center;color:var(--muted);background:#fbf8f1}
+/* Quiz */
+.q{margin:14px 0}
+.q p{font-weight:600;margin-bottom:8px}
+.opts{display:grid;gap:8px}
+.opts button{font-family:inherit;text-align:left;background:var(--soft);border:2px solid transparent;border-radius:14px;padding:10px 14px;cursor:pointer;font-size:.93rem;color:var(--ink)}
+.opts button.on{border-color:var(--teal);background:#fff}
+.result{display:none;margin-top:16px;border-radius:20px;padding:20px;background:#fbf6e6;gap:16px;align-items:center;flex-wrap:wrap}
+.result img{width:120px}
+.result .t{flex:1;min-width:220px}
+/* Comunidad */
+.wall{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+.post{background:#fffaf0;border:1px solid var(--line);border-radius:16px;padding:14px;font-size:.95rem}
+.post .by{font-size:.8rem;color:var(--muted);margin-top:6px}
+.gal img{border-radius:12px;width:100%;height:200px;object-fit:cover}
+details.form{margin-top:14px;background:var(--soft);border-radius:16px;padding:12px 16px}
+details.form summary{cursor:pointer;font-weight:600;color:var(--teal)}
+form.f{display:grid;gap:10px;margin-top:12px}
+form.f label{font-size:.88rem;display:grid;gap:4px}
+form.f input,form.f select,form.f textarea{font-family:inherit;font-size:.95rem;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+form.f textarea{min-height:110px;resize:vertical}
+form.f .chk{display:flex;gap:8px;align-items:flex-start;font-size:.85rem}
+form.f .chk input{margin-top:4px}
+.ok{display:none;background:#e3f2ea;color:#14532d;border-radius:12px;padding:10px 14px;font-size:.92rem}
+/* Ayuda */
+.help{border:2px solid var(--rose);background:#fff6f4}
+.help .tel{font-size:1.6rem;font-weight:600;color:var(--rose);text-decoration:none}
+.signs li{margin-bottom:6px}
+@media(max-width:640px){.hero-r{padding:20px}.hero-r img{width:130px}.animo img{width:90px}.bubble-w{width:200px;height:200px}.bubble.big{width:190px;height:190px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo-rectangular.png" alt="Xlatierra"></a>
+    <nav>
+      <a href="index.html" class="hide-sm">Inicio</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="mapas.html" class="hide-sm">Mapas</a>
+      <a href="proyectos.html" class="hide-sm">Proyectos</a>
+      <a href="refugio.html">Refugio</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap page">
+
+  <div class="hero-r">
+    <div class="txt">
+      <div class="kicker">Para respirar y seguir</div>
+      <h1>Refugio de líderes</h1>
+      <p>Preocuparte por el planeta dice mucho de ti: te importa. Aquí puedes bajarle al ruido, encontrar buenas noticias, música y comunidad, y convertir lo que sientes en energía para actuar. Vuelve cuando lo necesites.</p>
+      <button class="btn btn-primary" id="animoTop">💛 Necesito ánimo</button>
+    </div>
+    <img src="img/pose-espiritu-feliz.png" alt="Ameyalli, el espíritu del agua">
+  </div>
+
+  <nav class="chips" aria-label="Secciones del Refugio">
+    <a href="#sientes">¿Cómo te sientes?</a><a href="#respira">Respira</a><a href="#animo">Ánimo</a>
+    <a href="#noticias">Buenas noticias</a><a href="#musica">Música</a><a href="#accion">Tu tipo de acción</a>
+    <a href="#comunidad">Comunidad</a><a href="#ecoansiedad">Ecoansiedad</a><a href="#ayuda">Pedir ayuda</a><a href="#boletin">Boletín</a>
+  </nav>
+
+  <!-- TERMÓMETRO -->
+  <section class="sec" id="sientes">
+    <h2>¿Cómo te sientes hoy con el planeta?</h2>
+    <div class="card">
+      <p class="muted">Elige lo que más se parece a lo que sientes. No se guarda ni se envía a ningún lado.</p>
+      <div class="moods" id="moods"></div>
+      <div class="mood-out" id="moodOut"></div>
+    </div>
+  </section>
+
+  <!-- RESPIRA -->
+  <section class="sec" id="respira">
+    <h2>Respira y haz una pausa</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Respiración guiada</h3>
+        <p class="muted">Cinco respiraciones con Ameyalli: inhala mientras la burbuja crece y suelta el aire despacio mientras se hace pequeña.</p>
+        <div class="breath">
+          <div class="bubble-w"><div class="bubble" id="bubble"></div><img src="img/pose-espiritu-pensativo.png" alt=""></div>
+          <div class="b-label" id="bLabel" aria-live="polite">¿Lista, listo?</div>
+          <button class="btn btn-primary" id="bBtn">Empezar</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Pausa de autocuidado</h3>
+        <p class="muted">Tu cuerpo es tu principal herramienta. Elige una pausa de 30 segundos.</p>
+        <div class="pausas" id="pausas"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁNIMO -->
+  <section class="sec" id="animo">
+    <h2>Necesito ánimo</h2>
+    <div class="card animo">
+      <img id="aImg" src="img/pose-nutria-feliz.png" alt="">
+      <div class="msg"><div id="aMsg">Presiona el botón y alguien del equipo te dice algo que necesitas escuchar.</div><div class="who" id="aWho"></div></div>
+      <button class="btn btn-gold" id="aBtn">Otro mensaje 💛</button>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="sec" id="noticias">
+    <h2>Buenas noticias</h2>
+    <p>Las noticias difíciles se cuelan solas. Estas hay que buscarlas, y aquí te las juntamos, siempre con su fuente.</p>
+    <div id="semana"></div>
+    <h3 style="margin-top:26px">Muro de buenas noticias</h3>
+    <div class="grid3" id="muro"></div>
+    <h3 style="margin-top:26px">Volvieron</h3>
+    <p class="muted">Especies que parecían perdidas y regresan gracias a personas que no se rindieron.</p>
+    <div class="grid3" id="volvieron"></div>
+  </section>
+
+  <!-- MÚSICA -->
+  <section class="sec" id="musica">
+    <h2>Música para seguir</h2>
+    <div class="grid2">
+      <div class="card music"><h3>Canción del mes</h3><div id="cancion"></div></div>
+      <div class="card music"><h3>Playlist del Refugio</h3><div id="playlist"></div></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="sec" id="accion">
+    <h2>¿Qué tipo de acción va contigo?</h2>
+    <div class="card">
+      <p class="muted">No hay una sola forma de cuidar el planeta. Responde seis preguntas y descubre por dónde empezar.</p>
+      <div id="quiz"></div>
+      <button class="btn btn-primary" id="qBtn" disabled>Ver mi resultado</button>
+      <div class="result" id="qRes"></div>
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section class="sec" id="comunidad">
+    <h2>Comunidad</h2>
+    <div class="grid2">
+      <div class="card"><h3>💬 Conversatorio en línea</h3><div id="conv"></div></div>
+      <div class="card"><h3>🎨 Concurso de dibujo</h3><div id="conc"></div></div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>🏆 Muro de victorias</h3>
+      <p class="muted">Logros de la comunidad, grandes o pequeños: una limpieza, una reunión con tu municipio, convencer a tu familia de separar residuos.</p>
+      <div class="wall" id="victorias"></div>
+      <details class="form"><summary>Comparte tu victoria</summary>
+        <form class="f" data-tipo="victoria">
+          <label>Nombre o seudónimo<input name="autor" maxlength="60" required></label>
+          <label>País<input name="pais" maxlength="40" required></label>
+          <label>¿Qué lograste? (máximo 400 caracteres)<textarea name="texto" maxlength="400" required></textarea></label>
+          <label class="chk"><input type="checkbox" name="permiso" required> Acepto que Xlatierra publique mi victoria con el nombre que puse, después de revisarla.</label>
+          <button class="btn btn-primary">Enviar</button><div class="ok">¡Gracias! La revisaremos y pronto aparecerá en el muro.</div>
+        </form>
+      </details>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>🖼️ Galería de arte</h3>
+      <div class="wall gal" id="galeria"></div>
+      <h3 style="margin-top:22px">✍️ Poemas y textos</h3>
+      <div class="wall" id="textos"></div>
+      <details class="form"><summary>Manda tu obra o tu texto</summary>
+        <form class="f" data-tipo="obra">
+          <label>¿Qué nos mandas?<select name="clase" required><option value="">Elige una opción</option><option>Dibujo o ilustración</option><option>Foto</option><option>Otra obra de arte</option><option>Poema</option><option>Texto</option><option>Participación en el concurso de dibujo</option></select></label>
+          <label>Título<input name="titulo" maxlength="80" required></label>
+          <label>Nombre o seudónimo<input name="autor" maxlength="60" required></label>
+          <label>País<input name="pais" maxlength="40" required></label>
+          <label>Si es imagen: enlace a tu obra (Google Drive con acceso público, Instagram, etc.)<input name="enlace" type="url" maxlength="300"></label>
+          <label>Si es poema o texto: escríbelo aquí<textarea name="texto" maxlength="1500"></textarea></label>
+          <label class="chk"><input type="checkbox" name="propia" required> La obra es mía y tengo 18 años o más, o tengo permiso de mi madre, padre o tutor para enviarla.</label>
+          <label class="chk"><input type="checkbox" name="permiso" required> Acepto que Xlatierra la publique con el nombre que puse, después de revisarla. Sigue siendo mía.</label>
+          <button class="btn btn-primary">Enviar</button><div class="ok">¡Gracias por compartir tu arte! La revisaremos con cariño.</div>
+        </form>
+      </details>
+    </div>
+  </section>
+
+  <!-- ECOANSIEDAD -->
+  <section class="sec" id="ecoansiedad">
+    <h2>¿Qué es la ecoansiedad?</h2>
+    <div class="grid2">
+      <div class="card">
+        <p>Es una reacción emocional fuerte, como miedo, preocupación, angustia o sensación de impotencia, frente a los efectos actuales o futuros del cambio climático. Es una respuesta comprensible ante una crisis real. Conviene atenderla cuando empieza a afectar tu bienestar o tu vida diaria.</p>
+        <p class="src">Con base en el glosario de UNICEF México y SEMARNAT, <a href="https://www.unicef.org/mexico/informes/infancia-y-adolescencia-cambio-climatico-mexico" target="_blank" rel="noopener"><em>La infancia y adolescencia frente al cambio climático en México</em></a> (2026), p. 12.</p>
+      </div>
+      <div class="card">
+        <h3>No estás solo ni sola</h3>
+        <p><strong>76%</strong> de las y los adolescentes que respondieron una consulta piloto de U-Report en México (2024) dijo haber sentido más ansiedad por el cambio climático. <span class="muted">No es una muestra representativa, pero da una idea.</span></p>
+        <p class="src"><a href="https://www.unicef.org/mexico/informes/infancia-y-adolescencia-cambio-climatico-mexico" target="_blank" rel="noopener">UNICEF México y SEMARNAT (2026)</a>, p. 68.</p>
+        <p><strong>71%</strong> de casi 1,500 jóvenes de 15 a 35 años de América Latina y el Caribe dijo haber sentido ecoansiedad en algún momento.</p>
+        <p class="src">Encuesta de la RCOY LAC en <a href="https://www.unicef.org/lac/media/40426/file/De-las-palabras-a-la-accion.pdf" target="_blank" rel="noopener">UNICEF LAC, <em>De las palabras a la acción</em></a>, p. 35.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>Lo que ayuda</h3>
+      <div class="grid3">
+        <div><strong>🗣️ Hablarlo.</strong> Ponerle nombre a lo que sientes y compartirlo con alguien de confianza le quita peso.</div>
+        <div><strong>🤝 Hacerlo en grupo.</strong> Actuar con otras personas convierte la preocupación en algo que se puede mover.</div>
+        <div><strong>🌱 Pasos pequeños.</strong> Un primer paso concreto hace más que mil pensamientos sobre todo lo que falta.</div>
+        <div><strong>📵 Dosificar noticias.</strong> Informarte es importante; no necesitas leer todo, todo el tiempo.</div>
+        <div><strong>🌳 Volver a la naturaleza.</strong> Un parque, un árbol, el cielo. Recordar por qué lo cuidamos.</div>
+        <div><strong>😴 Descansar sin culpa.</strong> Nadie puede cuidar el mundo si no se cuida a sí.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AYUDA -->
+  <section class="sec" id="ayuda">
+    <h2>Cuándo pedir ayuda</h2>
+    <div class="card help">
+      <p>Busca apoyo de una persona profesional o de alguien de confianza si, desde hace varios días:</p>
+      <ul class="signs">
+        <li>La preocupación no te deja dormir, comer, estudiar o disfrutar lo que antes disfrutabas.</li>
+        <li>Sientes que no puedes más o que nada tiene sentido.</li>
+        <li>Te cuesta estar con otras personas o prefieres aislarte.</li>
+      </ul>
+      <p><strong>Si piensas en hacerte daño, pide ayuda ahora.</strong> No tienes que pasar por esto sola o solo.</p>
+      <div class="grid2" style="margin-top:12px">
+        <div><div class="muted">México · Línea de la Vida (gratuita, 24 horas, todos los días)</div><a class="tel" href="tel:8009112000">800 911 2000</a>
+          <p class="src">Opera la Comisión Nacional de Salud Mental y Adicciones (<a href="https://www.paho.org/es/noticias/18-6-2024-celebran-25-anos-linea-vida" target="_blank" rel="noopener">OPS, 2024</a>; <a href="https://www.noticiasgobierno.com/atencion-psicologica-gratuita-linea-de-la-vida-2026/" target="_blank" rel="noopener">número y gratuidad</a>).</p></div>
+        <div><div class="muted">México · Emergencias</div><a class="tel" href="tel:911">911</a>
+          <p class="src">Si vives en otro país, llama al número de emergencias o a la línea de salud mental de tu país.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOLETÍN -->
+  <section class="sec" id="boletin">
+    <h2>El boletín del Refugio</h2>
+    <div class="card">
+      <p>Una vez al mes: buenas noticias, la canción del mes, convocatorias y lo nuevo de Xlatierra. Sin spam.</p>
+      <form class="f" data-tipo="boletin" style="max-width:520px">
+        <label>Correo<input name="correo" type="email" maxlength="120" required></label>
+        <label>Nombre (opcional)<input name="nombre" maxlength="60"></label>
+        <label>País<input name="pais" maxlength="40"></label>
+        <label class="chk"><input type="checkbox" name="permiso" required> Acepto recibir el boletín mensual de Xlatierra. Puedo darme de baja cuando quiera escribiendo a <span id="mail">impactus.xa@gmail.com</span>.</label>
+        <button class="btn btn-primary">Suscribirme</button><div class="ok">¡Listo! Te escribiremos el próximo mes.</div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div><strong>Xlatierra</strong><br>Educación climática en español, para jóvenes de América Latina.<br><small style="opacity:.8">© 2026 Xlatierra · Ana Cecilia Licéaga Gutiérrez. Todos los derechos reservados. Las fotos y fuentes externas pertenecen a sus autores.</small></div>
+    <div><a href="index.html">Inicio</a></div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="refugio-datos.js"></script>
+<script>
+(function(){
+var D = window.XLT_REFUGIO || {}, CFG = window.XLT_CONFIG || {};
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function safeUrl(u){u=String(u||"");return /^https?:\/\//i.test(u)?u:"";}
+var G = {espiritu:{n:"Ameyalli",img:"img/pose-espiritu-feliz.png"},ajolote:{n:"Axo",img:"img/pose-ajolote-feliz.png"},
+         jaguar:{n:"Balam",img:"img/pose-jaguar-feliz.png"},nutria:{n:"Lontra",img:"img/pose-nutria-feliz.png"}};
+if (CFG.contactEmail) $("mail").textContent = CFG.contactEmail;
+
+/* ---------- Ánimo ---------- */
+var last = -1;
+function animo(){
+  var L = D.animo || []; if (!L.length) return;
+  var i; do { i = Math.floor(Math.random()*L.length); } while (L.length>1 && i===last); last = i;
+  var g = G[L[i].g] || G.nutria;
+  $("aImg").src = g.img; $("aImg").alt = g.n;
+  $("aMsg").textContent = L[i].t; $("aWho").textContent = "— " + g.n;
+  [$("aImg"), $("aMsg")].forEach(function(el){el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop");});
+}
+$("aBtn").onclick = animo;
+$("animoTop").onclick = function(){ animo(); $("animo").scrollIntoView({behavior:"smooth"}); };
+
+/* ---------- Termómetro ---------- */
+var MOODS = [
+  {e:"😌", n:"En calma", t:"¡Qué bueno! Aprovecha esta energía: tal vez hoy es buen día para dar un paso o animar a alguien más.", a:[["#accion","Descubre tu tipo de acción"],["#comunidad","Comparte una victoria"]]},
+  {e:"😟", n:"Preocupado o preocupada", t:"Tiene sentido: te importa lo que pasa. Respira un momento y luego busca algo concreto que sí esté en tus manos.", a:[["#respira","Respira conmigo"],["#noticias","Ver buenas noticias"]]},
+  {e:"😢", n:"Triste", t:"La tristeza por lo que se pierde también es amor por lo que existe. No la cargues sola o solo: háblalo con alguien.", a:[["#animo","Necesito ánimo"],["#musica","Escuchar música"]]},
+  {e:"😠", n:"Con coraje", t:"El coraje bien canalizado mueve montañas. Conviértelo en una propuesta, una carta o una acción con tu grupo.", a:[["#accion","Encuentra tu acción"],["cursos.html","Módulo 3: liderazgo"]]},
+  {e:"😵", n:"Abrumado o abrumada", t:"Es demasiado para una sola persona, y no tienes que resolverlo todo. Haz una pausa: un paso a la vez.", a:[["#respira","Hacer una pausa"],["#ecoansiedad","Entender lo que siento"]]},
+  {e:"🔥", n:"Con ganas de actuar", t:"¡Eso! Encuentra el tipo de acción que va contigo y date una fecha para empezar.", a:[["#accion","Mi tipo de acción"],["cursos.html","Ir a los cursos"]]}
+];
+$("moods").innerHTML = MOODS.map(function(m,i){return '<button type="button" data-i="'+i+'"><span>'+m.e+'</span>'+esc(m.n)+'</button>';}).join("");
+$("moods").onclick = function(e){
+  var b = e.target.closest("button"); if(!b) return;
+  [].forEach.call($("moods").children,function(x){x.classList.toggle("on",x===b);});
+  var m = MOODS[+b.dataset.i], o = $("moodOut");
+  o.innerHTML = "<p style='margin:0'>"+esc(m.t)+"</p><div class='acts'>"+m.a.map(function(a){return '<a class="btn btn-ghost" href="'+a[0]+'">'+esc(a[1])+'</a>';}).join("")+"</div>"+
+    "<p class='muted' style='margin:10px 0 0'>Si este sentimiento ya no te deja vivir tu día a día, <a href='#ayuda'>aquí puedes pedir ayuda</a>.</p>";
+  o.style.display = "block";
+};
+
+/* ---------- Respiración ---------- */
+var running = false;
+$("bBtn").onclick = function(){
+  if (running) return; running = true; this.disabled = true;
+  var b = $("bubble"), L = $("bLabel"), n = 0;
+  function cycle(){
+    if (n >= 5){ L.textContent = "Muy bien. ¿Cómo te sientes?"; b.classList.remove("big"); running=false; $("bBtn").disabled=false; $("bBtn").textContent="Otra vez"; return; }
+    n++; L.textContent = "Inhala… (" + n + " de 5)"; b.style.transitionDuration = "4s"; b.classList.add("big");
+    setTimeout(function(){ L.textContent = "Sostén"; }, 4000);
+    setTimeout(function(){ L.textContent = "Suelta el aire despacio…"; b.style.transitionDuration = "6s"; b.classList.remove("big"); }, 6000);
+    setTimeout(cycle, 12000);
+  }
+  cycle();
+};
+var PAUSAS = [
+  {ic:"🙆", n:"Suelta los hombros", t:"Súbelos hacia las orejas, sostén y déjalos caer. Repite y haz círculos lentos hacia atrás."},
+  {ic:"👀", n:"Descansa la mirada", t:"Despega los ojos de la pantalla y mira algo lejano. Si puedes, algo verde o el cielo."},
+  {ic:"💧", n:"Toma agua", t:"Levántate, sírvete un vaso de agua y tómalo despacio, sin hacer nada más."},
+  {ic:"🦶", n:"Siente tus pies", t:"Apoya los pies en el piso y nota su peso. Mueve los dedos. Estás aquí, ahora."},
+  {ic:"🤲", n:"Mueve las manos", t:"Abre y cierra las manos, gira las muñecas y estira los dedos hacia atrás con suavidad."},
+  {ic:"🙂", n:"Relaja la cara", t:"Afloja la mandíbula, separa los dientes y suaviza el entrecejo. Bosteza si te dan ganas."}
+];
+$("pausas").innerHTML = PAUSAS.map(function(p,i){return '<div class="pausa"><div class="ic">'+p.ic+'</div><strong>'+esc(p.n)+'</strong><div style="font-size:.9rem">'+esc(p.t)+'</div><button class="btn btn-light" data-i="'+i+'">30 segundos</button></div>';}).join("");
+$("pausas").onclick = function(e){
+  var b = e.target.closest("button"); if(!b || b.dataset.on) return;
+  var s = 30; b.dataset.on = 1; b.textContent = s + " s";
+  var t = setInterval(function(){ s--; b.textContent = s>0 ? s+" s" : "¡Listo! 🌿"; if(s<=0){clearInterval(t); setTimeout(function(){b.textContent="30 segundos"; delete b.dataset.on;},2500);} },1000);
+};
+
+/* ---------- Noticias ---------- */
+function src(o){ var u=safeUrl(o.url); return '<div class="src">Fuente: '+(u?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(o.fuente)+'</a>':esc(o.fuente))+(o.fecha?' · '+esc(o.fecha):'')+'</div>'; }
+if (D.semana && D.semana.titulo){
+  var s = D.semana;
+  $("semana").innerHTML = '<div class="semana"><span class="lbl">🌟 La buena de la semana · '+esc(s.lugar||"")+'</span><h3>'+esc(s.titulo)+'</h3><p>'+esc(s.texto)+'</p>'+src(s)+'</div>';
+}
+$("muro").innerHTML = (D.noticias||[]).map(function(n){return '<div class="news"><div class="ic">'+esc(n.icono||"🌱")+'</div><div class="meta">'+esc(n.lugar)+'</div><h4>'+esc(n.titulo)+'</h4><div>'+esc(n.texto)+'</div>'+src(n)+'</div>';}).join("") || '<div class="empty">Pronto, las primeras buenas noticias.</div>';
+$("volvieron").innerHTML = (D.volvieron||[]).map(function(n){return '<div class="news volv"><div class="ic">'+esc(n.icono||"🐾")+'</div><div class="meta">'+esc(n.lugar)+'</div><h4>'+esc(n.especie)+'</h4><div>'+esc(n.texto)+'</div>'+src(n)+'</div>';}).join("") || '<div class="empty">Pronto.</div>';
+
+/* ---------- Música (Spotify) ---------- */
+function spotify(u, h){
+  var m = String(u||"").match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(playlist|track|album|episode)\/([A-Za-z0-9]+)/);
+  if (!m) return "";
+  return '<iframe title="Spotify" src="https://open.spotify.com/embed/'+m[1]+'/'+m[2]+'" height="'+h+'" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
+}
+var cm = D.cancionMes || {};
+$("cancion").innerHTML = (spotify(cm.spotify,152) + (cm.porQue?'<p style="margin-top:10px">'+esc(cm.porQue)+'</p>':"")) || '<div class="empty">🎵 Muy pronto, la primera canción del mes.</div>';
+$("playlist").innerHTML = spotify(D.playlist,352) || '<div class="empty">🎧 Estamos armando la playlist del Refugio.</div>';
+
+/* ---------- Quiz ---------- */
+var PERF = {
+  voz:{g:"espiritu", n:"La voz que mueve", t:"Lo tuyo es comunicar: contar historias, hacer que otras personas entiendan y se sumen. Las campañas, las redes, el arte y la música son tu terreno.", a:"Prueba: hacer un carrusel o video sobre un problema de tu colonia, o mandar tu obra a la galería del Refugio."},
+  lupa:{g:"ajolote", n:"La lupa curiosa", t:"Te gusta entender a fondo, investigar y encontrar datos. Sin información confiable no hay buenas decisiones, y ahí entras tú.", a:"Prueba: pedir información pública a tu municipio o registrar especies de tu zona en NaturaLista."},
+  guardian:{g:"jaguar", n:"Guardián del territorio", t:"Te mueve cuidar con las manos: árboles, ríos, huertos, áreas verdes. Ves el cambio en el lugar donde vives.", a:"Prueba: organizar una jornada de limpieza o reforestación, o cuidar un área verde cerca de ti."},
+  puente:{g:"nutria", n:"El puente que une", t:"Sabes juntar personas, organizar y negociar. Conviertes ideas sueltas en planes y grupos que funcionan.", a:"Prueba: reunir a tres personas, elegir una causa y llevar una propuesta a tu escuela o municipio."}
+};
+var QS = [
+  {q:"Un sábado libre, prefieres…", o:[["Crear algo: un dibujo, un video, una canción","voz"],["Ver un documental o leer sobre un tema","lupa"],["Estar al aire libre haciendo algo con las manos","guardian"],["Organizar un plan con tus amistades","puente"]]},
+  {q:"En un trabajo en equipo, tú normalmente…", o:[["Presentas y explicas","voz"],["Investigas y buscas los datos","lupa"],["Haces la parte práctica","guardian"],["Repartes tareas y cuidas que todo avance","puente"]]},
+  {q:"¿Qué te enoja más de un problema ambiental?", o:[["Que nadie hable de él","voz"],["Que no haya información clara","lupa"],["Ver el daño en el lugar donde vivo","guardian"],["Que nadie se ponga de acuerdo para resolverlo","puente"]]},
+  {q:"Te dan un megáfono. Lo usas para…", o:[["Contar una historia que mueva corazones","voz"],["Compartir un dato que nadie conoce","lupa"],["Invitar a todos a una jornada de limpieza","guardian"],["Convocar a una reunión para hacer un plan","puente"]]},
+  {q:"¿Qué superpoder elegirías?", o:[["Que todas las personas te entiendan","voz"],["Saber la respuesta a cualquier pregunta","lupa"],["Hacer que las plantas crezcan","guardian"],["Poner de acuerdo a cualquier grupo","puente"]]},
+  {q:"Después de una acción, lo que más te llena es…", o:[["Que mucha gente lo vio y le importó","voz"],["Haber aprendido algo nuevo","lupa"],["Ver el lugar diferente","guardian"],["Que el grupo quiere seguir","puente"]]}
+];
+var ans = {};
+$("quiz").innerHTML = QS.map(function(q,i){return '<div class="q"><p>'+(i+1)+'. '+esc(q.q)+'</p><div class="opts" data-q="'+i+'">'+q.o.map(function(o,j){return '<button type="button" data-j="'+j+'">'+esc(o[0])+'</button>';}).join("")+'</div></div>';}).join("");
+$("quiz").onclick = function(e){
+  var b = e.target.closest("button"); if(!b) return; var box = b.parentNode, qi = +box.dataset.q;
+  [].forEach.call(box.children,function(x){x.classList.toggle("on",x===b);});
+  ans[qi] = QS[qi].o[+b.dataset.j][1];
+  $("qBtn").disabled = Object.keys(ans).length < QS.length;
+};
+$("qBtn").onclick = function(){
+  var c = {}; Object.keys(ans).forEach(function(k){c[ans[k]]=(c[ans[k]]||0)+1;});
+  var best = Object.keys(c).sort(function(a,b){return c[b]-c[a];})[0], p = PERF[best], g = G[p.g];
+  var r = $("qRes");
+  r.innerHTML = '<img src="'+g.img+'" alt="'+esc(g.n)+'"><div class="t"><div class="kicker">Tu tipo de acción</div><h3>'+esc(p.n)+'</h3><p>'+esc(p.t)+'</p><p><strong>'+esc(p.a)+'</strong></p><p class="muted" style="margin:0">Todos los tipos se necesitan, y puedes ser más de uno. Los grandes movimientos juntan a los cuatro.</p></div>';
+  r.style.display = "flex"; r.scrollIntoView({behavior:"smooth",block:"nearest"});
+};
+
+/* ---------- Comunidad ---------- */
+var cv = D.conversatorio || {};
+$("conv").innerHTML = cv.fecha
+  ? '<p><strong>'+esc(cv.tema||"Próximo conversatorio")+'</strong></p><p>📅 '+esc(cv.fecha)+(cv.plataforma?'<br>💻 '+esc(cv.plataforma):"")+'</p>'+(safeUrl(cv.registro)?'<a class="btn btn-primary" href="'+esc(cv.registro)+'" target="_blank" rel="noopener">Registrarme</a>':"")
+  : '<p>Un espacio en vivo para hablar de lo que sentimos y de lo que estamos haciendo, con otras personas jóvenes de la región.</p><div class="empty">Próximamente anunciaremos la primera fecha. Suscríbete al <a href="#boletin">boletín</a> para enterarte.</div>';
+var co = D.concurso || {};
+$("conc").innerHTML = co.tema
+  ? '<p>Tema del mes: <strong>'+esc(co.tema)+'</strong></p>'+(co.cierre?'<p>Cierre: '+esc(co.cierre)+'</p>':"")+(co.premio?'<p>Premio: '+esc(co.premio)+'</p>':"")+'<p class="muted">Participa con el formulario de la galería (elige «Participación en el concurso de dibujo»).</p>'
+  : '<p>Cada mes, un tema para dibujar lo que amamos de nuestro territorio.</p><div class="empty">El primer tema llega muy pronto.</div>';
+$("victorias").innerHTML = (D.victorias||[]).map(function(v){return '<div class="post">'+esc(v.texto)+'<div class="by">— '+esc(v.autor)+', '+esc(v.pais)+'</div></div>';}).join("") || '<div class="empty">Sé la primera persona en compartir una victoria.</div>';
+$("galeria").innerHTML = (D.galeria||[]).map(function(g){return '<div class="post"><img src="'+esc(g.img)+'" alt="'+esc(g.titulo)+'" loading="lazy"><strong>'+esc(g.titulo)+'</strong>'+(g.nota?'<div>'+esc(g.nota)+'</div>':"")+'<div class="by">— '+esc(g.autor)+', '+esc(g.pais)+'</div></div>';}).join("") || '<div class="empty">La galería espera su primera obra. ¿Será la tuya?</div>';
+$("textos").innerHTML = (D.textos||[]).map(function(t){return '<div class="post"><strong>'+esc(t.titulo)+'</strong><div style="white-space:pre-line;margin-top:6px">'+esc(t.texto)+'</div><div class="by">— '+esc(t.autor)+', '+esc(t.pais)+'</div></div>';}).join("") || '<div class="empty">Aquí vivirán los poemas y textos de la comunidad.</div>';
+
+/* ---------- Formularios → Google Sheets ---------- */
+[].forEach.call(document.querySelectorAll("form.f"), function(f){
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var data = {tipo:f.dataset.tipo, fecha:new Date().toISOString()};
+    [].forEach.call(f.elements,function(el){ if(!el.name) return; data[el.name] = el.type==="checkbox" ? (el.checked?"sí":"no") : el.value.trim(); });
+    if (f.dataset.tipo==="obra" && !data.enlace && !data.texto){ alertBox(f,"Agrega el enlace a tu obra o escribe tu texto."); return; }
+    var ok = f.querySelector(".ok"), btn = f.querySelector("button");
+    btn.disabled = true;
+    function done(){ ok.textContent = ok.dataset.msg || ok.textContent; ok.style.display="block"; ok.style.background=""; f.reset(); btn.disabled=false; }
+    if (!CFG.sheetsUrl){ done(); return; }
+    fetch(CFG.sheetsUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)}).then(done).catch(function(){ alertBox(f,"No se pudo enviar. Revisa tu conexión e inténtalo otra vez."); btn.disabled=false; });
+  });
+});
+function alertBox(f,msg){ var ok=f.querySelector(".ok"); if(!ok.dataset.msg) ok.dataset.msg=ok.textContent; ok.textContent=msg; ok.style.background="#fde8e4"; ok.style.display="block"; }
+})();
+</script>
+</body>
+</html>

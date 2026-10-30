@@ -10,13 +10,16 @@
  *   leccion       -> lección completada + valoración
  *   cuestionario  -> resultado del cuestionario final
  *   final         -> autoevaluación final + primer paso + plan de acción
+ *   boletin       -> suscripciones al boletín mensual (Refugio de líderes)
+ *   victoria      -> victorias que manda la comunidad (revísalas antes de publicar)
+ *   obra          -> arte, poemas, textos y concurso (revísalos antes de publicar)
  */
 
 /* Solo si creaste el proyecto desde script.google.com (Opción B):
    pega aquí el ID de tu hoja. Si lo abriste desde la hoja, déjalo vacío. */
 var ID_HOJA = "";
 
-var TIPOS_PERMITIDOS = ["inicio", "leccion", "cuestionario", "final"];
+var TIPOS_PERMITIDOS = ["inicio", "leccion", "cuestionario", "final", "boletin", "victoria", "obra"];
 var MAX_TEXTO = 1500;
 
 function doPost(e) {

@@ -627,9 +627,11 @@
       x.strokeStyle = "#cfad30"; x.lineWidth = 2; x.beginPath(); x.moveTo(400, 605); x.lineTo(1200, 605); x.stroke();
       t("por completar " + C.course.label + ": " + C.course.title, 675, "400 32px Poppins, sans-serif", "#1d2b2a");
       t(LESSONS.length + " lecciones · calificación final de " + Math.round(S.quiz.score * 100) + "%", 725, "300 26px Poppins, sans-serif", "#1d2b2a");
-      x.textAlign = "left"; x.font = "600 26px Poppins, sans-serif"; x.fillStyle = "#125d55"; x.fillText(CFG.certSigner || "", 170, 920);
-      x.font = "300 22px Poppins, sans-serif"; x.fillStyle = "#1d2b2a"; x.fillText(CFG.certSignerRole || "", 170, 955);
+      if (firma.complete && firma.naturalWidth) { var fh = 95, fw = Math.min(420, firma.naturalWidth * fh / firma.naturalHeight); x.drawImage(firma, 395 - fw / 2, 878 - fh, fw, fh); }
       x.strokeStyle = "#125d55"; x.lineWidth = 2; x.beginPath(); x.moveTo(170, 880); x.lineTo(620, 880); x.stroke();
+      x.textAlign = "center"; x.font = "600 26px Poppins, sans-serif"; x.fillStyle = "#125d55"; x.fillText(CFG.certSigner || "", 395, 918);
+      x.font = "300 22px Poppins, sans-serif"; x.fillStyle = "#1d2b2a"; x.fillText(CFG.certSignerRole || "", 395, 952);
+      if (seal.complete && seal.naturalWidth) { x.save(); x.globalAlpha = 0.9; x.beginPath(); x.arc(W / 2 + 40, 900, 58, 0, Math.PI * 2); x.clip(); x.drawImage(seal, W / 2 - 18, 842, 116, 116); x.restore(); x.strokeStyle = "#cfad30"; x.lineWidth = 3; x.beginPath(); x.arc(W / 2 + 40, 900, 60, 0, Math.PI * 2); x.stroke(); }
       x.textAlign = "right"; x.fillText(dt, W - 170, 920); x.fillText("Folio: " + S.cert.code, W - 170, 955);
       var url; try { url = cv.toDataURL("image/png"); } catch (e) { url = null; }
       document.getElementById("dl").innerHTML = '<div class="nav">' + (url ? '<a class="btn btn-primary" download="Xlatierra_Certificado_' + C.course.id + '.png" href="' + url + '">Descargar certificado</a>' : '') +
@@ -644,7 +646,11 @@
     var logo = new Image();
     logo.onload = function () { var h = 170, w = logo.width * h / logo.height; x.drawImage(logo, W / 2 - w / 2, 110, w, h); text(); };
     logo.onerror = function () { t("XLATIERRA", 260, "700 64px Caudex, serif", "#125d55"); text(); };
-    logo.src = "img/logo-rectangular.png";
+    var seal = new Image();
+    var firma = new Image();
+    firma.onload = firma.onerror = function () { logo.src = "img/logo-rectangular.png"; };
+    seal.onload = seal.onerror = function () { firma.src = "img/firma.png"; };
+    seal.src = "img/logo-circular.png";
   }
 
   /* ---------- Arranque ---------- */

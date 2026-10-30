@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyectos · Xlatierra</title>
+<meta name="description" content="Directorio de proyectos e iniciativas ambientales y climáticas de jóvenes en América Latina. Próximamente.">
+<link rel="icon" href="img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<style>
+.page{padding:36px 16px 50px}
+.kicker{font-weight:600;color:var(--terra);text-transform:uppercase;font-size:.8rem;letter-spacing:.08em;margin-bottom:6px}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:22px}
+.mod{background:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.mod-top{padding:22px 22px 0;display:flex;gap:14px;align-items:flex-end;min-height:150px;color:#fff}
+.mod-top img{width:130px;height:130px;object-fit:contain;margin-left:auto;margin-bottom:-6px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+.mod-top .lbl{font-weight:600;font-size:.8rem;background:rgba(255,255,255,.2);padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:8px}
+.mod-top h2{color:#fff;margin:0 0 12px;font-size:1.45rem}
+.m1 .mod-top{background:linear-gradient(130deg,#125d55,#3a8b80)}
+.m2 .mod-top{background:linear-gradient(130deg,#b25b5d,#d08a6e)}
+.mod-b{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1}
+.mod-b ul{padding-left:18px;margin:6px 0 14px}
+.mod-b li{margin-bottom:4px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tags span{background:var(--soft);color:var(--teal);border-radius:999px;padding:4px 12px;font-size:.82rem}
+.mod-b .btn{margin-top:auto;align-self:flex-start}
+.prog{font-size:.85rem;color:var(--muted);margin:-4px 0 12px}
+.extra{display:flex;gap:18px;align-items:center;background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:20px 22px;margin-top:22px;border:2px dashed var(--gold)}
+.extra .ic{font-size:2.6rem}
+.extra .pill{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px}
+@media(max-width:640px){.extra{flex-direction:column;align-items:flex-start}}
+.maps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:22px}
+.mapc{background:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:2px solid transparent;transition:border-color .15s}
+.mapc:hover{border-color:var(--blue)}
+.mapc-top{position:relative;height:170px;background:radial-gradient(circle at 40% 35%,#cfe5dc,#9cc7c0 60%,#76a8b8);overflow:hidden}
+.mapc-top .pin{position:absolute;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);font-size:15px}
+.mapc-top img{position:absolute;right:12px;bottom:-4px;height:150px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+.mapc-b{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1}
+.mapc-b .lbl{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px;margin-bottom:8px;align-self:flex-start}
+.mapc-b h2{margin:0 0 6px;font-size:1.35rem}
+.mapc-b .btn{margin-top:auto;align-self:flex-start}
+.soon-map{border:2px dashed var(--line);box-shadow:none;background:#fbf8f1;cursor:default}
+.soon-map:hover{border-color:var(--line)}
+
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:22px}
+.pc{background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;gap:6px}
+.pc .ic{font-size:2.2rem}
+.pc h2{margin:4px 0;font-size:1.25rem}
+.pc .lbl{display:inline-block;background:#fbf1d6;color:#8a6a00;font-weight:600;font-size:.75rem;padding:2px 10px;border-radius:999px;align-self:flex-start}
+.ficha-demo{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:8px}
+.ficha-demo span{background:var(--soft);color:var(--teal);border-radius:12px;padding:8px 12px;font-size:.88rem}
+.hero-p{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.hero-p img{width:170px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+@media(max-width:640px){.hero-p img{width:120px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo-rectangular.png" alt="Xlatierra"></a>
+    <nav>
+      <a href="index.html" class="hide-sm">Inicio</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="mapas.html" class="hide-sm">Mapas</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="refugio.html" class="hide-sm">Refugio</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap page">
+  <div class="hero-p">
+    <div style="flex:1;min-width:260px">
+      <div class="kicker">Próximamente</div>
+      <h1>Proyectos</h1>
+      <p style="max-width:720px">Aquí vivirá un directorio de proyectos e iniciativas ambientales y climáticas de América Latina, para que encuentres a quién sumarte, en qué inspirarte o con quién colaborar. Lo estamos construyendo con calma para que cada proyecto esté bien identificado y verificado.</p>
+    </div>
+    <img src="img/pose-nutria-feliz.png" alt="Lontra, la nutria de Xlatierra">
+  </div>
+  <div class="plan">
+    <div class="pc"><div class="ic">🗺️</div><span class="lbl">En construcción</span><h2>Mapa de proyectos</h2>
+      <p>Cada proyecto en su lugar, para ver qué está pasando cerca de ti y en toda la región.</p></div>
+    <div class="pc"><div class="ic">📇</div><span class="lbl">En construcción</span><h2>Directorio</h2>
+      <p>Con filtros para buscar por país, tema y forma de participar.</p></div>
+    <div class="pc"><div class="ic">🌱</div><span class="lbl">En construcción</span><h2>Suma tu proyecto</h2>
+      <p>Más adelante podrás proponer tu iniciativa para que aparezca aquí.</p></div>
+  </div>
+  <div class="pc" style="margin-top:22px">
+    <h2>Lo que tendrá cada ficha</h2>
+    <div class="ficha-demo">
+      <span>📍 País y ciudad</span><span>🏷️ Tema</span><span>👥 Quién lo impulsa</span><span>🎯 Qué hace</span><span>🤝 Cómo sumarte</span><span>🔗 Enlace oficial</span><span>✅ Fecha de verificación</span>
+    </div>
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div><strong>Xlatierra</strong><br>Educación climática en español, para jóvenes de América Latina.<br><small style="opacity:.8">© 2026 Xlatierra · Ana Cecilia Licéaga Gutiérrez. Todos los derechos reservados. Las fotos y fuentes externas pertenecen a sus autores.</small></div>
+    <div><a href="index.html">Inicio</a></div>
+  </div>
+</footer>
+</body>
+</html>

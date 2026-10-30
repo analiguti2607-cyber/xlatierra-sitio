@@ -12,7 +12,8 @@ window.XLT_CONFIG = {
   /* Porcentaje mínimo para aprobar el cuestionario final (0.7 = 70%) */
   passScore: 0.7,
 
-  /* Quién firma el certificado */
+  /* Quién firma el certificado. La firma se toma de img/firma.png
+     (si ese archivo no existe, el certificado sale sin firma, solo con el nombre). */
   certSigner: "Ana Cecilia Licéaga Gutiérrez",
   certSignerRole: "Fundadora de Xlatierra",
 
