@@ -271,6 +271,29 @@ lessons: [
   ]},
 
 /* ============================ UNIDAD 3 ============================ */
+{ id:"l7n", unit:"u2", title:"La naturaleza ya lo resolvió: agua de la niebla", time:"5 min",
+  refs:["parker2001","sciam_beetle","general"],
+  blocks:[
+  {t:"p", html:"Cada especie es el resultado de millones de años de pruebas y ajustes. Por eso guardan soluciones a problemas que las personas apenas estamos aprendiendo a resolver."},
+  {t:"h", text:"🌿 El problema"},
+  {t:"p", html:"¿Cómo conseguir agua en un lugar donde casi nunca llueve?"},
+  {t:"h", text:"🪲 Cómo lo resuelve el escarabajo del Namib"},
+  {t:"p", html:"En el desierto de Namib, en África, vive un escarabajo del género <em>Stenocara</em>. Su caparazón está cubierto de pequeñas protuberancias:"},
+  {t:"list", items:[
+    "💧 Las <strong>puntas</strong> atraen el agua.",
+    "🕯️ Los <strong>lados y los valles</strong>, cubiertos de cera, la repelen.",
+    "🌫️ Cuando llega la niebla, las gotitas se forman en las puntas, crecen y, al soltarse, <strong>ruedan directo hacia su boca</strong>."
+  ]},
+  {t:"p", html:"Lo describieron los científicos Andrew Parker y Chris Lawrence en la revista <em>Nature</em>, en 2001."},
+  {t:"h", text:"🧑‍🔬 Cómo lo usamos las personas"},
+  {t:"p", html:"Su caparazón inspiró ideas para captar agua de la niebla: dispositivos de captación, cubiertas de tiendas y edificios que atrapen agua y sistemas para conseguir agua para beber y cultivar en regiones sin lluvia."},
+  {t:"guess", q:"¿Qué hace posible que el escarabajo junte agua de la niebla?",
+   o:["Que bebe de los ríos del desierto","Que su caparazón combina puntas que atraen el agua con zonas que la repelen","Que guarda agua debajo de la arena"], a:1, e:"La combinación de puntas que atraen el agua y zonas cerosas que la repelen forma gotas que ruedan hacia su boca."},
+  {t:"h", text:"🌎 Lo que nos enseña"},
+  {t:"p", html:"Si este escarabajo desapareciera, perderíamos también una idea que nos ayudó a pensar cómo conseguir agua. <strong>Cada especie que se pierde es una solución que quizá nunca vamos a conocer.</strong> Proteger la biodiversidad también es proteger nuestra capacidad de enfrentar el futuro."},
+  {t:"reflect", id:"r7n", q:"¿Qué especie de tu región te gustaría observar con calma para descubrir qué «inventos» tiene?"}
+  ]},
+
 { id:"l8", unit:"u3", title:"¿Por qué se está perdiendo?", time:"9 min",
   refs:["ipbes2018","ipbes2018prensa","wwf2024"],
   blocks:[
@@ -537,6 +560,8 @@ resources: [
 /* ===================== REFERENCIAS ===================== */
 refsNote: "<strong>Cómo revisamos las fuentes.</strong> Cada dato numérico de este módulo se comparó con su fuente original (no con resúmenes). Lo que viene de conocimiento general de biología o ecología está marcado como tal en la lección y será revisado por especialistas. Las categorías de riesgo de las especies cambian: verifica siempre la versión más reciente.",
 refs: {
+  parker2001: {short:"Parker y Lawrence, 2001", text:"Parker, A. R. y Lawrence, C. R. (2001). Water capture by a desert beetle. <em>Nature</em>, 414, 33-34.", url:"https://doi.org/10.1038/35102108"},
+  sciam_beetle: {short:"Scientific American", text:"Wong, K. (s. f.). <em>Desert-dwelling beetle sports a fog-collecting coat</em>. Scientific American.", url:"https://www.scientificamerican.com/article/desert-dwelling-beetle-sp/"},
   cdb1992: {short:"CDB, 1992", text:"Naciones Unidas (1992). <em>Convenio sobre la Diversidad Biológica</em>, artículo 2.", url:"https://www.cbd.int/doc/legal/cbd-es.pdf"},
   kmgbf2022: {short:"CDB, 2022", text:"Convenio sobre la Diversidad Biológica (2022). Decisión 15/4. <em>Marco Mundial de Biodiversidad de Kunming-Montreal</em>. Meta 3. Consultado en la guía de la UICN (2024).", url:"https://iucn.org/sites/default/files/2024-06/meta-3-guia-final-es.pdf"},
   ipbes2018: {short:"IPBES, 2018", text:"IPBES (2018). <em>Resumen para los responsables de formular políticas del informe de evaluación regional sobre la diversidad biológica y los servicios de los ecosistemas para las Américas</em>. Rice, J., Seixas, C. S., Zaccagnini, M. E. et al. (eds.). Secretaría de la IPBES, Bonn. Mensajes clave A1, A4 y B2; sección B.", url:"https://www.ipbes.net/assessment-reports/americas"},

@@ -11,8 +11,12 @@ Publicado gratis con **GitHub Pages** desde el repositorio `xlatierra-sitio` (ra
 | `mapas.html` | Catálogo de mapas | Solo si agregas un mapa |
 | `curso.html` | Página del Módulo 1 | No |
 | `biodiversidad.html` | Página del Módulo 2 | No |
+| `liderazgo.html` | Página del Módulo 3 | No |
 | `contenido.js` | **Textos del Módulo 1**: lecciones, actividades, cuestionario, recursos, referencias | **Sí, aquí cambias contenido** |
 | `contenido-m2.js` | **Textos del Módulo 2**, fichas de especies y referencias | **Sí** |
+| `contenido-m3.js` | **Textos del Módulo 3** (liderazgo y acción climática juvenil) | **Sí** |
+| `refugio.html` + `refugio-datos.js` | Refugio de líderes: buenas noticias, música, mensajes de ánimo, galería | Los contenidos, en `refugio-datos.js` |
+| `proyectos.html` | Directorio de proyectos (próximamente) | Sí |
 | `mapa.html` + `mapa-datos.js` | Mapa de biodiversidad de América Latina (Módulo 2) | Los datos, en `mapa-datos.js` |
 | `mapa-mexico.html` + `mapa-mexico-datos.js` | Mapa de impactos en México (Módulo 1) | Los datos, en `mapa-mexico-datos.js` |
 | `config.js` | URL de Google Sheets, nombre de quien firma el certificado, calificación mínima | Sí |

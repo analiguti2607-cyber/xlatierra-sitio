@@ -374,7 +374,7 @@
     function ok() { return Object.keys(st).filter(function (k) { return st[k] === b.cards[k].a; }).length; }
     function finish() {
       var n = ok(); S.guess[key] = n; S.guess[key + "_ok"] = n >= Math.ceil(b.cards.length * 0.6); save(); check();
-      card.innerHTML = '<div class="deck-end"><b>' + n + ' de ' + b.cards.length + '</b><span>' + (n === b.cards.length ? '¡Perfecto! Tu kit funciona.' : 'Bien. Repasa las que fallaste: así se entrena el ojo.') + '</span>' +
+      card.innerHTML = '<div class="deck-end"><b>' + n + ' de ' + b.cards.length + '</b><span>' + (n === b.cards.length ? (b.win || '¡Perfecto! Tu kit funciona.') : (b.retry || 'Bien. Repasa las que fallaste: así se entrena el ojo.')) + '</span>' +
         '<ol>' + b.cards.map(function (c, k) { return '<li class="' + (st[k] === c.a ? 'ok' : 'bad') + '"><strong>' + b.labels[c.a] + ':</strong> «' + c.t + '»</li>'; }).join("") + '</ol>' +
         '<button type="button" class="btn btn-ghost" data-again="1">Jugar otra vez</button></div>';
       card.querySelector("[data-again]").onclick = function () { st = {}; i = 0; show(); };

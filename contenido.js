@@ -579,6 +579,32 @@ lessons: [
   sources:"Gobierno de México, NDC 3.0 (2025); PNUD, NDC 3.0 en ALC; IPCC AR6 GT3 y Síntesis; UNICEF; investigación Xlatierra, Módulo 1 (soluciones) y de escritorio (Veracruz, EDOMEX)."
 },
 
+{ id:"l14n", unit:"u4", title:"La naturaleza ya lo resolvió: edificios que respiran", time:"5 min",
+  refs:["asknature_eastgate"],
+  blocks:[
+  {t:"p", html:"La naturaleza lleva millones de años resolviendo problemas. Observarla nos da ideas para mitigar y adaptarnos al cambio climático."},
+  {t:"h", text:"🌿 El problema"},
+  {t:"p", html:"Con más calor, más edificios usan aire acondicionado. Eso gasta mucha energía y, si esa energía viene de combustibles fósiles, genera más emisiones. ¿Cómo mantener fresco un edificio gastando menos?"},
+  {t:"h", text:"🐜 La inspiración: los termiteros"},
+  {t:"p", html:"Algunas termitas construyen montículos enormes llenos de túneles y chimeneas por donde circula el aire. Durante años se pensó que funcionaban como un aire acondicionado natural que mantenía estable la temperatura. Investigaciones más recientes muestran que funcionan más bien como <strong>pulmones</strong>: sirven sobre todo para que el nido «respire»."},
+  {t:"h", text:"🏢 La solución humana"},
+  {t:"p", html:"Inspirado en los termiteros, el arquitecto Mick Pearce diseñó el <strong>Eastgate Centre</strong> en Harare, Zimbabue, un edificio <strong>sin aire acondicionado convencional</strong>:"},
+  {t:"list", items:[
+    "🧱 Sus materiales guardan el calor durante el día y lo sueltan en la noche, con ayuda de ventiladores.",
+    "🌬️ El calor de las personas y los equipos empuja el aire caliente hacia chimeneas en el techo, y el viento de afuera ayuda a ventilar.",
+    "💰 Al no instalar un sistema de aire acondicionado, la construcción costó alrededor de 10% menos."
+  ]},
+  {t:"guess", q:"Según lo que se sabe hoy, ¿cómo funcionan principalmente los termiteros?",
+   o:["Como un aire acondicionado que mantiene siempre la misma temperatura","Más bien como pulmones, para el intercambio de gases","Como depósitos de agua"], a:1, e:"La idea del «aire acondicionado natural» inspiró el edificio, pero la ciencia siguió investigando y hoy se sabe que funcionan más como pulmones. Una buena idea puede nacer de una explicación incompleta, y la ciencia siempre sigue aprendiendo."},
+  {t:"h", text:"🌎 Lo que nos enseña"},
+  {t:"list", items:[
+    "❄️ <strong>Diseñar con la naturaleza</strong> puede reducir la energía que gastamos: eso es mitigación.",
+    "🏫 Escuelas y casas más frescas sin depender del aire acondicionado nos ayudan a enfrentar las olas de calor: eso es adaptación.",
+    "🔍 Observar con curiosidad lo que ya existe es una forma poderosa de encontrar soluciones."
+  ]},
+  {t:"reflect", id:"r14n", q:"¿Qué lugar de tu escuela o tu casa se calienta demasiado? ¿Qué idea de la naturaleza podría ayudar a refrescarlo?"}
+  ]},
+
 { id:"l14b", unit:"u4", soon:true, title:"Saberes indígenas y cambio climático", note:"La estamos construyendo con y desde las voces de los pueblos indígenas"},
 
 { id:"l15", unit:"u4", title:"De la preocupación a la acción", time:"10 min",
@@ -629,6 +655,7 @@ lessons: [
 /* ===================== REFERENCIAS ===================== */
 refsNote: "<strong>Cómo usamos las fuentes.</strong> Las cifras de este módulo vienen de la investigación de Xlatierra (Módulo 1) y de fuentes externas aprobadas. Cada lección muestra al final sus fuentes. Si encuentras un error, escríbenos.",
 refs: {
+  asknature_eastgate: {short:"AskNature", text:"The Biomimicry Institute (s. f.). <em>Eastgate Centre</em>. AskNature.", url:"https://asknature.org/idea/eastgate-centre/"},
   ipcc_wg1: {short:"IPCC AR6 GT1, 2021", text:"IPCC (2021). <em>Cambio climático 2021: Bases físicas. Resumen para responsables de políticas</em>. Contribución del Grupo de Trabajo I al Sexto Informe de Evaluación.", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WG1_SPM_Spanish.pdf"},
   ipcc_wg2_todos: {short:"IPCC AR6 GT2, 2022", text:"IPCC (2022). <em>Cambio climático 2022: Impactos, adaptación y vulnerabilidad. Resumen para todos</em>.", url:"https://www.iai.int/administrador/assets/images/ckfinder/files/IPCC_AR6_WGII_ResumenParaTodos_Impactos%20(1).pdf"},
   ipcc_wg3: {short:"IPCC AR6 GT3, 2022", text:"IPCC (2022). <em>Cambio climático 2022: Mitigación del cambio climático. Resumen para responsables de políticas</em> (sección C.1.1: −43% de GEI y −48% de CO₂ al 2030 respecto a 2019).", url:"https://www.ipcc.ch/report/ar6/wg3/"},
