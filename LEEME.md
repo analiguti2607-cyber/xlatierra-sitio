@@ -56,3 +56,9 @@ El avance se guarda en el navegador de cada persona y en esta dirección del sit
 de dispositivo, borra los datos del navegador o el sitio cambia de dirección, empieza de nuevo.
 Para guardar el avance entre dispositivos haría falta un sistema de cuentas; se puede agregar
 en una siguiente versión.
+
+
+## Módulo 4 · Cuidar cada gota (30 oct 2026)
+- Página: `agua.html` · contenido: `contenido-m4.js` (13 lecciones + l6b «El agua y los pueblos indígenas», próximamente).
+- `app.js`: el juego «order» acepta `seq:true` (ordenar pasos, sin barras) y `hint`.
+- Pendientes: testimonio para el módulo (proponerlo con UNICEF); mapa para la lección de pueblos indígenas; enlace exacto del visor de disponibilidad de acuíferos de CONAGUA (hoy la lección 2 enlaza a gob.mx/conagua).

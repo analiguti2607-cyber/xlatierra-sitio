@@ -17,8 +17,8 @@ window.XLT_REFUGIO = {
      sin sesión, Spotify solo deja escuchar un fragmento. */
   playlist: "",
   cancionMes: {
-    spotify: "",            // enlace de la canción en Spotify
-    porQue: ""              // una o dos frases sobre por qué la elegiste
+    spotify: "https://open.spotify.com/track/3T07pNAEVr9adeIG9i1ex4",   // «Color esperanza», Diego Torres
+    porQue: "Para estrenar el Refugio con un clásico que nos recuerda que la esperanza también se elige, todos los días, y que se contagia."
   },
 
   /* ---------- LA BUENA DE LA SEMANA ----------

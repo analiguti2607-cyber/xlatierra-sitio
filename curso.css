@@ -204,3 +204,4 @@ details.refs li,.reflist li{margin:8px 0;line-height:1.45}
 .gh-ticks{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted)}
 .gh-info{background:var(--soft);border-radius:12px;padding:10px 14px;margin-top:10px;font-size:.93rem}
 .c-cv{width:100%;max-width:420px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.12);margin:16px auto;display:block}
+.o-row.o-seq{grid-template-columns:1fr}

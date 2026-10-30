@@ -412,10 +412,10 @@
         pool.appendChild(bt);
       });
       pickd.forEach(function (k, pos) { list.appendChild(el('<li>' + b.items[k].icon + ' ' + b.items[k].n + '</li>').firstChild); });
-      if (pickd.length < b.items.length) { pool.insertAdjacentHTML("afterbegin", '<p class="hint" style="width:100%;margin:0">' + (pickd.length ? 'Sigue: ¿cuál va en el lugar ' + (pickd.length + 1) + '?' : 'Toca primero el que crees que emite MÁS.') + '</p>'); res.innerHTML = ""; return; }
+      if (pickd.length < b.items.length) { pool.insertAdjacentHTML("afterbegin", '<p class="hint" style="width:100%;margin:0">' + (pickd.length ? 'Sigue: ¿cuál va en el lugar ' + (pickd.length + 1) + '?' : (b.hint || 'Toca primero el que crees que emite MÁS.')) + '</p>'); res.innerHTML = ""; return; }
       var hits = pickd.filter(function (k, pos) { return correct[pos] === k; }).length, max = b.items[correct[0]].v;
       res.innerHTML = '<div class="exp"><strong>Acertaste ' + hits + ' de ' + b.items.length + ' posiciones.</strong> Este es el orden real:</div>' +
-        '<div class="o-bars">' + correct.map(function (k, pos) { var it = b.items[k], mine = pickd.indexOf(k); return '<div class="o-row"><span class="o-n">' + (pos + 1) + '. ' + it.icon + ' ' + it.n + (mine === pos ? ' ✅' : ' <small>(tú: ' + (mine + 1) + '.º)</small>') + '</span><span class="o-bar"><i style="width:' + (it.v / max * 100) + '%"></i></span><b>' + it.v + b.unit + '</b></div>'; }).join("") + '</div>' +
+        '<div class="o-bars">' + correct.map(function (k, pos) { var it = b.items[k], mine = pickd.indexOf(k); return '<div class="o-row' + (b.seq ? ' o-seq' : '') + '"><span class="o-n">' + (pos + 1) + '. ' + it.icon + ' ' + it.n + (mine === pos ? ' ✅' : ' <small>(tú: ' + (mine + 1) + '.º)</small>') + '</span>' + (b.seq ? '' : '<span class="o-bar"><i style="width:' + (it.v / max * 100) + '%"></i></span><b>' + it.v + b.unit + '</b>') + '</div>'; }).join("") + '</div>' +
         (b.done ? '<p class="hint" style="margin-top:8px">' + b.done + '</p>' : '');
       if (S.guess[key] === undefined) { S.guess[key] = hits; S.guess[key + "_ok"] = hits >= 3; save(); check(); }
     }

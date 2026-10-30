@@ -129,3 +129,41 @@ Se cargan desde Wikimedia Commons. Oso andino, nutria y carey quedaron sin foto 
 
 ## Actividades que solo reorganizan datos ya aprobados
 «¿Clima o tiempo?», «La cobija del planeta», «¿Mito o dato?», «¿Mitigar o adaptarnos?», «Tu tarjeta de compromiso» y el «Mapa de impactos en México» usan solo información que ya estaba en el Módulo 1. Ubicaciones del mapa: aproximadas.
+
+## Verificación con el PDF de la NDC 3.0 (30/10/2026) ✅
+| Dato | Resultado | Página |
+|---|---|---|
+| 3.2 °C por siglo (mundo 2 °C) | ✅ | 20 |
+| 15% del territorio en estado crítico de disponibilidad de agua; hasta −21% de agua superficial a 2050 | ✅ | 68 |
+| −21% a 2050 y −34% a 2100 | ✅ | 82 |
+| 464 kcal menos por persona al día hacia 2100; 26,752 mdp por sequía histórica | ✅ | 68 y 73 |
+| 25% del PIB de 2024 en pérdidas acumuladas | ✅ | 68 |
+| 86% de municipios con sequía (junio 2024); 64% de estrés hídrico (2025), cerca del 70% de la población; 2,832,583 ha siniestradas (2018–2023); más de 11,000 km de litoral; Otis 2023 | ✅ | 92 |
+| El Bosque, Tabasco | ✅ | 100 |
+| Golfo de México: nivel del mar 44% superior a la media mundial | ✅ | 101 |
+| 984 muertes en 2023 (+98% vs 2022); 88,910 mdp = 0.3% del PIB | ✅ | 103 |
+| 18 estados suspendieron clases por calor (2023) | ✅ | 149 |
+| **1.69 °C** desde inicios del siglo XX | ❌ No está en la NDC → reemplazado por 3.2 °C por siglo | — |
+| **Días secos de ~70 a ~80** | ❌ No está en la NDC → eliminado | — |
+| **2.4 mm por año** (Golfo) | ❌ No está en la NDC → eliminado | — |
+| **3 millones de desplazados en México a 2050** | ❌ No está; la NDC cita 9.4–17.1 millones en América Latina (Banco Mundial) → reemplazado | 151 |
+
+**Ajuste de redacción (30/10/2026):** la NDC (p. 103) dice «984 defunciones relacionadas con desastres», no específicamente «hidrometeorológicos». Se corrigió la frase en la lección 8 y en el mapa de México.
+
+## Módulo 4 · Cuidar cada gota (aprobado el 30 de octubre de 2026)
+
+Detalle completo, con citas y páginas, en el doc «Módulo 4 · Verificación de datos».
+
+- NDC 3.0 (pp. del PDF 34, 68, 82, 92): escorrentía −8 a −12 %; disponibilidad superficial −21 % (2050) y −34 % (2100); 15 % del territorio en estado crítico; 86 % de municipios con sequía (jun 2024); estrés hídrico 64 % del territorio / 70 % de la población (2025); 2,832,583 ha siniestradas 2018–2023; mujeres 52.9 % de pobreza extrema rural.
+- CONAGUA, Estadísticas del Agua en México 2023 (pp. impresas 23, 24, 36, 52, 79, 85, 120, 126, 215): 37 regiones hidrológicas; 653 acuíferos; 111 sobreexplotados (2020); 56.7 % del abastecimiento público es subterráneo; Cutzamala 447 hm³ en 2022 (276 CDMX, 171 Edomex), 17 % del agua del Valle de México y subsuelo 68 %; presión 128.6 % en Aguas del Valle de México (nacional 19.5 %); sequía 2011–2013 en 90 % del territorio; 66.7 % de agua residual municipal tratada en 2022 (2,774 plantas); «2 de cada 3 hogares» = dato mundial.
+- UNICEF México (pp. del PDF 49, 78, 131): 22.2 % escuelas básicas y 25.5 % media superior sin agua potable (SEP 2023); Escuelas con Trayectoria Ambiental (desde 2022); colectivos juveniles (sin «Ciencia Mágica»).
+- ONU: A/RES/64/292 (28 jul 2010); Informe Mundial del Agua 2026: 250 millones de horas al día, 2,100 millones sin agua potable segura; Informe ODS 2026: 56 % de aguas residuales domésticas tratadas de forma segura (2024); OMS/UNICEF JMP 2025: 3,400 millones sin saneamiento seguro (2024).
+- Ley General de Aguas, DOF 11 dic 2025: arts. 6, 9, 15, 34 (promueve captación), 40; LAN arts. 4 y 22.
+- IPCC AR6 WGII cap. 12 (pp. 1691, 1702): Andes −30 a >50 % de área glaciar desde los 80; ciudades dependientes del deshielo con suministro muy variable. Viviroli et al. 2020: ~1,500 millones dependerán del agua de montaña.
+- SEDEMA Cosecha de Lluvia 2023: 62,756 sistemas/hogares en 9 alcaldías; preocupación por agua 59 % → 26 %; usos ropa 84 %, excusado 82.4 %, patio 79.6 %. SEDEMA (ago 2024, La Crónica): 2,338 sistemas en escuelas, 918 millones de L/año, 1.3 millones de personas.
+- Parque Inundable Víctor Jara (Santiago, MOP): ~3 km construidos. Parque de Lluvia Solidaridad (CAF 2026): proyecto conceptual; pérdida de 16–21 m³/s de lluvia en la subcuenca de Xochimilco.
+- Windhoek: planta Goreangab desde 1968.
+- No usar: datos de la «Evaluación sistémica», «20 a 60 % desde 1985», proyecciones de masa glaciar por escenario, 80 % de aguas residuales sin tratar (2017).
+- Glaciares de México (agregado el 30 oct): C3 UNAM, 19 ene 2025 (Hugo Delgado Granados, Instituto de Geofísica): área total < 1 km²; Pico de Orizaba 3 km² (1958) → 0.370 km²; Iztaccíhuatl 0.110 km²; Ayoloco desapareció en 2018 (placa). Universidad Veracruzana, ene 2025 (Víctor Soto, CCT): Glaciar Norte 0.46 → 0.37 km² (2019–2024), ~24,500 m²/año desde 1958; la fecha de desaparición no se puede pronosticar.
+- LGA art. 15, fr. VI: la falta de agua en escuelas u hogares no debe impedir a niñas, niños y adolescentes ejercer sus derechos; acceso prioritario al agua para una menstruación digna.
+- Nota: el PDF «Reporte Mexicano de Cambio Climático, vol. III» trata de emisiones y mitigación; no tiene datos de glaciares.
