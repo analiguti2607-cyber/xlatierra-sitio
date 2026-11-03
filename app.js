@@ -254,7 +254,7 @@
 
   /* ---------- Fotos, fichas, referencias ---------- */
   function figure(b) {
-    return '<figure class="fig"><img src="' + b.src + '" alt="' + esc(b.alt || "") + '" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')"><figcaption>' + (b.cap ? b.cap + '<br>' : '') +
+    return '<figure class="fig"><img src="' + b.src + '" alt="' + esc(b.alt || "") + '"' + (b.pos ? ' style="object-position:' + b.pos + '"' : '') + ' loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')"><figcaption>' + (b.cap ? b.cap + '<br>' : '') +
       '<span class="credit">📷 ' + b.credit + ' · <a href="' + b.link + '" target="_blank" rel="noopener">' + b.license + '</a> · Foto real con licencia libre</span></figcaption></figure>';
   }
   function badge(kind, v) {

@@ -109,7 +109,10 @@ Neotenia del ajolote; por qué la región es tan diversa (trópicos, montañas, 
 | Delfín de río boliviano | Ramon y Suzanne Vargas (iNaturalist) | CC BY-SA 4.0 |
 | Vaquitas | Paula Olson / NOAA | Dominio público |
 | Quetzal | Francesco Veronesi | CC BY-SA 2.0 |
-Se cargan desde Wikimedia Commons. Oso andino, nutria y carey quedaron sin foto (marcado «Foto pendiente»).
+| Nutria de río neotropical (*Lontra longicaudis*) | Anthony Batista | CC BY 4.0 |
+| Oso andino, zoológico de Duisburg | Anil Öztas / Zoo Duisburg | Licencia Arte Libre (FAL) |
+| Tortuga carey, islas Ad Dimaniyat (Omán) | Diego Delso | CC BY-SA 4.0 |
+Se cargan desde Wikimedia Commons. Nutria y oso agregados el 2 nov (elegidos por Ana Ceci). Carey agregada el 2 nov. Todas las fichas tienen foto.
 
 ---
 
@@ -183,3 +186,4 @@ Se dejaron de citar la «investigación de escritorio» y la «investigación do
   - 0.5% de publicaciones de ciencias naturales en español: solo aparece en Wikipedia sin fuente. Sigue fuera.
   - Estado de México pionero en currículo climático: no se encontró. El IEECC tiene el programa «Escuelas por el Clima» (2025), pero no dice que sea pionero. Sigue fuera.
 - Mapas: un solo enlace por módulo (M1 en la lección 8; M2 en la lección de ecosistemas).
+- 0.24% (Fundación Telefónica / La Marea, datos 2005–2010): revisado con Ana Ceci el 2 nov; se decidió NO incluirlo por ser un dato viejo. La lección 1 se queda con el 6% de contenido web en español (W3Techs).

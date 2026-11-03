@@ -28,7 +28,10 @@ var PH = {
   ajolote: photo("Ambystoma_mexicanum_1zz.jpg", "David J. Stang", "CC BY-SA 4.0", "Ajolote (<em>Ambystoma mexicanum</em>) en un acuario.", "Ajolote visto de frente"),
   inia: photo("Inia_geoffrensis_boliviensis_9274062.jpg", "Ramon y Suzanne Vargas (vía iNaturalist)", "CC BY-SA 4.0", "Delfín de río boliviano (<em>Inia geoffrensis boliviensis</em>), pariente cercano del delfín rosado.", "Delfín de río asomándose del agua"),
   vaquita: photo("Vaquita6_Olson_NOAA.jpg", "Paula Olson / NOAA", "Dominio público", "Dos vaquitas marinas en el Alto Golfo de California.", "Dos vaquitas marinas nadando en la superficie"),
-  quetzal: photo("Resplendent_Quetzal_male_-_Cloud_Forest_in_Costa_Rica.jpg", "Francesco Veronesi", "CC BY-SA 2.0", "Quetzal macho en un bosque de niebla de Costa Rica.", "Quetzal macho posado en una rama")
+  nutria: photo("Lontra_longicaudis_236215952.jpg", "Anthony Batista", "CC BY 4.0", "Nutria de río neotropical (<em>Lontra longicaudis</em>) sobre un tronco.", "Nutria de río caminando sobre un tronco junto al agua"),
+  oso: photo("Tremarctos_ornatus,_Duisburg_(DE)_--_2023_--_0131.jpg", "Anil Öztas / Zoo Duisburg", "Licencia Arte Libre (FAL)", "Oso andino (<em>Tremarctos ornatus</em>) en el zoológico de Duisburg, Alemania.", "Oso andino recostado sobre una roca"),
+  carey: photo("Tortuga_carey_(Eretmochelys_imbricata),_islas_Ad_Dimaniyat,_Omán,_2024-08-13,_DD_69.jpg", "Diego Delso", "CC BY-SA 4.0", "Tortuga carey (<em>Eretmochelys imbricata</em>) en las islas Ad Dimaniyat, Omán.", "Tortuga carey nadando sobre un arrecife"),
+  quetzal: Object.assign(photo("Resplendent_Quetzal_male_-_Cloud_Forest_in_Costa_Rica.jpg", "Francesco Veronesi", "CC BY-SA 2.0", "Quetzal macho en un bosque de niebla de Costa Rica.", "Quetzal macho posado en una rama"), {pos:"center 18%"})
 };
 window.XLT_PHOTOS = PH;
 
@@ -491,21 +494,21 @@ species: {
     threat:"La pérdida de bosques de niebla. (Conocimiento general.)",
     hope:"",
     refs:["birdlife2023"]},
-  oso: {name:"Oso andino o de anteojos", sci:"Tremarctos ornatus", icon:"🐻",
+  oso: {name:"Oso andino o de anteojos", sci:"Tremarctos ornatus", icon:"🐻", photo:PH.oso,
     iucn:{c:"VU", l:"Vulnerable", src:"World Land Trust / UICN"},
     where:"Los Andes, del oeste de Venezuela, por Colombia, Ecuador, Perú y Bolivia, hasta el noroeste de Argentina.",
     fact:"Es el único oso nativo de Sudamérica. Sus manchas alrededor de los ojos son distintas en cada individuo.",
     threat:"Pérdida de hábitat, conflictos con agricultores que lo matan cuando entra a sus milpas y cacería ilegal.",
     hope:"",
     refs:["wlt_oso"]},
-  nutria: {name:"Nutria de río neotropical", sci:"Lontra longicaudis", icon:"🦦",
+  nutria: {name:"Nutria de río neotropical", sci:"Lontra longicaudis", icon:"🦦", photo:PH.nutria,
     iucn:{c:"NT", l:"Casi amenazada", src:"Rheingantz y Trinca, 2015"}, nom:{c:"A", l:"Amenazada", src:"NOM-059-SEMARNAT-2010, citado en Cruz García et al., 2017"},
     where:"Ríos, arroyos y lagunas de México, Centroamérica y Sudamérica. (Distribución: conocimiento general.)",
     fact:"Es la especie de Lontra, nuestra guía de la Unidad 4. Necesita ríos limpios y con vegetación en sus orillas.",
     threat:"Contaminación del agua y pérdida de la vegetación de las orillas de los ríos. (Conocimiento general.)",
     hope:"",
     refs:["cruz2017"]},
-  carey: {name:"Tortuga carey", sci:"Eretmochelys imbricata", icon:"🐢",
+  carey: {name:"Tortuga carey", sci:"Eretmochelys imbricata", icon:"🐢", photo:PH.carey,
     iucn:{c:"CR", l:"En peligro crítico", src:"UICN (Mortimer y Donnelly, 2008)"},
     where:"Mares tropicales de todo el mundo; en América Latina es típica de los arrecifes del Caribe.",
     fact:"Su pico afilado le permite alimentarse en los recovecos de los arrecifes. (Conocimiento general.)",
