@@ -28,10 +28,10 @@ var PH = {
   ajolote: photo("Ambystoma_mexicanum_1zz.jpg", "David J. Stang", "CC BY-SA 4.0", "Ajolote (<em>Ambystoma mexicanum</em>) en un acuario.", "Ajolote visto de frente"),
   inia: photo("Inia_geoffrensis_boliviensis_9274062.jpg", "Ramon y Suzanne Vargas (vía iNaturalist)", "CC BY-SA 4.0", "Delfín de río boliviano (<em>Inia geoffrensis boliviensis</em>), pariente cercano del delfín rosado.", "Delfín de río asomándose del agua"),
   vaquita: photo("Vaquita6_Olson_NOAA.jpg", "Paula Olson / NOAA", "Dominio público", "Dos vaquitas marinas en el Alto Golfo de California.", "Dos vaquitas marinas nadando en la superficie"),
-  nutria: photo("Lontra_longicaudis_236215952.jpg", "Anthony Batista", "CC BY 4.0", "Nutria de río neotropical (<em>Lontra longicaudis</em>) sobre un tronco.", "Nutria de río caminando sobre un tronco junto al agua"),
-  oso: photo("Tremarctos_ornatus,_Duisburg_(DE)_--_2023_--_0131.jpg", "Anil Öztas / Zoo Duisburg", "Licencia Arte Libre (FAL)", "Oso andino (<em>Tremarctos ornatus</em>) en el zoológico de Duisburg, Alemania.", "Oso andino recostado sobre una roca"),
-  carey: photo("Tortuga_carey_(Eretmochelys_imbricata),_islas_Ad_Dimaniyat,_Omán,_2024-08-13,_DD_69.jpg", "Diego Delso", "CC BY-SA 4.0", "Tortuga carey (<em>Eretmochelys imbricata</em>) en las islas Ad Dimaniyat, Omán.", "Tortuga carey nadando sobre un arrecife"),
-  quetzal: Object.assign(photo("Resplendent_Quetzal_male_-_Cloud_Forest_in_Costa_Rica.jpg", "Francesco Veronesi", "CC BY-SA 2.0", "Quetzal macho en un bosque de niebla de Costa Rica.", "Quetzal macho posado en una rama"), {pos:"center 18%"})
+  nutria: Object.assign(photo("Lontra_longicaudis_236215952.jpg", "Anthony Batista", "CC BY 4.0", "Nutria de río neotropical (<em>Lontra longicaudis</em>) sobre un tronco.", "Nutria de río caminando sobre un tronco junto al agua"), {src:"img/foto-nutria.jpg"}),
+  oso: Object.assign(photo("Tremarctos_ornatus,_Duisburg_(DE)_--_2023_--_0131.jpg", "Anil Öztas / Zoo Duisburg", "Licencia Arte Libre (FAL)", "Oso andino (<em>Tremarctos ornatus</em>) en el zoológico de Duisburg, Alemania.", "Oso andino recostado sobre una roca"), {src:"img/foto-oso.jpg"}),
+  carey: Object.assign(photo("Tortuga_carey_(Eretmochelys_imbricata),_islas_Ad_Dimaniyat,_Omán,_2024-08-13,_DD_69.jpg", "Diego Delso", "CC BY-SA 4.0", "Tortuga carey (<em>Eretmochelys imbricata</em>) en las islas Ad Dimaniyat, Omán.", "Tortuga carey nadando sobre un arrecife"), {src:"img/foto-carey.jpg"}),
+  quetzal: Object.assign(photo("058_Male_Resplendent_quetzal_in_Los_Quetzales_National_Park_Photo_by_Giles_Laurent.jpg", "Giles Laurent", "CC BY-SA 4.0", "Quetzal macho en el Parque Nacional Los Quetzales, Costa Rica.", "Quetzal macho posado en una rama"), {src:"img/foto-quetzal.jpg", pos:"center 30%"}),
 };
 window.XLT_PHOTOS = PH;
 

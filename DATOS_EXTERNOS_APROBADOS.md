@@ -108,11 +108,11 @@ Neotenia del ajolote; por qué la región es tan diversa (trópicos, montañas, 
 | Ajolote | David J. Stang | CC BY-SA 4.0 |
 | Delfín de río boliviano | Ramon y Suzanne Vargas (iNaturalist) | CC BY-SA 4.0 |
 | Vaquitas | Paula Olson / NOAA | Dominio público |
-| Quetzal | Francesco Veronesi | CC BY-SA 2.0 |
+| Quetzal, Parque Nacional Los Quetzales (Costa Rica) | Giles Laurent | CC BY-SA 4.0 (cambiada el 2 nov; antes Francesco Veronesi) |
 | Nutria de río neotropical (*Lontra longicaudis*) | Anthony Batista | CC BY 4.0 |
 | Oso andino, zoológico de Duisburg | Anil Öztas / Zoo Duisburg | Licencia Arte Libre (FAL) |
 | Tortuga carey, islas Ad Dimaniyat (Omán) | Diego Delso | CC BY-SA 4.0 |
-Se cargan desde Wikimedia Commons. Nutria y oso agregados el 2 nov (elegidos por Ana Ceci). Carey agregada el 2 nov. Todas las fichas tienen foto.
+Se cargan desde Wikimedia Commons. Nutria y oso agregados el 2 nov (elegidos por Ana Ceci). Carey agregada el 2 nov. Todas las fichas tienen foto. Quetzal, nutria, oso y carey se guardan en img/ (foto-quetzal.jpg, foto-nutria.jpg, foto-oso.jpg, foto-carey.jpg); el enlace del crédito apunta a su página en Wikimedia Commons.
 
 ---
 
