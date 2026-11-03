@@ -62,3 +62,11 @@ en una siguiente versión.
 - Página: `agua.html` · contenido: `contenido-m4.js` (13 lecciones + l6b «El agua y los pueblos indígenas», próximamente).
 - `app.js`: el juego «order» acepta `seq:true` (ordenar pasos, sin barras) y `hint`.
 - Pendientes: testimonio para el módulo (proponerlo con UNICEF); mapa para la lección de pueblos indígenas; enlace exacto del visor de disponibilidad de acuíferos de CONAGUA (hoy la lección 2 enlaza a gob.mx/conagua).
+
+## Actualización del 2 nov (hecha)
+- Decisión: las respuestas de «Para pensar» NO se recolectan. Dejarlo explícito en la página de privacidad («Tus datos en este curso») y, si hace falta, en el aviso junto a cada pregunta (hoy dice «Escribe aquí. Se guarda en tu dispositivo.»).
+- Decisión (2 nov): no citar «Investigación de escritorio Xlatierra» (`xlt_escritorio`) ni «Investigación documental Xlatierra / Módulo 1» (`xlt_m1`). Cada dato debe citar su fuente directa, como en los módulos 2 a 4. Afecta sobre todo a `contenido.js` (lecciones l1, l8, l9, l10, l11, l14, l15, sus textos «sources» y refsNote) y a `mapa-mexico-datos.js` (fichas que usan `xlt_escritorio` y la nota del encabezado). Hay que localizar el estudio original de cada dato (Veracruz, Baja California Sur, Reserva Chico Mendes, manglares del noroeste, ecoansiedad, etc.), verificarlo y pedir aprobación; si no se encuentra, quitar el dato.
+- La «Encuesta Xlatierra (n=51)» (`encuesta_xlt`) se queda (confirmado por Ana Ceci el 2 nov).
+- Tarjeta de compromiso (comentario del 2 nov, Módulo 1): aprovechar más el espacio de la tarjeta y, según la opción que elija la persona, mostrar un paso a paso para cumplirla. Propuesta: guía de 4 a 5 pasos por opción en la página (con enlaces útiles) y 3 pasos cortos dentro de la tarjeta descargable. Aplica a los 4 módulos. Escribir los pasos y pasarlos a aprobación antes de programar.
+
+- HECHO (2 nov): privacidad aclarada; citas del Módulo 1 cambiadas a fuentes originales (ver DATOS_EXTERNOS_APROBADOS.md); invitaciones a los mapas en lecciones 8, 10 y 14 del Módulo 1 (el Módulo 2 ya invitaba en 2 lecciones); guías paso a paso por opción (`guias-accion.js`, pendientes de aprobación) y nueva tarjeta de compromiso en los 4 módulos (el Módulo 2 ahora también tiene tarjeta).

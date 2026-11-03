@@ -1,6 +1,6 @@
 /* =====================================================================
    XLATIERRA · DATOS DEL MAPA DE IMPACTOS EN MÉXICO (Módulo 1)
-   Todas las cifras vienen de la investigación del Módulo 1 (contenido.js).
+   Cada cifra cita su fuente original (claves de «refs» en contenido.js).
    Las coordenadas son aproximadas (centro de la región).
    ===================================================================== */
 window.XLT_MAPMX = {
@@ -29,7 +29,7 @@ pts: [
  {id:"manglares", type:"eco", name:"Manglares del noroeste", place:"Costa del noroeste de México", lat:23.0, lng:-106.2, zoom:6,
   desc:"Los manglares protegen la costa de tormentas, son guardería de peces y guardan mucho carbono.",
   fact:"En el noroeste de México se perdieron 1,817 hectáreas de manglares entre 2015 y 2020.",
-  why:"Cada hectárea perdida es menos protección para la costa y más carbono liberado.", refs:["xlt_m1"], lesson:"l10"},
+  why:"Cada hectárea perdida es menos protección para la costa y más carbono liberado.", refs:["floresdesantiago2025"], lesson:"l10"},
  {id:"acapulco", type:"agua", name:"Huracán Otis", place:"Acapulco, Guerrero", lat:16.85, lng:-99.88, zoom:8,
   desc:"En 2023, Otis se intensificó muy rápido, en cuestión de horas, antes de tocar tierra en Acapulco.",
   fact:"Los huracanes que se intensifican muy rápido, como Otis en 2023, son más difíciles de anticipar y de evacuar. En 2023 hubo 984 muertes relacionadas con desastres en México, 98% más que en 2022.",
@@ -48,11 +48,7 @@ pts: [
   why:"Sin arrecifes sanos se pierde pesca y la protección natural de la costa.", refs:["ipcc_wg1","ipcc_wg2_todos"], lesson:"l3"},
  {id:"veracruz", type:"sol", name:"Docentes preparados ante inundaciones", place:"Veracruz", lat:19.4, lng:-96.6, zoom:7,
   desc:"Una solución de adaptación que empieza en el salón de clases.",
-  fact:"Investigaciones con docentes en zonas inundables de Veracruz muestran que capacitar al profesorado es una de las vías más efectivas para construir resiliencia en la comunidad.",
-  why:"La escuela puede ser el centro de la preparación de toda una comunidad.", refs:["xlt_escritorio"], lesson:"l14"},
- {id:"edomex", type:"sol", name:"Educación climática en la escuela", place:"Estado de México", lat:19.35, lng:-99.65, zoom:8,
-  desc:"Llevar el tema al currículo es una forma de preparar a toda una generación.",
-  fact:"El Estado de México fue de los primeros territorios de América Latina en incorporar formalmente la educación sobre cambio climático en su currículo escolar.",
-  why:"Entender el problema es el primer paso para actuar.", refs:["xlt_escritorio"], lesson:"l14"}
+  fact:"Un estudio con docentes de bachillerato en localidades inundables de Tlacotalpan, Cotaxtla y La Antigua concluye que pueden ser actores clave para construir resiliencia en sus comunidades.",
+  why:"La escuela puede ser el centro de la preparación de toda una comunidad.", refs:["cajigal2017"], lesson:"l14"}
 ]
 };

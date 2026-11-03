@@ -167,3 +167,19 @@ Detalle completo, con citas y páginas, en el doc «Módulo 4 · Verificación d
 - Glaciares de México (agregado el 30 oct): C3 UNAM, 19 ene 2025 (Hugo Delgado Granados, Instituto de Geofísica): área total < 1 km²; Pico de Orizaba 3 km² (1958) → 0.370 km²; Iztaccíhuatl 0.110 km²; Ayoloco desapareció en 2018 (placa). Universidad Veracruzana, ene 2025 (Víctor Soto, CCT): Glaciar Norte 0.46 → 0.37 km² (2019–2024), ~24,500 m²/año desde 1958; la fecha de desaparición no se puede pronosticar.
 - LGA art. 15, fr. VI: la falta de agua en escuelas u hogares no debe impedir a niñas, niños y adolescentes ejercer sus derechos; acceso prioritario al agua para una menstruación digna.
 - Nota: el PDF «Reporte Mexicano de Cambio Climático, vol. III» trata de emisiones y mitigación; no tiene datos de glaciares.
+
+## Módulo 1 · Cambio de citas (2 nov 2026)
+Se dejaron de citar la «investigación de escritorio» y la «investigación documental» de Xlatierra. Cada dato cita ahora su fuente original o se quitó:
+- Manglares del noroeste, 1,817 ha (2015–2020): Gaceta UNAM (23 ene 2025), estudio Flores de Santiago y Flores Verdugo (ICMyL-UNAM, CONABIO, PLOS One). Lección 10 y mapa.
+- Reserva Chico Mendes: Ribeiro, Scanlan Lyons y Newton (2026), Earth 7(6). 22 entrevistas; 100% dice que el calor afecta su vida diaria; 72.7% no sabe cómo adaptarse. Texto corregido (antes decía «el 100% de los habitantes»).
+- Universitarios de Baja California Sur: Olmos-Martínez et al. (2016), Opción 32(13), p. 1151: 80% hombres y 85% mujeres dicen que la ciudadanía debe actuar; 7% y 8% recicla o compra reciclado. Texto corregido.
+- Docentes en Veracruz: Cajigal Molina, Maldonado González y González Gaudiano (2017), Revista Diálogo Educacional 17(55). Localidades de Tlacotalpan, Cotaxtla y La Antigua. Texto corregido: «pueden ser actores clave» (antes «la vía más efectiva»).
+- Manglares y carbono: se quitaron «3 a 5 veces», «2.20 Mt CO2e al año» y «Jamaica, Bahamas y Panamá» (no se pudo confirmar en fuente original). Queda: guardan mucho más carbono por hectárea que las selvas (USDA 2011, estudio Donato et al. en Nature Geoscience: 2 a 4 veces) y la NDC 3.0 plantea conservar y restaurar manglares (pp. 63-64).
+- QUITADOS por no encontrar fuente original verificable: 0.5% de publicaciones de ciencias naturales en español (l1); 69.5% de universitarios de Veracruz y la lluvia ácida (l12); Estado de México pionero en currículo climático (l14 y ficha del mapa).
+- Salud mental (l9): ahora cita IPCC AR6 GT2. Recomendaciones sobre ecoansiedad (l15): conocimiento general.
+- Revisión del 2 nov (noche): se volvió a buscar la fuente de los datos quitados.
+  - Manglares: se confirmó «de 2 a 4 veces más carbono que las selvas tropicales» (USDA 2011, estudio Donato et al.). El «3 a 5 veces» no apareció en ninguna fuente original. Se agregó Jamaica: NDC 3.0 con meta de restaurar al menos 2,200 ha de manglares para 2030 (Pew, 10 nov 2025). Bahamas y Panamá, y «2.20 Mt CO2e al año» para México: sin fuente original encontrada (no está en la NDC 2022 de México ni en Kumagai et al. 2020).
+  - 69.5% de universitarios de Veracruz y la lluvia ácida: probablemente del libro de González Gaudiano y Maldonado (2013), Universidad Veracruzana, encuesta a 367 estudiantes, pero la parte con resultados no está disponible en línea. Sigue fuera hasta verlo.
+  - 0.5% de publicaciones de ciencias naturales en español: solo aparece en Wikipedia sin fuente. Sigue fuera.
+  - Estado de México pionero en currículo climático: no se encontró. El IEECC tiene el programa «Escuelas por el Clima» (2025), pero no dice que sea pionero. Sigue fuera.
+- Mapas: un solo enlace por módulo (M1 en la lección 8; M2 en la lección de ecosistemas).

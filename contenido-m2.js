@@ -127,7 +127,6 @@ lessons: [
     "<strong>Una historia muy larga.</strong> Millones de años de cambios en el clima y en la geografía permitieron que surgieran muchas especies que solo viven aquí (endémicas)."
   ]},
   {t:"note", kind:"info", title:"¿De dónde sale esta explicación?", html:"Estas cuatro razones son conocimiento general de biogeografía. Las fuentes del módulo las mencionan de forma general, pero no las detallan. Por eso las marcamos para revisión."},
-  {t:"cta", icon:"🗺️", title:"Mira los países megadiversos en el mapa", html:"Actividad extra opcional: activa la capa «Países megadiversos» y recorre los ecosistemas de la región.", href:"mapa.html#megadiversos", btn:"Abrir mapa"},
   {t:"reflect", id:"r2", q:"¿Sabías que tu país (o tu región) es parte de una de las zonas con más vida del planeta? ¿Cómo cambia eso la forma en que ves tu territorio?"}
   ]},
 
@@ -448,6 +447,9 @@ lessons: [
   {t:"reflect", id:"r13b", q:"¿Con quién lo vas a hacer?"},
   {t:"reflect", id:"r13c", q:"¿Cuándo?"},
   {t:"reflect", id:"r13d", q:"¿Cómo sabrás que lo lograste?"},
+  {t:"commit", title:"Tu tarjeta de compromiso", q:"Convierte tu plan en una imagen para descargar y compartir. Axo la firma contigo.",
+   pick:"p13", what:"r13a", who:"r13b", when:"r13c", img:"img/pose-ajolote-feliz.png", footer:"@x.latierra",
+   options:["Registrar al menos 5 observaciones de seres vivos de mi colonia o comunidad en NaturaLista","Visitar un área natural protegida, humedal o parque cercano y aprender qué especies viven ahí","Compartir una ficha de Axo con mi familia o amistades y platicar sobre esa especie","Sumarme a una limpieza de río, playa o humedal, o a una jornada de reforestación con especies nativas","Investigar si en mi municipio hay un área protegida o un proyecto comunitario de conservación y cómo apoyarlo"]},
   {t:"note", kind:"act", title:"Lontra te reta", html:"Haz tu primer paso en las próximas dos semanas y cuéntanos en Instagram (@x.latierra). Una acción pequeña y real vale más que una enorme que nunca empieza."}
   ]}
 ],

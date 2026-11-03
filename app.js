@@ -219,12 +219,20 @@
         if (S.guess[key] !== undefined) reveal(S.guess[key]);
         body.appendChild(g); break;
       case "reflect":
-        var r = el('<div class="box"><strong>✍️ Para pensar</strong><p style="margin-top:6px">' + b.q + '</p><textarea rows="3" placeholder="Escribe aquí. Se guarda en tu dispositivo.">' + esc(S.reflect[b.id]) + '</textarea></div>');
+        var r = el('<div class="box"><strong>✍️ Para pensar</strong><p style="margin-top:6px">' + b.q + '</p><textarea rows="3" placeholder="Escribe aquí.">' + esc(S.reflect[b.id]) + '</textarea><p class="hint" style="margin:6px 0 0">' + ((C.course.plan || []).indexOf(b.id) >= 0 ? 'Se guarda en tu dispositivo. Si aceptaste compartir tus respuestas, tu plan se envía de forma anónima.' : 'Se guarda solo en tu dispositivo. No se envía a nadie.') + '</p></div>');
         r.querySelector("textarea").oninput = function (e) { S.reflect[b.id] = e.target.value; save(); };
         body.appendChild(r); break;
       case "pick":
         var p = el('<div class="box pick"><strong>👣 ' + b.q + '</strong>' + b.o.map(function (o, j) { return '<label><input type="radio" name="' + b.id + '" value="' + j + '"' + (S.pick[b.id] === j ? ' checked' : '') + '>' + o + '</label>'; }).join("") + '</div>');
-        p.querySelectorAll("input").forEach(function (x) { x.onchange = function () { S.pick[b.id] = +x.value; save(); }; });
+        var GD = ((window.XLT_GUIDES || {})[C.course.id] || {})[b.id];
+        var pbox = p.querySelector(".box.pick") || p; if (GD) pbox.appendChild(el('<div class="guide-wrap"></div>').firstChild);
+        function showGuide() {
+          if (!GD) return; var gw = p.querySelector(".guide-wrap"), k = S.pick[b.id], g = (k != null) ? GD[k] : null;
+          gw.innerHTML = g ? '<div class="howto"><h4>Así lo puedes hacer</h4><ol>' + g.steps.map(function (st) { return '<li><b>' + st[0] + '</b>' + st[1] + '</li>'; }).join("") + '</ol>' +
+            (g.link ? '<p class="howto-link">🔗 <a href="' + g.link.url + '" target="_blank" rel="noopener">' + g.link.title + '</a></p>' : '') + '</div>' : '';
+        }
+        p.querySelectorAll("input").forEach(function (x) { x.onchange = function () { S.pick[b.id] = +x.value; save(); showGuide(); }; });
+        showGuide();
         body.appendChild(p); break;
       case "read":
         body.appendChild(el('<div class="read"><h4>📖 Para profundizar</h4>' + b.items.map(resItem).join("") + '</div>')); break;
@@ -485,21 +493,47 @@
         if (line) lines.push(line); lines = lines.slice(0, 5);
         lines.forEach(function (l, i) { x.fillText(l, align === "center" ? W / 2 : 110, y + i * lh); }); return y + lines.length * lh;
       }
+      var gkey = (String(b.img).match(/pose-(\w+)-/) || [])[1] || C.course.certGuide || "nutria", gname = (C.characters[gkey] || {}).name || "Xlatierra";
+      var GD = ((window.XLT_GUIDES || {})[C.course.id] || {})[b.pick], short = (GD && pk != null && GD[pk]) ? GD[pk].short : null;
+      function wrapL(t, x0, y, max, lh, font, col, maxLines) {
+        x.font = font; x.fillStyle = col; x.textAlign = "left"; var words = String(t).split(" "), line = "", lines = [];
+        words.forEach(function (wd) { var test = line ? line + " " + wd : wd; if (x.measureText(test).width > max && line) { lines.push(line); line = wd; } else line = test; });
+        if (line) lines.push(line); if (lines.length > maxLines) { lines = lines.slice(0, maxLines); lines[maxLines - 1] = lines[maxLines - 1].replace(/\s*\S*$/, "") + "…"; }
+        lines.forEach(function (l, i) { x.fillText(l, x0, y + i * lh); }); return y + lines.length * lh;
+      }
       x.fillStyle = "#125d55"; x.fillRect(0, 0, W, H);
-      x.fillStyle = "#fdf8ef"; roundRect(x, 60, 60, W - 120, H - 120, 40); x.fill();
-      x.fillStyle = "#cfad30"; x.fillRect(60, 60, W - 120, 18);
-      wrap("MI COMPROMISO POR EL CLIMA", 170, 860, 50, "600 34px Poppins, sans-serif", "#b86544", "center");
-      var y = wrap(name ? name + " se compromete a:" : "Me comprometo a:", 250, 860, 56, "700 48px Caudex, serif", "#125d55", "center");
-      y = wrap("«" + (what || step) + "»", y + 40, 860, 62, "600 46px Poppins, sans-serif", "#1d2b2a");
-      if (what && step) y = wrap("Mi primer paso: " + step, y + 26, 860, 42, "300 32px Poppins, sans-serif", "#1d2b2a");
-      if (who) y = wrap("Con: " + who, y + 18, 860, 42, "300 32px Poppins, sans-serif", "#1d2b2a");
-      if (when) y = wrap("Cuándo: " + when, y + 10, 860, 42, "300 32px Poppins, sans-serif", "#1d2b2a");
+      x.fillStyle = "#0c463f"; x.beginPath(); x.arc(W - 70, 70, 330, 0, Math.PI * 2); x.fill();
+      var y = 150;
+      x.font = "600 26px Poppins, sans-serif"; x.fillStyle = "#cfad30"; x.textAlign = "left"; x.fillText("MI COMPROMISO POR EL CLIMA", 80, y);
+      if (name) { y = wrapL(name + " se compromete a:", 80, y + 56, 820, 40, "400 32px Poppins, sans-serif", "#e3eeec", 1) - 4; }
+      y = wrapL(step || what, 80, y + 72, 800, 66, "700 58px Caudex, serif", "#ffffff", 4);
+      function field(lbl, val) {
+        if (!val) return;
+        x.font = "600 24px Poppins, sans-serif"; x.fillStyle = "#cfad30"; x.fillText(lbl, 80, y + 52);
+        y = wrapL(val, 80, y + 96, 900, 44, "400 34px Poppins, sans-serif", "#ffffff", 2);
+      }
+      field("QUÉ HARÉ", what && step ? what : "");
+      field("CON QUIÉN", who);
+      field("CUÁNDO", when);
+      if (short) {
+        var bx = 80, by = Math.max(y + 44, 800), bw = 600, bh = 70 + short.length * 58;
+        if (by + bh > H - 120) by = H - 120 - bh;
+        x.fillStyle = "#fdf8ef"; roundRect(x, bx, by, bw, bh, 28); x.fill();
+        x.font = "700 30px Poppins, sans-serif"; x.fillStyle = "#125d55"; x.fillText("Mis primeros pasos", bx + 30, by + 52);
+        short.forEach(function (t, i) {
+          var cy = by + 104 + i * 58;
+          x.fillStyle = "#cfad30"; x.beginPath(); x.arc(bx + 46, cy - 10, 18, 0, Math.PI * 2); x.fill();
+          x.fillStyle = "#1d2b2a"; x.font = "700 22px Poppins, sans-serif"; x.textAlign = "center"; x.fillText(String(i + 1), bx + 46, cy - 2);
+          x.textAlign = "left"; wrapL(t, bx + 80, cy, bw - 110, 30, "400 27px Poppins, sans-serif", "#1d2b2a", 1);
+        });
+      }
       var img = new Image();
-      img.onload = function () { var s = 420, hh = img.height * s / img.width; x.drawImage(img, W - s - 80, H - hh - 150, s, hh); end(); };
+      img.onload = function () { var s = 330, hh = img.height * s / img.width; x.drawImage(img, W - s - 50, H - hh - 100, s, hh); end(); };
       img.onerror = end; img.src = b.img;
       function end() {
-        x.font = "300 28px Poppins, sans-serif"; x.fillStyle = "#5b6b6a"; x.textAlign = "left";
-        x.fillText("Aprendí con Xlatierra", 110, H - 190); x.font = "600 30px Poppins, sans-serif"; x.fillStyle = "#125d55"; x.fillText(b.footer || "#Xlatierra", 110, H - 145);
+        x.font = "400 26px Poppins, sans-serif"; x.fillStyle = "#cfe0dc"; x.textAlign = "left";
+        x.fillText("Firmado con " + gname + " · Aprendí con Xlatierra", 80, H - 56);
+        x.textAlign = "right"; x.font = "600 26px Poppins, sans-serif"; x.fillStyle = "#ffffff"; x.fillText(b.footer || "@x.latierra", W - 60, H - 56); x.textAlign = "left";
         var url; try { url = cv.toDataURL("image/png"); } catch (e) { url = null; }
         w.querySelector(".c-dl").innerHTML = '<div class="nav">' + (url ? '<a class="btn btn-primary" download="Mi_compromiso_Xlatierra.png" href="' + url + '">Descargar mi tarjeta</a>' : '') + '<button type="button" class="btn btn-ghost c-share">Compartir</button></div><p class="hint">Súbela a tus historias y etiqueta a @x.latierra.</p>';
         w.querySelector(".c-share").onclick = function () {
@@ -525,7 +559,8 @@
   function privacy() {
     app.innerHTML = '<div class="toprow"><a class="btn btn-ghost" href="#">← Índice</a></div><h1>Tus datos en este curso</h1>' +
       '<div class="box"><p><strong>Qué se guarda en tu dispositivo:</strong> tu avance, tus respuestas y tus reflexiones se guardan solo en este navegador para que puedas continuar después. Nadie más las ve.</p>' +
-      '<p><strong>Qué se envía a Xlatierra (solo si aceptaste):</strong> de forma anónima, tu rango de edad, ocupación, país/estado si lo escribiste, tus respuestas de autoevaluación antes y después, tu valoración de cada lección, tu resultado del cuestionario, el primer paso que elegiste y tu plan de acción. No enviamos tu nombre ni el del certificado.</p>' +
+      '<p><strong>Qué se envía a Xlatierra (solo si aceptaste):</strong> de forma anónima, tu rango de edad, ocupación, país/estado si lo escribiste, tus respuestas de autoevaluación antes y después, tu valoración de cada lección, cuántas preguntas «¡Adivina!» acertaste, tu resultado del cuestionario, el primer paso que elegiste y tu plan de acción (qué harás, con quién, cuándo y cómo sabrás que lo lograste). No enviamos tu nombre ni el del certificado.</p>' +
+      '<p><strong>Qué nunca se envía:</strong> lo que escribes en los cuadros «Para pensar» de las lecciones, tus respuestas de cada juego y tus respuestas una por una del cuestionario. Eso se queda solo en tu dispositivo.</p>' +
       '<p><strong>Para qué:</strong> para mejorar el curso y medir si ayuda a aprender y actuar.</p>' +
       '<p><strong>Contacto:</strong> ' + esc(CFG.contactEmail || "") + '</p>' +
       '<p class="hint">Si eres menor de 18 años, te recomendamos comentarlo con tu madre, padre o tutor antes de aceptar.</p></div>';

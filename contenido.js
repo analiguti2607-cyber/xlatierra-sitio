@@ -86,7 +86,7 @@ lessons: [
 
 /* ============================ UNIDAD 1 ============================ */
 { id:"l1", unit:"u1", title:"Bienvenida: ¿qué es el cambio climático?", time:"8 min",
-  refs:["ipcc_wg1","ndc30","pincc","w3techs","unesco_gem","xlt_escritorio"],
+  refs:["ipcc_wg1","ndc30","pincc","w3techs","unesco_gem"],
   blocks:[
   {t:"p", html:"En 2023, las olas de calor obligaron a suspender clases en <strong>18 estados de México</strong>. Tal vez lo viviste: salones sofocantes, entrenamientos cancelados, el ventilador que no alcanza. No fue solo «un año caluroso». Fue una señal de algo más grande, y de eso trata este curso."},
   {t:"note", kind:"info", title:"Cómo funciona este curso", html:"Son <strong>15 lecciones</strong> en 4 unidades. En cada una encontrarás preguntas <strong>¡Adivina!</strong> (no te preocupes por fallar: equivocarse antes de leer la respuesta ayuda a recordar), una <strong>respuesta corta</strong> y una <strong>larga</strong> para que elijas qué tan profundo quieres ir, datos con su fuente, y lecturas para profundizar. Al final hay un cuestionario y, si lo apruebas, tu certificado."},
@@ -101,7 +101,7 @@ lessons: [
     {n:"3.2 °C", l:"por siglo: la velocidad a la que se calienta México (el promedio mundial: 2 °C)", s:"NDC 3.0 México, p. 20"},
     {n:"18", l:"estados suspendieron clases por calor extremo en 2023", s:"NDC 3.0 México, p. 149"}]},
   {t:"h", text:"¿Por qué aprenderlo en español?"},
-  {t:"p", html:"Casi la mitad del contenido de internet está en inglés, y apenas alrededor del <strong>6%</strong> en español. En ciencia la brecha es mayor: se estima que solo cerca del <strong>0.5%</strong> de las publicaciones en ciencias naturales se escribe originalmente en español. Mucho conocimiento climático nos llega tarde, traducido o sin conectar con nuestra realidad."},
+  {t:"p", html:"Casi la mitad del contenido de internet está en inglés, y apenas alrededor del <strong>6%</strong> en español. Mucho conocimiento climático nos llega tarde, traducido o sin conectar con nuestra realidad."},
   {t:"p", html:"Y no basta con «haber oído del tema». En una encuesta de la UNESCO a 17,000 jóvenes de 166 países, el 90% dijo haber recibido información sobre cambio climático en la escuela, pero casi <strong>un tercio no sabía explicarlo</strong> y más del 40% solo lo entendía en términos muy generales. Este curso busca que tú sí puedas explicarlo, y hacer algo con eso."},
   {t:"reflect", id:"r1", q:"¿Recuerdas algún momento en que sentiste que el clima de tu ciudad estaba cambiando (calor, lluvias, agua, aire)? Descríbelo en dos o tres líneas."},
   {t:"read", items:[
@@ -110,7 +110,7 @@ lessons: [
     {title:"IPCC en español", url:"https://www.ipcc.ch/languages-2/spanish/", desc:"Todos los materiales del IPCC disponibles en español.", lang:"ES"}]},
   {t:"land", html:""}
   ],
-  sources:"IPCC AR6 GT1, Resumen para responsables de políticas (2021); Gobierno de México, NDC 3.0 (2025); PINCC-UNAM; W3Techs; UNESCO, Informe GEM; investigación de escritorio Xlatierra."
+  sources:"IPCC AR6 GT1, Resumen para responsables de políticas (2021); Gobierno de México, NDC 3.0 (2025); PINCC-UNAM; W3Techs; UNESCO, Informe GEM."
 },
 
 { id:"l2", unit:"u1", title:"Clima y tiempo: no son lo mismo", time:"6 min",
@@ -355,6 +355,7 @@ lessons: [
     {n:"984", l:"muertes relacionadas con desastres en 2023 (98% más que en 2022)", s:"NDC 3.0 México, p. 103"},
     {n:"9.4–17.1 M", l:"personas podrían ser desplazadas dentro de sus países en América Latina por el clima hacia 2050", s:"Banco Mundial, citado en la NDC 3.0 México, p. 151"}]},
   {t:"note", kind:"warn", title:"El Bosque, Tabasco", html:"En la comunidad costera de El Bosque, en Tabasco, la erosión y el avance del mar destruyeron de forma irreversible el territorio donde vivían las familias. No es una proyección: ya pasó."},
+  {t:"cta", icon:"🇲🇽", title:"Recorre estos impactos en el mapa de México", html:"Sequía, costas, huracanes, campo y soluciones, región por región, con su fuente. Actividad extra opcional.", href:"mapa-mexico.html", btn:"Abrir el mapa"},
   {t:"reflect", id:"r8", q:"¿Cuál de estos impactos (calor, sequía, agua, costas, huracanes) afecta más a tu estado o ciudad? ¿Cómo lo notas?"},
   {t:"read", items:[
     {title:"5 revelaciones del informe de la ONU sobre cambio climático y qué dice sobre América Latina", url:"https://www.youtube.com/watch?v=4QEW0DHWIlg", desc:"BBC News Mundo (2021). Lo que dice el IPCC sobre nuestra región.", lang:"ES", type:"video"},
@@ -365,7 +366,7 @@ lessons: [
 },
 
 { id:"l9", unit:"u3", title:"Salud, comida y bolsillo", time:"8 min",
-  refs:["unicef_lac","ndc30","xlt_escritorio"],
+  refs:["unicef_lac","ndc30","ipcc_wg2_todos"],
   blocks:[
   {t:"p", html:"El cambio climático no es «solo ambiental». Se cuela en la salud, en lo que comemos y en la economía de las familias."},
   {t:"h", text:"Salud"},
@@ -393,11 +394,11 @@ lessons: [
     {title:"Climate Science · Consecuencias para las personas", url:"https://climatescience.org/es/advanced-consequences-climate-people", desc:"Curso gratuito en español sobre por qué el clima importa.", lang:"ES"}]},
   {t:"land", html:""}
   ],
-  sources:"UNICEF, Cambio climático, degradación ambiental y niñez en movilidad en ALC; Gobierno de México, NDC 3.0 (2025); investigación de escritorio Xlatierra (salud mental)."
+  sources:"UNICEF, Cambio climático, degradación ambiental y niñez en movilidad en ALC; Gobierno de México, NDC 3.0 (2025); IPCC AR6 GT2 (2022), salud mental."
 },
 
 { id:"l10", unit:"u3", guide:"ajolote", title:"Biodiversidad y puntos de no retorno", time:"9 min",
-  refs:["ipcc_wg1","ipcc_wg2_todos","ipbes2019","xlt_m1"],
+  refs:["ipcc_wg1","ipcc_wg2_todos","ipbes2019","floresdesantiago2025"],
   blocks:[
   {t:"p", html:"La vida en el planeta también resiente el calentamiento: especies que se mueven, ecosistemas que se degradan y algunos sistemas que podrían cruzar umbrales de los que no hay regreso."},
   {t:"guess", q:"De las miles de especies estudiadas en el mundo, ¿cuántas ya cambiaron el lugar donde viven por el clima?",
@@ -425,11 +426,11 @@ lessons: [
     {title:"IPCC · Cómo el cambio climático afecta la vida en la Tierra (Resumen para todos)", url:"https://www.iai.int/administrador/assets/images/ckfinder/files/IPCC_AR6_WGII_ResumenParaTodos_Impactos%20(1).pdf", desc:"Impactos en ecosistemas y personas, explicados de forma sencilla.", lang:"ES"}]},
   {t:"land", html:""}
   ],
-  sources:"IPCC AR6 GT1 y GT2 (2021–2022); IPBES (2019); estudios sobre manglares del noroeste de México (investigación Xlatierra, Módulo 1)."
+  sources:"IPCC AR6 GT1 y GT2 (2021–2022); IPBES (2019); Flores de Santiago et al., manglares del noroeste de México (UNAM, PLOS One, 2024)."
 },
 
 { id:"l11", unit:"u3", title:"Justicia climática: ¿quién paga?", time:"9 min",
-  refs:["unicef_lac","pnuma2025","cidh2025","escazu","pnud_conexiones","xlt_escritorio"],
+  refs:["unicef_lac","pnuma2025","cidh2025","escazu","pnud_conexiones","ribeiro2026"],
   blocks:[
   {t:"guess", q:"¿Qué porcentaje de las emisiones globales produce América Latina y el Caribe?",
    o:["Entre 6.7% y 10%","Alrededor de 25%","Alrededor de 40%"], a:0,
@@ -445,7 +446,7 @@ lessons: [
     {n:"52%", l:"de las personas en pobreza en la región son menores de 25 años (~94 M)", s:"UNICEF / CEPAL"}]},
   {t:"note", kind:"warn", title:"Dos casos de nuestra región", html:"<strong>Dominica (Caribe):</strong> un país que casi no emite vio desplazada al <strong>76% de su niñez</strong> por huracanes entre 2016 y 2021. La justicia climática pide financiamiento internacional que no los endeude para reconstruir escuelas y viviendas resistentes.<br><br><strong>México:</strong> América Latina es la región más peligrosa del mundo para defender el medio ambiente. En 2023 fueron asesinadas <strong>18 personas defensoras ambientales</strong> en México. El <strong>Acuerdo de Escazú</strong> obliga a los países a garantizar el acceso a información ambiental, la participación ciudadana y la protección de quienes defienden su territorio."},
   {t:"h", text:"Vivirlo no es lo mismo que saber qué hacer"},
-  {t:"p", html:"En la Reserva Chico Mendes, en la Amazonía brasileña, el 100% de los habitantes vive los impactos del cambio climático, pero el <strong>72.7%</strong> dice no saber cómo adaptarse. Sufrir los efectos no da por sí solo las herramientas para responder. Por eso la educación climática también es una cuestión de justicia."},
+  {t:"p", html:"En un estudio con 22 personas extractivistas de la Reserva Chico Mendes, en la Amazonía brasileña, todas dijeron que el calor del cambio climático ya afecta su vida diaria, pero el <strong>72.7%</strong> no sabía cómo adaptarse. Sufrir los efectos no da por sí solo las herramientas para responder. Por eso la educación climática también es una cuestión de justicia."},
   {t:"stats", items:[
     {n:"67.3%", l:"de los hogares de América Latina tenía internet fijo en 2022 (OCDE: 91.1%)", s:"CEPAL / PNUD"},
     {n:"38%", l:"de los hogares rurales conectados, frente a 77% de los urbanos", s:"CEPAL / PNUD"}]},
@@ -457,12 +458,12 @@ lessons: [
     {title:"PNUMA · Financiamiento para la transición justa en ALC", url:"https://www.unepfi.org/wordpress/wp-content/uploads/2025/11/Financiamiento-para-la-Transicion-Justa-en-America-Latia-y-el-Caribe.pdf", desc:"Cómo financiar un cambio que no deje a nadie atrás.", lang:"ES"}]},
   {t:"land", html:""}
   ],
-  sources:"UNICEF ALC; CEPAL; PNUMA FI (2025); CIDH (2025); Acuerdo de Escazú; estudio en la Reserva Chico Mendes (investigación de escritorio Xlatierra); PNUD, Conexiones perdidas."
+  sources:"UNICEF ALC; CEPAL; PNUMA FI (2025); CIDH (2025); Acuerdo de Escazú; Ribeiro et al. (2026), Reserva Chico Mendes; PNUD, Conexiones perdidas."
 },
 
 /* ============================ UNIDAD 4 ============================ */
 { id:"l12", unit:"u4", title:"Ciencia vs. desinformación: tu kit", time:"8 min",
-  refs:["wef2024","cook2017","vdlinden2017","xlt_escritorio"],
+  refs:["wef2024","cook2017","vdlinden2017"],
   blocks:[
   {t:"p", html:"El Foro Económico Mundial ubicó a la <strong>desinformación</strong> como el mayor riesgo global de corto plazo en 2024. En clima, la desinformación no solo confunde: retrasa decisiones. La buena noticia es que se puede aprender a detectarla."},
   {t:"h", text:"Tu kit de 5 herramientas"},
@@ -475,7 +476,7 @@ lessons: [
   {t:"deck", title:"¿Mito o dato?", q:"Usa tu kit. Lee cada tarjeta y decide si es un <strong>dato</strong> respaldado por la ciencia o un <strong>mito</strong>.",
    labels:["Dato","Mito"], icons:["✅","❌"],
    cards:[
-    {t:"La lluvia ácida causa el cambio climático.", a:1, e:"Son problemas distintos: la lluvia ácida es contaminación del aire que cae con la lluvia. En un estudio con universitarios de Veracruz, el 69.5% creía esta confusión."},
+    {t:"La lluvia ácida causa el cambio climático.", a:1, e:"Son problemas distintos: la lluvia ácida es contaminación del aire que cae con la lluvia."},
     {t:"Los océanos absorben alrededor del 91% del calor extra que hemos atrapado.", a:0, e:"Según el IPCC, el océano guarda la mayor parte; la atmósfera, apenas cerca de 1%."},
     {t:"El agujero en la capa de ozono es lo que calienta al planeta.", a:1, e:"El agujero de ozono deja pasar más radiación ultravioleta. El calentamiento lo causan los gases de efecto invernadero, que atrapan radiación infrarroja."},
     {t:"El clima siempre ha cambiado, así que el calentamiento actual es natural.", a:1, e:"Es cierto que el clima ha cambiado antes, pero el IPCC concluye que el calentamiento de 1.1 °C desde la era preindustrial se debe a la actividad humana."},
@@ -500,7 +501,7 @@ lessons: [
     {title:"Yale · Cómo «vacunar» al público contra la desinformación climática", url:"https://climatecommunication.yale.edu/publications/inoculate-public-misinformation-climate-change/", desc:"La investigación detrás de este kit.", lang:"EN"}]},
   {t:"land", html:""}
   ],
-  sources:"Foro Económico Mundial, Global Risks Report 2024; Cook et al. (2017); van der Linden et al. (2017); estudios con universitarios en Veracruz y Baja California Sur (investigación de escritorio Xlatierra)."
+  sources:"Foro Económico Mundial, Global Risks Report 2024; Cook et al. (2017); van der Linden et al. (2017)."
 },
 
 { id:"l13", unit:"u4", title:"El límite de 1.5 °C: ¿cuánto tiempo nos queda?", time:"8 min",
@@ -536,7 +537,7 @@ lessons: [
 },
 
 { id:"l14", unit:"u4", title:"Soluciones: mitigar y adaptarnos", time:"9 min",
-  refs:["ndc30","pnud_ndc_lac","ipcc_wg3","unicef_lac","xlt_m1","xlt_escritorio"],
+  refs:["ndc30","pnud_ndc_lac","ipcc_wg3","unicef_lac","usda_donato","pew_jamaica","cajigal2017"],
   blocks:[
   {t:"p", html:"Frente al cambio climático hay dos tipos de respuesta, y necesitamos las dos:"},
   {t:"table", head:["","Mitigación","Adaptación"], rows:[
@@ -557,7 +558,7 @@ lessons: [
    ]},
   {t:"h", text:"Soluciones que ya funcionan en la región"},
   {t:"list", items:[
-    "<strong>Manglares (carbono azul):</strong> almacenan de 3 a 5 veces más carbono por área que los bosques tropicales maduros y protegen la costa de tormentas. En México, evitar su deforestación y restaurarlos podría mitigar <strong>2.20 millones de toneladas de CO₂e al año</strong> para 2030. Jamaica, Bahamas y Panamá ya los incluyen en sus NDC. <em>Límite real:</em> no sustituyen la urgencia de descarbonizar la energía y el transporte.",
+    "<strong>Manglares (carbono azul):</strong> guardan de 2 a 4 veces más carbono que las selvas tropicales y protegen la costa de tormentas. La NDC 3.0 de México plantea conservar y restaurar manglares y otros ecosistemas de carbono azul, y Jamaica se comprometió en su NDC 3.0 a restaurar al menos 2,200 hectáreas de manglares para 2030. <em>Límite real:</em> no sustituyen la urgencia de descarbonizar la energía y el transporte.",
     "<strong>Energía renovable comunitaria:</strong> plantas solares con baterías en la Amazonía colombiana; una microcentral hidroeléctrica comunitaria en El Palero, República Dominicana, abastece a 300 familias; en México, sistemas de «hielo solar» para cooperativas pesqueras. A nivel global, las renovables podrían cerrar hasta el 55% de la brecha de emisiones. <em>Límite real:</em> sin inversión en redes, almacenamiento y una transición justa para trabajadores, no basta con «apagar fósiles y encender renovables».",
     "<strong>Eficiencia y economía circular:</strong> en México, la eficiencia energética podría mitigar 4.43 millones de toneladas de CO₂e al 2030 y la economía circular otros 3.74 millones. A nivel mundial, la economía circular en materiales pesados como cemento, acero y plástico puede reducir hasta 40% de sus emisiones. <em>Límite real:</em> no sirve si se usa para justificar el hiperconsumo."]},
   {t:"note", kind:"warn", title:"Cuidado con el greenwashing", html:"El <strong>greenwashing</strong> es presentar algo como «verde» o «sustentable» sin que lo sea, o exagerando su impacto. Una pista: si una solución promete resolverlo todo sin ningún costo ni cambio, desconfía. Las soluciones reales siempre tienen límites, y vale la pena conocerlos."},
@@ -565,8 +566,7 @@ lessons: [
   {t:"list", items:[
     "México incluye a niñas, niños, adolescentes y jóvenes como población prioritaria en sus compromisos de adaptación (NDC 3.0).",
     "UNICEF apoyó en México manuales de reducción de riesgo de desastres para estudiantes y personal escolar.",
-    "En Veracruz, investigaciones con docentes en zonas inundables muestran que capacitar al profesorado es una de las vías más efectivas para construir resiliencia en la comunidad.",
-    "El Estado de México fue de los primeros territorios de América Latina en incorporar formalmente la educación sobre cambio climático en su currículo escolar."]},
+    "En Veracruz, un estudio con docentes de bachillerato en localidades inundables de Tlacotalpan, Cotaxtla y La Antigua concluye que pueden ser actores clave para construir resiliencia en sus comunidades."]},
   {t:"p", html:"El IPCC recuerda algo importante: la voluntad individual de cambiar se concreta cuando hay <strong>políticas públicas, leyes, infraestructura e instituciones</strong> que facilitan las opciones sostenibles. Por eso la acción climática no es solo personal: también es colectiva y política."},
   {t:"reflect", id:"r14", q:"Elige una solución de esta lección. ¿Cómo podría aplicarse en tu escuela, trabajo o colonia?"},
   {t:"read", items:[
@@ -576,7 +576,7 @@ lessons: [
     {title:"Climate Science · Innovación industrial", url:"https://climatescience.org/es/advanced-steel-climate", desc:"Cómo hacer edificios, ropa y otros productos de forma sostenible.", lang:"ES"}]},
   {t:"land", html:""}
   ],
-  sources:"Gobierno de México, NDC 3.0 (2025); PNUD, NDC 3.0 en ALC; IPCC AR6 GT3 y Síntesis; UNICEF; investigación Xlatierra, Módulo 1 (soluciones) y de escritorio (Veracruz, EDOMEX)."
+  sources:"Gobierno de México, NDC 3.0 (2025); PNUD, NDC 3.0 en ALC; IPCC AR6 GT3 y Síntesis; UNICEF; Donato et al. (2011) vía USDA; Pew (2025), NDC 3.0 de Jamaica; Cajigal Molina et al. (2017)."
 },
 
 { id:"l14n", unit:"u4", title:"La naturaleza ya lo resolvió: edificios que respiran", time:"5 min",
@@ -608,20 +608,20 @@ lessons: [
 { id:"l14b", unit:"u4", soon:true, title:"Saberes indígenas y cambio climático", note:"La estamos construyendo con y desde las voces de los pueblos indígenas"},
 
 { id:"l15", unit:"u4", title:"De la preocupación a la acción", time:"10 min",
-  refs:["encuesta_xlt","unesco_gem","frontiers2025","xlt_escritorio"],
+  refs:["encuesta_xlt","unesco_gem","frontiers2025","olmos2016","general"],
   blocks:[
   {t:"p", html:"Llegaste a la última lección. Ya sabes qué es el cambio climático, por qué ocurre, a quién afecta y qué soluciones existen. Ahora viene la pregunta que más nos importa en Xlatierra: <strong>¿y ahora qué hago yo?</strong>"},
   {t:"note", kind:"info", title:"No eres la única persona con esa pregunta", html:"En una encuesta de Xlatierra a 51 personas, la mayoría jóvenes (octubre de 2026), el <strong>59%</strong> dijo que la información sobre clima «le dice el problema pero no qué hacer», y el <strong>55%</strong> respondió que no sabe por dónde empezar. En encuestas de la UNESCO, más del 90% de las y los jóvenes pide una educación climática con más acciones prácticas."},
   {t:"h", text:"Saber no basta (y está bien)"},
-  {t:"p", html:"La investigación muestra algo que quizá ya sentiste: <strong>saber más no siempre lleva a actuar</strong>. En una evaluación con universitarios de Baja California Sur, más del 80% coincidía en que la ciudadanía debe tomar medidas, pero solo entre el 7% y el 8% reciclaba de forma concreta. Se le llama la <strong>brecha entre actitud y acción</strong>."},
+  {t:"p", html:"La investigación muestra algo que quizá ya sentiste: <strong>saber más no siempre lleva a actuar</strong>. En una encuesta a 286 universitarios de La Paz, Baja California Sur, el 80% de los hombres y el 85% de las mujeres coincidían en que la ciudadanía debe actuar ante el cambio climático, pero solo el 7% y el 8% reciclaba o compraba productos reciclados. Se le llama la <strong>brecha entre actitud y acción</strong>."},
   {t:"guess", q:"Según la investigación, ¿qué ayuda más a pasar de la preocupación a la acción?",
    o:["Leer más datos alarmantes","Actuar en grupo y con metas concretas","Esperar a que el gobierno lo resuelva"], a:1,
-   e:"El trabajo <strong>en grupo y con metas concretas</strong> construye <strong>autoeficacia</strong>: la convicción de «sí podemos hacer algo». Lo que más predice que alguien actúe no es cuánto sabe, sino qué tanto le preocupa el riesgo, sus valores y si siente que su acción cuenta."},
+   e:"El trabajo <strong>en grupo y con metas concretas</strong> construye <strong>autoeficacia</strong>: la convicción de «sí podemos hacer algo». Saber más ayuda, pero actuar con otras personas y ver resultados es lo que más impulsa a seguir."},
   {t:"stats", items:[
     {n:"Grande", l:"efecto de la educación climática en el conocimiento", s:"Meta-análisis, Frontiers in Education (2025)"},
     {n:"Moderado", l:"efecto en actitudes", s:"Meta-análisis, Frontiers in Education (2025)"},
     {n:"Menor", l:"efecto en la conducta, a menos que se acompañe de acción práctica", s:"Meta-análisis, Frontiers in Education (2025)"}]},
-  {t:"note", kind:"heart", title:"Si esto te abruma, es normal", html:"Sentir ansiedad, tristeza, miedo o enojo frente al cambio climático es una respuesta razonable a un problema real. Algunas personas lo llaman <strong>ecoansiedad</strong>. Lo que recomienda la investigación:<br><br>• <strong>Nombra lo que sientes</strong> en lugar de ignorarlo. Hablarlo con alguien de confianza ayuda.<br>• <strong>Actúa con otras personas.</strong> La acción colectiva protege más que leer malas noticias en soledad.<br>• <strong>Cuida tus redes de apoyo:</strong> familia, amistades, grupos. Son un factor de protección.<br>• Si la angustia no te deja dormir, estudiar o vivir tu día, busca apoyo profesional. Pedir ayuda también es cuidarte."},
+  {t:"note", kind:"heart", title:"Si esto te abruma, es normal", html:"Sentir ansiedad, tristeza, miedo o enojo frente al cambio climático es una respuesta razonable a un problema real. Algunas personas lo llaman <strong>ecoansiedad</strong>. Lo que suele ayudar:<br><br>• <strong>Nombra lo que sientes</strong> en lugar de ignorarlo. Hablarlo con alguien de confianza ayuda.<br>• <strong>Actúa con otras personas.</strong> La acción colectiva protege más que leer malas noticias en soledad.<br>• <strong>Cuida tus redes de apoyo:</strong> familia, amistades, grupos. Son un factor de protección.<br>• Si la angustia no te deja dormir, estudiar o vivir tu día, busca apoyo profesional. Pedir ayuda también es cuidarte."},
   {t:"h", text:"Tu acción, en dos niveles"},
   {t:"list", items:[
     "<strong>Personal:</strong> cambiar un hábito de transporte, comida o energía; explicarle a alguien lo que aprendiste; revisar lo que compartes en redes con tu kit contra la desinformación.",
@@ -647,13 +647,13 @@ lessons: [
     {title:"UNICEF · Herramientas para la acción climática", url:"https://www.unicef.org/uruguay/media/11681/file/herramientas-para-la-accion-climatica-imprenta.pdf.pdf", desc:"Ideas y pasos para organizar acciones con otras personas.", lang:"ES"}]},
   {t:"land", html:""}
   ],
-  sources:"Encuesta Xlatierra (n=51, octubre 2026); UNESCO, Informe GEM; Frontiers in Education (2025), meta-análisis; estudios con universitarios en Baja California Sur; literatura sobre autoeficacia y ecoansiedad (investigación de escritorio Xlatierra)."
+  sources:"Encuesta Xlatierra (n=51, octubre 2026); UNESCO, Informe GEM; Frontiers in Education (2025), meta-análisis; Olmos-Martínez et al. (2016), universitarios de Baja California Sur; recomendaciones de autocuidado (conocimiento general)."
 }
 ],
 
 /* ======================= CUESTIONARIO FINAL ======================= */
 /* ===================== REFERENCIAS ===================== */
-refsNote: "<strong>Cómo usamos las fuentes.</strong> Las cifras de este módulo vienen de la investigación de Xlatierra (Módulo 1) y de fuentes externas aprobadas. Cada lección muestra al final sus fuentes. Si encuentras un error, escríbenos.",
+refsNote: "<strong>Cómo usamos las fuentes.</strong> Cada cifra de este módulo cita su fuente original y fue revisada contra ella. Cada lección muestra al final sus fuentes. Si encuentras un error, escríbenos.",
 refs: {
   asknature_eastgate: {short:"AskNature", text:"The Biomimicry Institute (s. f.). <em>Eastgate Centre</em>. AskNature.", url:"https://asknature.org/idea/eastgate-centre/"},
   ipcc_wg1: {short:"IPCC AR6 GT1, 2021", text:"IPCC (2021). <em>Cambio climático 2021: Bases físicas. Resumen para responsables de políticas</em>. Contribución del Grupo de Trabajo I al Sexto Informe de Evaluación.", url:"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WG1_SPM_Spanish.pdf"},
@@ -682,8 +682,13 @@ refs: {
   paris: {short:"Acuerdo de París, 2015", text:"CMNUCC (2015). <em>Acuerdo de París</em>.", url:"https://unfccc.int/es/process-and-meetings/the-paris-agreement"},
   frontiers2025: {short:"Frontiers in Education, 2025", text:"Meta-análisis sobre los efectos de la educación climática en conocimiento, actitudes y conducta. <em>Frontiers in Education</em> (2025).", url:""},
   encuesta_xlt: {short:"Encuesta Xlatierra, 2026", text:"Xlatierra (2026). Encuesta a 51 personas, la mayoría jóvenes, octubre de 2026.", url:""},
-  xlt_m1: {short:"Investigación Xlatierra, Módulo 1", text:"Investigación documental de Xlatierra para el Módulo 1 (NotebookLM), con las fuentes citadas en cada dato.", url:""},
-  xlt_escritorio: {short:"Investigación de escritorio Xlatierra", text:"Investigación de escritorio de Xlatierra: estudios con universitarios de Veracruz y Baja California Sur, Reserva Chico Mendes, salud mental y ecoansiedad, brecha lingüística en ciencia.", url:""}
+  floresdesantiago2025: {short:"Gaceta UNAM, 2025", text:"Gaceta UNAM (2025, 23 de enero). <em>Comprueban pérdida de manglares en la zona noroeste de México</em>. Estudio de Francisco Flores de Santiago y Francisco Javier Flores Verdugo (ICMyL-UNAM) con CONABIO, publicado en <em>PLOS One</em>.", url:"https://www.gaceta.unam.mx/comprueban-perdida-de-manglares-en-la-zona-noroeste-de-mexico/"},
+  ribeiro2026: {short:"Ribeiro et al., 2026", text:"Ribeiro, S. C., Scanlan Lyons, C. M. y Newton, P. (2026). From Climate Literacy to Climate Action: Extractivists’ Perceptions of Climate Change in the Brazilian Amazon. <em>Earth</em>, 7, 6. Entrevistas a 22 personas de la Reserva Extractivista Chico Mendes.", url:"https://doi.org/10.3390/earth7010006"},
+  usda_donato: {short:"USDA, 2011 (Donato et al.)", text:"Departamento de Agricultura de EE. UU. (2011, 3 de mayo). Nota sobre el estudio de Daniel Donato y colegas en <em>Nature Geoscience</em>: los manglares guardan de 2 a 4 veces más carbono que las selvas tropicales.", url:"https://www.usda.gov/node/14885"},
+  pew_jamaica: {short:"Pew, 2025", text:"The Pew Charitable Trusts (2025, 10 de noviembre). <em>Jamaica’s New Climate Commitments Recognize Conservation Value of Coastal Wetlands</em>. Metas de la NDC 3.0 de Jamaica.", url:"https://www.pew.org/en/research-and-analysis/articles/2025/11/10/jamaicas-new-climate-commitments-recognize-conservation-value-of-coastal-wetlands"},
+  cajigal2017: {short:"Cajigal Molina et al., 2017", text:"Cajigal Molina, E., Maldonado González, A. L. y González Gaudiano, E. J. (2017). Resiliencia en docentes. Una vía para mejorar capacidades de las poblaciones ante inundaciones agravadas por el cambio climático. <em>Revista Diálogo Educacional</em>, 17(55), 1445-1464.", url:"https://periodicos.pucpr.br/dialogoeducacional/article/view/22305"},
+  olmos2016: {short:"Olmos-Martínez et al., 2016", text:"Olmos-Martínez, E., Arizpe, O., Contreras-Loera, M. R. y Gómez-Cabrera, I. D. (2016). El cambio climático: una perspectiva de género. <em>Opción</em>, 32(13), 1136-1157. Encuesta a 286 universitarios de La Paz, Baja California Sur (2015), p. 1151.", url:"https://dialnet.unirioja.es/descarga/articulo/5844707.pdf"},
+  general: {short:"Conocimiento general", text:"<span class='ext-tag'>Conocimiento general</span> Recomendaciones de autocuidado y explicaciones con nuestras palabras; no vienen de un informe específico.", url:""}
 },
 
 quiz: [

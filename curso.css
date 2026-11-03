@@ -205,3 +205,11 @@ details.refs li,.reflist li{margin:8px 0;line-height:1.45}
 .gh-info{background:var(--soft);border-radius:12px;padding:10px 14px;margin-top:10px;font-size:.93rem}
 .c-cv{width:100%;max-width:420px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.12);margin:16px auto;display:block}
 .o-row.o-seq{grid-template-columns:1fr}
+.howto{background:var(--mist,#eaf1f3);border-radius:14px;padding:14px 16px;margin-top:12px}
+.howto h4{margin:0 0 6px;font-family:'Caudex',serif;color:var(--teal);font-size:1.15rem}
+.howto ol{margin:0;padding:0;list-style:none;counter-reset:g}
+.howto li{counter-increment:g;position:relative;padding:8px 0 8px 40px;border-bottom:1px solid rgba(18,93,85,.12);font-size:.95rem}
+.howto li:last-child{border-bottom:0}
+.howto li:before{content:counter(g);position:absolute;left:0;top:8px;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;display:grid;place-items:center;font-size:.85rem}
+.howto li b{display:block;font-weight:600;color:var(--ink,#1d2b2a)}
+.howto-link{margin:8px 0 0}
